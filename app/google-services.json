@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "488766389495",
+    "firebase_url": "https://raspe-mania-d961e.firebaseio.com",
+    "project_id": "raspe-mania-d961e",
+    "storage_bucket": "raspe-mania-d961e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488766389495:android:fb944ae42fe30922d7e7f2",
+        "android_client_info": {
+          "package_name": "br.com.freelas.app.mobile.raspe.mania.raspemania"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488766389495-ssqhoc6uo28sc8leq1c7qlva7hj31jq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.freelas.app.mobile.raspe.mania.raspemania",
+            "certificate_hash": "e230bb797bbeeab71ed13c9ec5492a139ad9f794"
+          }
+        },
+        {
+          "client_id": "488766389495-70m28gu4fmof7shg1l8pehj2s1o3p7lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNBdTRQvQw3vQFSm0516MSojNowZJbEZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488766389495-70m28gu4fmof7shg1l8pehj2s1o3p7lk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
