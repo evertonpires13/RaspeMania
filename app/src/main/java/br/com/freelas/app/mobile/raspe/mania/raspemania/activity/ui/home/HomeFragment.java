@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.activity.R;
+
+import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
+
 
 public class HomeFragment extends Fragment {
 

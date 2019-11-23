@@ -7,6 +7,8 @@ public class LocalModel  extends GenericModel {
 
     public String nome;
 
+    public RotaModel rota;
+
     @NonNull
     @Override
     public String toString() {

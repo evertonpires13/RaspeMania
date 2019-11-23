@@ -2,8 +2,10 @@ package br.com.freelas.app.mobile.raspe.mania.raspemania;
 
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.firebase.LocalFirebase;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.firebase.RotaFirebase;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.generic.GenericInterface;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.model.LocalModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.model.RotaModel;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -16,11 +18,28 @@ public class MainActivity extends AppCompatActivity implements GenericInterface 
         setContentView(R.layout.activity_main);
 
 
-        LocalModel localModel = new LocalModel();
-        localModel.nome = "testando";
 
-        LocalFirebase localFirebase = new LocalFirebase(this);
-        localFirebase.save(localModel);
+
+        //RotaModel rota  = new RotaModel();
+        //rota.nome = "rota";
+        //rota.nomeConhecido = "nome";
+
+        RotaFirebase rotaFirebase = new RotaFirebase(this);
+        //rotaFirebase.save(rota);
+
+        rotaFirebase.load("nome", "rota");
+        RotaModel rota2 = rotaFirebase.dado;
+
+        rota2.nome = "rota update";
+
+        rotaFirebase.update("nome", "rota", rota2);
+
+        //LocalModel localModel = new LocalModel();
+        //localModel.nome = "testando";
+        //localModel.rota = rota2;
+
+        //LocalFirebase localFirebase = new LocalFirebase(this);
+        //localFirebase.save(localModel);
        // Toast.makeText(this, "dsfsdfsdfsd", Toast.LENGTH_SHORT).show();
     }
 
