@@ -14,4 +14,17 @@ public class MainActivity extends BaseActivity {
     }
 
 
+=======
+
+        AppCompatButton rota = findViewById(R.id.example_btn);
+
+        rota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ExampleActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+>>>>>>> origin/feature/arquitetura
 }
