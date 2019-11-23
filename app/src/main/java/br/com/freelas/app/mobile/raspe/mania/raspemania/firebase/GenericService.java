@@ -3,12 +3,15 @@ package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase;
 
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
@@ -78,7 +81,35 @@ public abstract class GenericService<T> {
     }
 
     /*--------------------------------------------------------------------------------------------*/
+    public void load() {
 
+        try {
+
+            db.collection(node)
+                    .get()
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            genericInterface.error("Erro ao ler. Favor verificar : " + e.toString());
+                        }
+                    })
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot documentSnapshots) {
+                            dados = documentSnapshots.toObjects(classe);
+                            genericInterface.sucessList(node);
+
+                        }
+                    });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            genericInterface.error("Erro ao retornar os dados : " + e.toString());
+        }
+
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
     /**
      * @param chave
      * @return

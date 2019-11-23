@@ -5,27 +5,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.MainActivity">
+    tools:context=".view.activity.ColaboradorActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/example_btn"
-        android:text="@string/example"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:id="@+id/editNome"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/rota_btn"
-        android:text="rota"
+
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:id="@+id/editApelido"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/colaborador_btn"
-        android:text="colaborador"
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:id="@+id/editSenha"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerColaborador"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="salvar"
+        android:id="@+id/mSalvar"/>
+
+
 
 </LinearLayout>
