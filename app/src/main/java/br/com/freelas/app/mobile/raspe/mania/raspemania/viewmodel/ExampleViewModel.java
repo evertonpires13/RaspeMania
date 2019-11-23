@@ -14,16 +14,16 @@ public class ExampleViewModel extends BaseViewModel implements GenericInterface 
 
     @Override
     public void sucessWindow(String node) {
-
+        //TODO fazer algo
     }
 
     @Override
     public void sucessList(String node) {
-
+        //TODO fazer algo
     }
 
     @Override
     public void error(String mensagem) {
-
+        //TODO fazer algo
     }
 }
