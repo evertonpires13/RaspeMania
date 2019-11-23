@@ -4,33 +4,28 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.base.BaseActivity;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends BaseActivity implements GenericInterface {
+import androidx.appcompat.widget.AppCompatButton;
+
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AppCompatButton rota = findViewById(R.id.example_btn);
+
+        rota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ExampleActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
-
-    @Override
-    public void sucessWindow(String node) {
-        Toast.makeText(this, "sucesso", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void sucessList(String node) {
-        Toast.makeText(this, "sucesso lista", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void error(String mensagem) {
-        Toast.makeText(this, "erro ", Toast.LENGTH_SHORT).show();
-    }
-
-
 }

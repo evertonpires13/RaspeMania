@@ -8,6 +8,7 @@ public class GenericNode {
     public static final String NODE_LOCAL = NODE_PRINCIPAL + "_local";
     public static final String NODE_PRODUTO = NODE_PRINCIPAL + "_produto";
     public static final String NODE_ROTA = NODE_PRINCIPAL + "_rota";
+    public static final String NODE_EXAMPLE = NODE_PRINCIPAL + "_example";
 
 
 

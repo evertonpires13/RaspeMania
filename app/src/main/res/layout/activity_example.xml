@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.MainActivity">
 
+
+
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/example_btn"
-        android:text="@string/example"
+        android:id="@+id/salvar_btn"
+        android:text="@string/salvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -18,5 +20,6 @@
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
