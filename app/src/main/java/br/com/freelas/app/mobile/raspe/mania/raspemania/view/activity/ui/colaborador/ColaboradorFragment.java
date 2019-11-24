@@ -16,23 +16,31 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 
 public class ColaboradorFragment extends Fragment {
 
-    private ColaboradorViewModel colaboradorViewModel;
+    private ColaboradorViewModel mViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public static ColaboradorFragment newInstance() {
+        return new ColaboradorFragment();
+    }
 
-        colaboradorViewModel = ViewModelProviders.of(this).get(ColaboradorViewModel.class);
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_colaborador, container, false);
+    }
 
-        View root = inflater.inflate(R.layout.fragment_colaborador, container, false);
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel = ViewModelProviders.of(this).get(ColaboradorViewModel.class);
+        // TODO: Use the ViewModel
 
-        final TextView textView = root.findViewById(R.id.text_gallery);
+        final TextView textView = getView().findViewById(R.id.text_gallery);
 
-        colaboradorViewModel.getText().observe(this, new Observer<String>() {
+        mViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
-
-        return root;
     }
+
 }

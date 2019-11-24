@@ -6,33 +6,39 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_send"
             android:title="@string/menu_home" />
+
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_leitura"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/leitura" />
+
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:id="@+id/nav_relatorio"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/relatorios" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Cadastros">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+                android:id="@+id/nav_colaborador"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/colaborador" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
+                android:id="@+id/nav_produto"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/produto" />
+            <item
+                android:id="@+id/nav_rota"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/rota" />
+            <item
+                android:id="@+id/nav_estabelecimento"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/estabelecimento" />
+
         </menu>
     </item>
-
 </menu>

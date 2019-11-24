@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.home;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.relatorio;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,29 +13,29 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.colaborador.ColaboradorFragment;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.colaborador.ColaboradorViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.leitura.LeituraFragment;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.leitura.LeituraViewModel;
 
-public class HomeFragment extends Fragment {
+public class RelatorioFragment extends Fragment {
 
-    private HomeViewModel mViewModel;
+    private RelatorioViewModel mViewModel;
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
+    public static RelatorioFragment newInstance() {
+        return new RelatorioFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_relatorio, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(RelatorioViewModel.class);
         // TODO: Use the ViewModel
 
-        final TextView textView = getView().findViewById(R.id.text_home);
+        final TextView textView = getView().findViewById(R.id.text_relatorio);
 
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override

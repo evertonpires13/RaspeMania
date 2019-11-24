@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.home;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.leitura;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,26 +16,26 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.colaborador.ColaboradorFragment;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.colaborador.ColaboradorViewModel;
 
-public class HomeFragment extends Fragment {
+public class LeituraFragment extends Fragment {
 
-    private HomeViewModel mViewModel;
+    private LeituraViewModel mViewModel;
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
+    public static LeituraFragment newInstance() {
+        return new LeituraFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_leitura, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(LeituraViewModel.class);
         // TODO: Use the ViewModel
 
-        final TextView textView = getView().findViewById(R.id.text_home);
+        final TextView textView = getView().findViewById(R.id.text_leitura);
 
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override

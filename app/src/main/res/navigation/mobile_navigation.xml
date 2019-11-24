@@ -12,32 +12,39 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_colaborador"
         android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.colaborador.ColaboradorFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/colaborador"
         tools:layout="@layout/fragment_colaborador" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_estabelecimento"
+        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.local.EstabelecimentoFragment"
+        android:label="@string/estabelecimento"
+        tools:layout="@layout/fragment_estabelecimento" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:id="@+id/nav_leitura"
+        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.leitura.LeituraFragment"
+        android:label="@string/leitura"
+        tools:layout="@layout/fragment_leitura" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_relatorio"
+        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.relatorio.RelatorioFragment"
+        android:label="@string/relatorios"
+        tools:layout="@layout/fragment_relatorio" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:id="@+id/nav_rota"
+        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.rota.RotaFragment"
+        android:label="@string/rota"
+        tools:layout="@layout/fragment_rota" />
+
+    <fragment
+        android:id="@+id/nav_produto"
+        android:name="br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.produto.ProdutoFragment"
+        android:label="@string/produto"
+        tools:layout="@layout/fragment_produto" />
+
 </navigation>
