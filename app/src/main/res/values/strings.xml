@@ -21,5 +21,13 @@
     <string name="example">Example</string>
     <string name="salvar">Salvar</string>
 
+    <string name="colaborador">Colaborador</string>
+    <string name="rota">Rota</string>
+    <string name="produto">Produto</string>
+    <string name="estabelecimento">Estabelecimento</string>
+    <string name="leitura">Leitura</string>
+    <string name="relatorios">Relatórios</string>
+
+
 
 </resources>

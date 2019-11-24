@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 public class ModelExample extends BaseModel {
 
     public String nome;
+    public int idade;
 
     @NonNull
     @Override

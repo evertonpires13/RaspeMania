@@ -6,11 +6,9 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExam
 
 public class ExampleViewModel extends BaseViewModel implements GenericInterface {
 
-    ExampleService service = new ExampleService(this);
+    ExampleService service = new ExampleService();
 
-    public void save(ModelExample model){
-        service.save(model);
-    }
+
 
     @Override
     public void sucessWindow(String node) {
