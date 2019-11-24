@@ -13,29 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-<<<<<<< HEAD
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/rota_btn"
-        android:text="rota"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"   />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_draw" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/colaborador_btn"
-        android:text="colaborador"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"  />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/produto_btn"
-        android:text="produto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"  />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/local_btn"
-        android:text="local"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"  />
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
