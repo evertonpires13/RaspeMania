@@ -48,6 +48,25 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        AppCompatButton produto_btn = findViewById(R.id.produto_btn);
+        produto_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ProdutoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        AppCompatButton local_btn = findViewById(R.id.local_btn);
+        local_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), LocalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 

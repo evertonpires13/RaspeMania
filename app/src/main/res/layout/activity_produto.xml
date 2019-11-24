@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.RotaActivity">
+    android:orientation="vertical"
+    tools:context=".view.activity.ProdutoActivity">
 
     <EditText
+        android:id="@+id/editNome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editNome"/>
+        android:layout_height="wrap_content" />
 
-    <Spinner
+    <EditText
+        android:id="@+id/editValor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerColaborador"/>
+        android:layout_height="wrap_content" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/mSalvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="salvar rota"
-        android:id="@+id/mSalvar"/>
+        android:text="salvar Produto" />
 
     <ListView
+        android:id="@+id/lista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/lista"/>
+        android:layout_weight="1" />
 
 </LinearLayout>

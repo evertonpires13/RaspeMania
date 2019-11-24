@@ -8,6 +8,8 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.ColaboradorComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.RotaComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ColaboradorViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ExampleViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.RotaViewModel;
@@ -17,19 +19,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class RotaActivity extends AppCompatActivity {
 
     /*--------------------------------------------------------------------------------------------*/
-    private EditText editNome;
-    private Spinner spinnerColaborador;
-    private AppCompatButton mSalvar;
-
-    private Rota model;
-
-    private ViewModelProvider.Factory viewModelFactory = ViewModelFactory.createFor(new RotaViewModel(this));
-    private ViewModelProvider.Factory viewColaboradorFactory = ViewModelFactory.createFor(new ColaboradorViewModel(this));
+    private RotaComponente componentes = new RotaComponente();
+    ColaboradorComponente colaboradorComponente = new ColaboradorComponente();
+    private ViewModelProvider.Factory viewModelFactory = ViewModelFactory.createFor(new RotaViewModel(this, componentes));
+    private ViewModelProvider.Factory viewColaboradorFactory = ViewModelFactory.createFor(new ColaboradorViewModel(this, colaboradorComponente));
     private RotaViewModel viewModel;
     private ColaboradorViewModel colaboradorViewModel;
 
@@ -44,35 +46,42 @@ public class RotaActivity extends AppCompatActivity {
         colaboradorViewModel = ViewModelProviders.of(this, viewColaboradorFactory).get(ColaboradorViewModel.class);
 
         // Verificar se tem dados
-        if (getIntent()!=null && getIntent().getExtras()!=null && getIntent().getExtras().getString("chave")!=null){
-            // TODO - ler a rota cadastrada
+        if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().getString("chave") != null) {
+            String chave = getIntent().getExtras().getString("chave");
+            viewModel.load(chave);
         }
 
-        editNome = findViewById(R.id.editNome);
-        spinnerColaborador = findViewById(R.id.spinnerColaborador);
-        Log.e("ddd", spinnerColaborador.toString());
-       // colaboradorViewModel.spinnerColaborador = spinnerColaborador;
-        colaboradorViewModel.mountSpinner(spinnerColaborador);
+        componentes.editNome = findViewById(R.id.editNome);
 
-        mSalvar = findViewById(R.id.mSalvar);
-        mSalvar.setOnClickListener(mSalvarClick);
+       // componentes.spinnerColaborador = findViewById(R.id.spinnerColaborador);
 
+        colaboradorComponente.spinnerColaborador = findViewById(R.id.spinnerColaborador);
+        colaboradorViewModel.mountSpinner();
+
+        componentes.mSalvar = findViewById(R.id.mSalvar);
+        componentes.mSalvar.setOnClickListener(mSalvarClick);
+
+        componentes.lista = findViewById(R.id.lista);
+        viewModel.mountListView();
 
     }
+
     /*--------------------------------------------------------------------------------------------*/
     View.OnClickListener mSalvarClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
-            if (model==null){
-                model=new Rota();
+            if (componentes.model == null) {
+                componentes.model = new Rota();
             }
 
-            model.nome = editNome.getText().toString();
-            model.colaborador =(Colaborador) spinnerColaborador.getSelectedItem();
+            componentes.model.nome = componentes.editNome.getText().toString();
+            componentes.model.colaborador = (Colaborador) componentes.spinnerColaborador.getSelectedItem();
 
-            viewModel.save(model);
+            viewModel.save(componentes.model);
         }
     };
+
     /*--------------------------------------------------------------------------------------------*/
+
 }

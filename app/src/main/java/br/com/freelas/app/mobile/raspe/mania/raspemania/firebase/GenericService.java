@@ -24,6 +24,10 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.BaseModel
 public abstract class GenericService<T> {
 
     /*--------------------------------------------------------------------------------------------*/
+    public static final String RETORNO_LOAD_ALL = "loadALL";
+    public static final String RETORNO_LOAD_KEY = "loadKey";
+    public static final String RETORNO_SAVE = "save";
+    /*--------------------------------------------------------------------------------------------*/
     private String node;
     protected FirebaseFirestore db;
     public T dado;
@@ -97,7 +101,7 @@ public abstract class GenericService<T> {
                         @Override
                         public void onSuccess(QuerySnapshot documentSnapshots) {
                             dados = documentSnapshots.toObjects(classe);
-                            genericInterface.sucessList(node);
+                            genericInterface.sucessList(RETORNO_LOAD_ALL);
 
                         }
                     });
@@ -125,6 +129,7 @@ public abstract class GenericService<T> {
                         public void onFailure(@NonNull Exception e) {
                             //erro
                             genericInterface.error("Erro ao retornar os dados : " + e.toString());
+
                         }
                     })
                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -134,8 +139,8 @@ public abstract class GenericService<T> {
                             //sucesso
                             if (documentSnapshot.exists()) {
                                 dado = documentSnapshot.toObject(classe);
-                                //Log.e("Dados", " tem dados sim " + dado.toString());
-                                genericInterface.sucessWindow(node);
+                                genericInterface.sucessWindow(RETORNO_LOAD_KEY);
+
                             } else {
                                 genericInterface.error("documento não existe");
                             }
@@ -200,7 +205,7 @@ public abstract class GenericService<T> {
                     @Override
                     public void onSuccess(Void aVoid) {
                         dado = entity;
-                        genericInterface.sucessWindow(node);
+                        genericInterface.sucessWindow(RETORNO_SAVE);
                         //Log.d(TAG, "DocumentSnapshot successfully written!");
                     }
                 })

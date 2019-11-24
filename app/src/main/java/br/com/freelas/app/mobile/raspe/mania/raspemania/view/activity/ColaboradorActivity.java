@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.ColaboradorComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ColaboradorViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ExampleViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.RotaViewModel;
@@ -14,25 +15,21 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ViewModelFacto
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 public class ColaboradorActivity extends AppCompatActivity {
 
-
     /*--------------------------------------------------------------------------------------------*/
-    private EditText editNome;
-    private EditText editApelido;
-    private EditText editSenha;
-    private Spinner spinnerPerfil;
-    private AppCompatButton mSalvar;
+    ColaboradorComponente colaboradorComponente = new ColaboradorComponente();
 
     //Create viewModel
-    private ViewModelProvider.Factory viewModelFactory = ViewModelFactory.createFor(new ColaboradorViewModel(this));
+    private ViewModelProvider.Factory viewModelFactory = ViewModelFactory.createFor(new ColaboradorViewModel(this, colaboradorComponente));
     private ColaboradorViewModel viewModel;
 
-    private Colaborador model;
     private String perfil[] = new String[]{"Administrador", "Colaborador"};
 
     /*--------------------------------------------------------------------------------------------*/
@@ -44,39 +41,44 @@ public class ColaboradorActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ColaboradorViewModel.class);
 
+        colaboradorComponente.editNome = findViewById(R.id.editNome);
+        colaboradorComponente.editApelido = findViewById(R.id.editApelido);
+        colaboradorComponente.editSenha = findViewById(R.id.editSenha);
+
+        colaboradorComponente.spinnerPerfil = findViewById(R.id.spinnerColaborador);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, perfil);
+        colaboradorComponente.spinnerPerfil.setAdapter(adapter);
+
+        colaboradorComponente.mSalvar = findViewById(R.id.mSalvar);
+        colaboradorComponente.mSalvar.setOnClickListener(mSalvarClick);
+
         // Verificar se tem dados
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().getString("chave") != null) {
-            // TODO - ler a rota cadastrada
+            String chave = getIntent().getExtras().getString("chave");
+            viewModel.load(chave );
         }
 
-        editNome = findViewById(R.id.editNome);
-        editApelido = findViewById(R.id.editApelido);
-        editSenha = findViewById(R.id.editSenha);
-
-        spinnerPerfil = findViewById(R.id.spinnerColaborador);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, perfil);
-        spinnerPerfil.setAdapter(adapter);
-
-        mSalvar = findViewById(R.id.mSalvar);
-        mSalvar.setOnClickListener(mSalvarClick);
+        colaboradorComponente.lista = findViewById(R.id.lista);
+        viewModel.mountListView();
 
     }
 
     /*--------------------------------------------------------------------------------------------*/
-    View.OnClickListener mSalvarClick = new View.OnClickListener() {
+
+   private View.OnClickListener mSalvarClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
-            if (model == null) {
-                model = new Colaborador();
+            if (colaboradorComponente.model == null) {
+                colaboradorComponente.model = new Colaborador();
             }
 
-            model.nome = editNome.getText().toString();
-            model.apelido = editApelido.getText().toString();
-            model.senha = editSenha.getText().toString();
-            model.perfil = spinnerPerfil.getSelectedItemPosition();
+            colaboradorComponente.model.nome = colaboradorComponente.editNome.getText().toString();
+            colaboradorComponente.model.apelido = colaboradorComponente.editApelido.getText().toString();
+            colaboradorComponente.model.senha = colaboradorComponente.editSenha.getText().toString();
+            colaboradorComponente.model.perfil = colaboradorComponente.spinnerPerfil.getSelectedItemPosition();
 
-            viewModel.save(model);
+            viewModel.save(colaboradorComponente.model);
 
         }
     };

@@ -18,14 +18,24 @@
         android:id="@+id/rota_btn"
         android:text="rota"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content"   />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/colaborador_btn"
         android:text="colaborador"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content"  />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/produto_btn"
+        android:text="produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"  />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/local_btn"
+        android:text="local"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"  />
 
 </LinearLayout>

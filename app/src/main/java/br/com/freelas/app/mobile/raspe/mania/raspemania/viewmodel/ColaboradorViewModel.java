@@ -1,21 +1,35 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.services.ColaboradorService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Local;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ColaboradorActivity;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.ColaboradorComponente;
 
 public class ColaboradorViewModel extends BaseViewModel implements GenericInterface {
 
     /*--------------------------------------------------------------------------------------------*/
     private ColaboradorService service = new ColaboradorService(this);
+    private ColaboradorComponente colaboradorComponente;
     private Context context;
-    public Spinner spinnerColaborador;
-    private int acao;
+    //   public Spinner spinnerColaborador;
+    //  private int acao;
+////    private Colaborador model;
+    //   private ListView lista;
+    //  private List<Colaborador> list;
 
 
     /*--------------------------------------------------------------------------------------------*/
@@ -24,7 +38,9 @@ public class ColaboradorViewModel extends BaseViewModel implements GenericInterf
     }
 
     /*--------------------------------------------------------------------------------------------*/
-    public ColaboradorViewModel(Context context) {
+    public ColaboradorViewModel(Context context, ColaboradorComponente colaboradorComponente) {
+
+        this.colaboradorComponente = colaboradorComponente;
         this.context = context;
 
     }
@@ -33,17 +49,20 @@ public class ColaboradorViewModel extends BaseViewModel implements GenericInterf
     public void save(Colaborador model) {
 
         service.save(model);
-        acao = 1;
+
     }
 
     /*--------------------------------------------------------------------------------------------*/
     @Override
     public void sucessWindow(String node) {
-        //TODO fazer algo
-        switch (acao) {
-            case 1:
+
+        if (node.equals(GenericService.RETORNO_LOAD_KEY)){
+            colaboradorComponente.model = service.dado;
+            setarDados();
+        } else{
+            if (node.equals(GenericService.RETORNO_SAVE)){
                 Toast.makeText(context, "Colaborador salva com sucesso", Toast.LENGTH_SHORT).show();
-                break;
+            }
         }
 
     }
@@ -51,31 +70,69 @@ public class ColaboradorViewModel extends BaseViewModel implements GenericInterf
     /*--------------------------------------------------------------------------------------------*/
     @Override
     public void sucessList(String node) {
-        //TODO fazer algo
-        switch (acao) {
-            case 2:
-                ArrayAdapter<Colaborador> colaboradorArrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, service.dados);
-                spinnerColaborador.setAdapter(colaboradorArrayAdapter);
-                break;
 
+        ArrayAdapter<Colaborador> colaboradorArrayAdapter;
+        colaboradorComponente.modelList = service.dados;
+        colaboradorArrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, colaboradorComponente.modelList);
+
+        if (colaboradorComponente.spinnerColaborador != null) {
+            colaboradorComponente.spinnerColaborador.setAdapter(colaboradorArrayAdapter);
+        }
+
+        if (colaboradorComponente.lista != null) {
+            colaboradorComponente.lista.setAdapter(colaboradorArrayAdapter);
+            colaboradorComponente.lista.setOnItemClickListener(clickLista);
 
         }
+
     }
 
     /*--------------------------------------------------------------------------------------------*/
     @Override
     public void error(String mensagem) {
-        //TODO fazer algo
+
         Toast.makeText(context, "Erro ao  salva Colaborador", Toast.LENGTH_SHORT).show();
     }
 
     /*--------------------------------------------------------------------------------------------*/
-    public void mountSpinner(Spinner spinnerColaborador) {
+    public void mountSpinner() {
 
-        this.spinnerColaborador = spinnerColaborador;
-        acao = 2;
         service.load();
 
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
+    public void load(String chave) {
+
+        service.load(chave);
+
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
+    public void mountListView() {
+
+        service.load();
+
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
+    AdapterView.OnItemClickListener clickLista = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            Colaborador model = colaboradorComponente.modelList.get(i);
+            Intent intent = new Intent(context, ColaboradorActivity.class);
+            intent.putExtra("chave", model.chave);
+            context.startActivity(intent);
+
+        }
+    };
+    /*--------------------------------------------------------------------------------------------*/
+    private void setarDados(){
+        colaboradorComponente.editApelido.setText(colaboradorComponente.model.apelido);
+        colaboradorComponente.editNome.setText(colaboradorComponente.model.nome);
+        colaboradorComponente.editSenha.setText(colaboradorComponente.model.senha);
+        colaboradorComponente.spinnerPerfil.setSelection( ( (int) colaboradorComponente.model.perfil) );
     }
     /*--------------------------------------------------------------------------------------------*/
 }
