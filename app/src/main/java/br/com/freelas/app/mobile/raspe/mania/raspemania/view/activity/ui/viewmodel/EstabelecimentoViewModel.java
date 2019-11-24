@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.produto;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
-public class ProdutoViewModel extends BaseViewModel {
+public class EstabelecimentoViewModel extends BaseViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ProdutoViewModel() {
+    public EstabelecimentoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("ProdutoViewModel");
+        mText.setValue("EstabelecimentoViewModel");
     }
 
     public LiveData<String> getText() {

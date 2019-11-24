@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.produto;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.fragment;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -15,8 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.local.EstabelecimentoFragment;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.local.EstabelecimentoViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel.ProdutoViewModel;
 
 public class ProdutoFragment extends Fragment {
 

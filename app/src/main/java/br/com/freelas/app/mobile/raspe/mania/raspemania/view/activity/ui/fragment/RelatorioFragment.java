@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.local;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,30 +13,28 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.colaborador.ColaboradorFragment;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.colaborador.ColaboradorViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.leitura.LeituraViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel.RelatorioViewModel;
 
-public class EstabelecimentoFragment extends Fragment {
+public class RelatorioFragment extends Fragment {
 
-    private EstabelecimentoViewModel mViewModel;
+    private RelatorioViewModel mViewModel;
 
-    public static EstabelecimentoFragment newInstance() {
-        return new EstabelecimentoFragment();
+    public static RelatorioFragment newInstance() {
+        return new RelatorioFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_estabelecimento, container, false);
+        return inflater.inflate(R.layout.fragment_relatorio, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(EstabelecimentoViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(RelatorioViewModel.class);
         // TODO: Use the ViewModel
 
-        final TextView textView = getView().findViewById(R.id.text_estabelecimento);
+        final TextView textView = getView().findViewById(R.id.text_relatorio);
 
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override

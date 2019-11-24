@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.relatorio;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,29 +13,28 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.leitura.LeituraFragment;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.leitura.LeituraViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel.LeituraViewModel;
 
-public class RelatorioFragment extends Fragment {
+public class LeituraFragment extends Fragment {
 
-    private RelatorioViewModel mViewModel;
+    private LeituraViewModel mViewModel;
 
-    public static RelatorioFragment newInstance() {
-        return new RelatorioFragment();
+    public static LeituraFragment newInstance() {
+        return new LeituraFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_relatorio, container, false);
+        return inflater.inflate(R.layout.fragment_leitura, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(RelatorioViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(LeituraViewModel.class);
         // TODO: Use the ViewModel
 
-        final TextView textView = getView().findViewById(R.id.text_relatorio);
+        final TextView textView = getView().findViewById(R.id.text_leitura);
 
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override

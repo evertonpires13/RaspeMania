@@ -39,7 +39,7 @@ public class ExampleActivity extends BaseActivity {
                 ModelExample model = new ModelExample();
                 model.nome = "Daniele";
 
-                viewModel.save(model);
+                //viewModel.save(model);
 
             }
         });
