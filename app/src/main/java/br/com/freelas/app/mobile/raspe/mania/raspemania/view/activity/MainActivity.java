@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Nova leitura", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_colaborador, R.id.nav_estabelecimento,
-                R.id.nav_leitura, R.id.nav_relatorio, R.id.nav_rota)
+                R.id.nav_leitura, R.id.nav_relatorio, R.id.nav_rota, R.id.nav_produto)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

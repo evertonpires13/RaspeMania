@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ProdutoViewModel extends ViewModel {
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
+
+public class ProdutoViewModel extends BaseViewModel {
 
     private MutableLiveData<String> mText;
 
