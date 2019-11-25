@@ -4,6 +4,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -41,6 +43,26 @@ public class ExampleViewModel extends BaseViewModel {
                             error.setValue(true);
                         }
                     });
+        } catch (Exception e) {
+            e.printStackTrace();
+            error.setValue(true);
+        }
+    }
+
+    /**
+     * Add a new document with a key
+     * @param obj
+     */
+    public void saveRefId(ModelExample obj) {
+        try {
+            service.saveRefId(obj)
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error adding document", e);
+                            error.setValue(true);
+                        }
+                    });;
         } catch (Exception e) {
             e.printStackTrace();
             error.setValue(true);

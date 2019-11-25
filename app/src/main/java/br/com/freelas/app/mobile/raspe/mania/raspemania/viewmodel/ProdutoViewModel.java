@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -74,14 +75,6 @@ public class ProdutoViewModel extends BaseViewModel {
                             sucess.setValue(true);
                             mList.setValue(querySnapshot.toObjects(Produto.class));
                             Log.d(TAG, "Listou todos os produtos");
-                        }
-                    })
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String key = document.getId();
-                            }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

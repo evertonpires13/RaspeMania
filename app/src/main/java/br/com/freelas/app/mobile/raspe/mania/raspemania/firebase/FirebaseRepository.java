@@ -2,15 +2,13 @@ package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.BaseModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
+
 
 public abstract class FirebaseRepository<T> {
 
@@ -19,21 +17,17 @@ public abstract class FirebaseRepository<T> {
     private String collection;
     protected FirebaseFirestore db;
     public T object;
-    private Class<T> classe;
+    private Class<T> clazz;
 
     /**
      * Constructor
      * @param collection
-     * @param classe
+     * @param clazz
      */
-    public FirebaseRepository(String collection, Class<T> classe) {
+    public FirebaseRepository(String collection, Class<T> clazz) {
         this.db = FirebaseRaspeMania.getDatabase();
         this.collection = collection;
-        this.classe = classe;
-    }
-
-    private void doBindings(BaseModel model){
-        //model.dataUltimaAtualizacao = FieldValue.serverTimestamp();
+        this.clazz = clazz;
     }
 
     /**

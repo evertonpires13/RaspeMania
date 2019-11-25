@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class BaseModel implements Serializable {
 
-    @ActionCodeResult.ActionDataKey
+    public String key;
     public String chave;
     public long status;                 //1 ativo or 2 inativo
     public String observacao;
