@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.fragment;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,12 +17,12 @@ import android.widget.TextView;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel.ExampleViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel.LeituraViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ExampleViewModel;
 
-public class ExampleFragment extends Fragment {
+public class ExampleFragment extends BaseFragment {
 
     private ExampleViewModel mViewModel;
+    private TextView textView;
 
     public static ExampleFragment newInstance() {
         return new ExampleFragment();
@@ -44,17 +44,7 @@ public class ExampleFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(ExampleViewModel.class);
         // TODO: Use the ViewModel
 
-        final TextView textView = getView().findViewById(R.id.text_example);
-
-        //Salvar
-
-        //Deletar
-
-        //Alterar
-
-        //Listar todos
-
-        //Listar por chave
+        doBindings();
 
         ModelExample teste = new ModelExample();
         teste.nome = "daniele tste 3";
@@ -62,19 +52,22 @@ public class ExampleFragment extends Fragment {
         teste.status = 1;
         teste.observacao = "teste arquitetura livedata 3";
 
-        /*mViewModel.getExample().observe(this, new Observer<ModelExample>() {
-            @Override
-            public void onChanged(ModelExample modelExample) {
+        mViewModel.save(teste);
 
-            }
-        });*/
-
-        mViewModel.save(teste).observe(this, new Observer<String>() {
+        mViewModel.sucess.observe(this, new Observer<Boolean>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(Boolean b) {
+                textView.setText(b.toString());
             }
         });
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        textView = view.findViewById(R.id.text_example);
 
     }
 
@@ -105,5 +98,11 @@ public class ExampleFragment extends Fragment {
         //Isso pode acontecer, após o onStop, no caso de a Activity ser encerrada, pois o Fragment
         // faz parte da sua hierarquia de Views ou após o onDestroyView
         super.onStop();
+    }
+
+    private void doBindings(){
+        super.onStart();
+        super.observeError(mViewModel);
+        super.observeSucess(mViewModel);
     }
 }

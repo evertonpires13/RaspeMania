@@ -28,6 +28,9 @@
     <string name="leitura">Leitura</string>
     <string name="relatorios">Relatórios</string>
 
+    <!--CRUD messages -->
+    <string name="produto_inserido_sucesso">Produto inserido!</string>
+
 
 
 </resources>

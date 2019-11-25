@@ -1,25 +1,17 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.ColaboradorComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ColaboradorComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ColaboradorViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ExampleViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.RotaViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ViewModelFactory;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
 
 public class ColaboradorActivity extends AppCompatActivity {
 

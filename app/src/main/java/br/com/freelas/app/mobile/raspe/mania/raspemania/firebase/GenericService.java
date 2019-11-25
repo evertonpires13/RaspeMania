@@ -174,7 +174,7 @@ public abstract class GenericService<T> {
                         BaseModel model = (BaseModel) dado;
                         model.chave = documentReference.getId();
                         Calendar calendar = Calendar.getInstance();
-                        model.dataCadastro = calendar.getTimeInMillis();
+                        //model.dataCadastro = calendar.getTimeInMillis();
 
                         update(dado);
 

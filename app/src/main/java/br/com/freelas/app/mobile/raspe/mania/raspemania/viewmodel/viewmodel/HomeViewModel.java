@@ -1,18 +1,17 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
-public class RotaViewModel extends BaseViewModel {
+public class HomeViewModel extends BaseViewModel {
 
     private MutableLiveData<String> mText;
 
-    public RotaViewModel() {
+    public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("RotaViewModel");
+        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {

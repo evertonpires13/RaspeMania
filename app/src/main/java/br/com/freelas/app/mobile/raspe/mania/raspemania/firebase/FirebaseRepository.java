@@ -9,7 +9,7 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.BaseModel
 
 public abstract class FirebaseRepository<T> {
 
-    static String TAG = "FirebaseRepository";
+    static String TAG = "FIREBASE_REPOSITORY";
 
     private String collection;
     protected FirebaseFirestore db;
@@ -28,12 +28,17 @@ public abstract class FirebaseRepository<T> {
     }
 
     private void doBindings(BaseModel model){
-        model.dataUltimaAtualizacao = FieldValue.serverTimestamp();
+        //model.dataUltimaAtualizacao = FieldValue.serverTimestamp();
     }
 
+    /**
+     * Add a new document with a generated id
+     * @param entity
+     * @return Task<DocumentReference>
+     * @throws Exception
+     */
     public Task<DocumentReference> save(T entity) throws Exception {
         this.object = entity;
-        //doBindings((BaseModel) object);
-        return db.collection(collection).add(object) ;
+        return db.collection(collection).add(object);
     }
 }

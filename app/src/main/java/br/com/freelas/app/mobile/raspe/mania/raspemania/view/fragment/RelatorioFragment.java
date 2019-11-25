@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.fragment;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,28 +13,28 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel.ColaboradorViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.viewmodel.RelatorioViewModel;
 
-public class ColaboradorFragment extends Fragment {
+public class RelatorioFragment extends Fragment {
 
-    private ColaboradorViewModel mViewModel;
+    private RelatorioViewModel mViewModel;
 
-    public static ColaboradorFragment newInstance() {
-        return new ColaboradorFragment();
+    public static RelatorioFragment newInstance() {
+        return new RelatorioFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_colaborador, container, false);
+        return inflater.inflate(R.layout.fragment_relatorio, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ColaboradorViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(RelatorioViewModel.class);
         // TODO: Use the ViewModel
 
-        final TextView textView = getView().findViewById(R.id.text_gallery);
+        final TextView textView = getView().findViewById(R.id.text_relatorio);
 
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override

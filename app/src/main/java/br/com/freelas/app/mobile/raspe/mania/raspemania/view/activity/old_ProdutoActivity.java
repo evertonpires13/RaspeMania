@@ -1,26 +1,18 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.ProdutoComponente;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ColaboradorViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ProdutoComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ProdutoViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ViewModelFactory;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-public class ProdutoActivity extends AppCompatActivity {
+public class old_ProdutoActivity extends AppCompatActivity {
 
     /*--------------------------------------------------------------------------------------------*/
     private ProdutoComponente produtoComponente = new ProdutoComponente();

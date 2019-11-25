@@ -5,19 +5,14 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.util.List;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.services.ColaboradorService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Local;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ColaboradorActivity;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.ColaboradorComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ColaboradorComponente;
 
 public class ColaboradorViewModel extends BaseViewModel implements GenericInterface {
 

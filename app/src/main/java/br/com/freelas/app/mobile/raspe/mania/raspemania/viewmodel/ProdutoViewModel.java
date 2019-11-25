@@ -10,8 +10,8 @@ import android.widget.Toast;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.services.ProdutoService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ProdutoActivity;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.ProdutoComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_ProdutoActivity;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ProdutoComponente;
 
 public class ProdutoViewModel extends BaseViewModel implements GenericInterface {
 
@@ -99,7 +99,7 @@ public class ProdutoViewModel extends BaseViewModel implements GenericInterface 
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
             Produto model = produtoComponente.modelList.get(i);
-            Intent intent = new Intent(context, ProdutoActivity.class);
+            Intent intent = new Intent(context, old_ProdutoActivity.class);
             intent.putExtra("chave", model.chave);
             context.startActivity(intent);
 

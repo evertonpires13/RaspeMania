@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.fragment;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,28 +13,28 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.viewmodel.RelatorioViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.viewmodel.RotaViewModel;
 
-public class RelatorioFragment extends Fragment {
+public class RotaFragment extends Fragment {
 
-    private RelatorioViewModel mViewModel;
+    private RotaViewModel mViewModel;
 
-    public static RelatorioFragment newInstance() {
-        return new RelatorioFragment();
+    public static RotaFragment newInstance() {
+        return new RotaFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_relatorio, container, false);
+        return inflater.inflate(R.layout.fragment_rota, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(RelatorioViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(RotaViewModel.class);
         // TODO: Use the ViewModel
 
-        final TextView textView = getView().findViewById(R.id.text_relatorio);
+        final TextView textView = getView().findViewById(R.id.text_rota);
 
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override

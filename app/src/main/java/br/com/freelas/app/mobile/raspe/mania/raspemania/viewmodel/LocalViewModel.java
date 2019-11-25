@@ -11,7 +11,7 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterfac
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.services.LocalService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Local;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.LocalActivity;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.componente.LocalComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.LocalComponente;
 
 public class LocalViewModel extends BaseViewModel implements GenericInterface {
 
