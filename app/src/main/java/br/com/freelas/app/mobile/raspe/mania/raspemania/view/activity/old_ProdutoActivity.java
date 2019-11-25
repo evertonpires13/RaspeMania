@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProviders;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ProdutoComponente;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ProdutoViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_ProdutoViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ViewModelFactory;
 
 import android.os.Bundle;
@@ -18,8 +18,8 @@ public class old_ProdutoActivity extends AppCompatActivity {
     private ProdutoComponente produtoComponente = new ProdutoComponente();
 
     //Create viewModel
-    private ViewModelProvider.Factory viewModelFactory = ViewModelFactory.createFor(new ProdutoViewModel(this, produtoComponente));
-    private ProdutoViewModel viewModel;
+    private ViewModelProvider.Factory viewModelFactory = ViewModelFactory.createFor(new old_ProdutoViewModel(this, produtoComponente));
+    private old_ProdutoViewModel viewModel;
 
 
     /*--------------------------------------------------------------------------------------------*/
@@ -28,9 +28,9 @@ public class old_ProdutoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produto);
+        setContentView(R.layout.old_activity_produto);
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ProdutoViewModel.class);
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(old_ProdutoViewModel.class);
 
         // Verificar se tem dados
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().getString("chave") != null) {

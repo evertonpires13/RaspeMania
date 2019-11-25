@@ -3,25 +3,34 @@ package br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
+import java.util.List;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_ProdutoActivity;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ProdutoComponente;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.viewmodel.ProdutoViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ProdutoViewModel;
 
 public class ProdutoFragment extends BaseFragment {
 
     private ProdutoComponente produtoComponente = new ProdutoComponente();
     private ProdutoViewModel mViewModel;
+
+    private Context context = getContext();
 
     public static ProdutoFragment newInstance() {
         return new ProdutoFragment();
@@ -40,6 +49,7 @@ public class ProdutoFragment extends BaseFragment {
 
         doBindings();
 
+        mViewModel.getAll();
     }
 
     @Override
@@ -60,6 +70,28 @@ public class ProdutoFragment extends BaseFragment {
         super.onStart();
         super.observeError(mViewModel);
         super.observeSucess(mViewModel);
+
+        observeGetAll();
+    }
+
+    private void observeGetAll(){
+        mViewModel.mList.observe(this, new Observer<List<Produto>>() {
+            @Override
+            public void onChanged(List<Produto> resultList) {
+                prepareListaProduto(resultList);
+            }
+        });
+    }
+
+    private void prepareListaProduto(List<Produto> produtos){
+
+        ArrayAdapter arrayAdapter;
+        produtoComponente.modelList = produtos;
+
+        arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, produtoComponente.modelList);
+            produtoComponente.lista.setAdapter(arrayAdapter);
+            produtoComponente.lista.setOnItemClickListener(clickLista);
+
     }
 
     View.OnClickListener mSalvarClick = new View.OnClickListener() {
@@ -74,6 +106,17 @@ public class ProdutoFragment extends BaseFragment {
             produtoComponente.model.valor = Long.parseLong(produtoComponente.editValor.getText().toString());
 
             mViewModel.save(produtoComponente.model);
+        }
+    };
+
+    AdapterView.OnItemClickListener clickLista = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            Produto model = produtoComponente.modelList.get(i);
+
+            produtoComponente.editNome.setText(model.nome);
+            produtoComponente.editValor.setText(Long.toString(model.valor));
         }
     };
 

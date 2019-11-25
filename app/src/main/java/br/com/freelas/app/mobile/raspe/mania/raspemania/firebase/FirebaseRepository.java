@@ -1,9 +1,14 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.BaseModel;
 
@@ -41,4 +46,10 @@ public abstract class FirebaseRepository<T> {
         this.object = entity;
         return db.collection(collection).add(object);
     }
+
+    public Task<QuerySnapshot> getAll() throws Exception {
+        return db.collection(collection).get();
+
+    }
+
 }
