@@ -1,7 +1,5 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services;
 
-import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericService;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.CollectionHelper;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
 

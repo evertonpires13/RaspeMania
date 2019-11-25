@@ -7,8 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericService;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.GenericInterface;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.GenericService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.RotaService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.RotaActivity;

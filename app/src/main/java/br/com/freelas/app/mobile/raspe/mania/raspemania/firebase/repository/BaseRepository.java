@@ -8,7 +8,7 @@ import com.google.firebase.firestore.SetOptions;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.FirebaseRaspeMania;
 
-public abstract class FirebaseRepository<T> {
+public abstract class BaseRepository<T> {
 
     static String TAG = "FIREBASE_REPOSITORY";
 
@@ -22,7 +22,7 @@ public abstract class FirebaseRepository<T> {
      * @param collection
      * @param clazz
      */
-    public FirebaseRepository(String collection, Class<T> clazz) {
+    public BaseRepository(String collection, Class<T> clazz) {
         this.db = FirebaseRaspeMania.getDatabase();
         this.collection = collection;
         this.clazz = clazz;

@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.GenericInterface;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.LocalService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.LocalActivity;

@@ -7,7 +7,7 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.FirebaseRaspeMa
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.CollectionHelper;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
 
-public class ExampleRepository extends FirebaseRepository<ModelExample> {
+public class ExampleRepository extends BaseRepository<ModelExample> {
 
         static String TAG = "EXAMPLE_REPOSITORY";
 

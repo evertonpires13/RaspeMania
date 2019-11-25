@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services;
 
 public interface GenericInterface {
 

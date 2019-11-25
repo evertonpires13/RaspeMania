@@ -7,10 +7,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.FirebaseRaspeMania;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.CollectionHelper;
 
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 
-public class ProdutoRepository extends FirebaseRepository<Produto> {
+public class ProdutoRepository extends BaseRepository<Produto> {
 
     static String TAG = "PPRODUTO_REPOSITORY";
 

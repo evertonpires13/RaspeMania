@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services;
 
 
 import android.util.Log;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.FirebaseRaspeMania;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.BaseModel;
 
 public abstract class GenericService<T> {
