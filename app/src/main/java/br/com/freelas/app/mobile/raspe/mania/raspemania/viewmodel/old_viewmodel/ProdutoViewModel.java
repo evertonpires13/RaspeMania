@@ -1,34 +1,36 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel;
 
 import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.repository.ExampleRepository;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.repository.ProdutoRepository;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
-public class ExampleViewModel extends BaseViewModel {
+public class ProdutoViewModel extends BaseViewModel {
 
-    static String TAG = "EXAMPLE_VIEW_MODEL";
+    static String TAG = "PRODUTO_VIEW_MODEL";
 
-    private ExampleRepository service = new ExampleRepository();
+    private ProdutoRepository service = new ProdutoRepository();
 
-    public MutableLiveData<List<ModelExample>> mList;
+    public MutableLiveData<List<Produto>> mList;
 
-    public ExampleViewModel() {
+    public ProdutoViewModel() {
         sucess = new MutableLiveData<>();
         error = new MutableLiveData<>();
-        mList = new MutableLiveData<List<ModelExample>>();
+        mList = new MutableLiveData<List<Produto>>();
     }
 
     /**
      * Add a new document with a key
      * @param obj
      */
-    public void save(ModelExample obj) {
+    public void save(Produto obj) {
         try {
             service.saveRefId(obj)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -55,7 +57,7 @@ public class ExampleViewModel extends BaseViewModel {
      * Update document existent
      * @param obj
      */
-    public void update(ModelExample obj){
+    public void update(Produto obj){
         try {
             service.update(obj, obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -83,7 +85,7 @@ public class ExampleViewModel extends BaseViewModel {
      * Delete a document
      * @param obj
      */
-    public void delete(ModelExample obj){
+    public void delete(Produto obj){
         try {
             service.delete(obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -117,7 +119,7 @@ public class ExampleViewModel extends BaseViewModel {
                         public void onSuccess(QuerySnapshot querySnapshot) {
                             Log.d(TAG, "Listou todos!");
                             sucess.setValue("Listou todos");
-                            mList.setValue(querySnapshot.toObjects(ModelExample.class));
+                            mList.setValue(querySnapshot.toObjects(Produto.class));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

@@ -7,7 +7,7 @@ import android.widget.Spinner;
 import java.util.List;
 
 import androidx.appcompat.widget.AppCompatButton;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Local;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
 
 public class LocalComponente {
 

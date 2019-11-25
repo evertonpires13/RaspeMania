@@ -1,14 +1,12 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.repository;
 
 import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
-
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.FirebaseRaspeMania;
 
 public abstract class FirebaseRepository<T> {
 
@@ -16,7 +14,7 @@ public abstract class FirebaseRepository<T> {
 
     private String collection;
     protected FirebaseFirestore db;
-    public T object;
+    //public T object;
     private Class<T> clazz;
 
     /**
@@ -31,19 +29,33 @@ public abstract class FirebaseRepository<T> {
     }
 
     /**
-     * Add a new document with a generated id
-     * @param entity
-     * @return Task<DocumentReference>
+     * Get all documents by collection
+     * @return
      * @throws Exception
      */
-    public Task<DocumentReference> save(T entity) throws Exception {
-        this.object = entity;
-        return db.collection(collection).add(object);
-    }
-
     public Task<QuerySnapshot> getAll() throws Exception {
         return db.collection(collection).get();
 
     }
+
+    /**
+     * Update document existent
+     * @param entity
+     * @param key
+     * @return
+     */
+    public Task<Void> update(final T entity, final String key) {
+        return db.collection(collection).document(key).set(entity, SetOptions.merge());
+    }
+
+    /**
+     * Delete a document
+     * @param key
+     * @return
+     */
+    public Task<Void> delete(final String key) {
+        return db.collection(collection).document(key).delete();
+    }
+
 
 }

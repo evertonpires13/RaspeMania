@@ -1,16 +1,16 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.services;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.CollectionHelper;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Local;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
 
-public class LocalService extends GenericService<Local> {
+public class RotaService extends GenericService<Rota> {
 
     /*--------------------------------------------------------------------------------------------*/
-    public LocalService(GenericInterface genericInterface) {
+    public RotaService(GenericInterface genericInterface) {
 
-        super(CollectionHelper.COLLECTION_LOCAL, Local.class, genericInterface);
+        super(CollectionHelper.COLLECTION_ROTA, Rota.class, genericInterface);
 
     }
     /*--------------------------------------------------------------------------------------------*/

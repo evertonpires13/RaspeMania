@@ -29,6 +29,11 @@
     <string name="relatorios">Relatórios</string>
 
     <!--CRUD messages -->
+    <string name="inserido_sucesso">Salvo com sucesso!</string>
+    <string name="inserido_error">Erro ao salvar!</string>
+    <string name="atializacao_error">Erro ao atualizar!</string>
+
+
     <string name="produto_inserido_sucesso">Produto inserido!</string>
 
 

@@ -1,6 +1,9 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade;
 
 import androidx.annotation.NonNull;
+
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.BaseModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
 
 public class Local extends BaseModel {
 

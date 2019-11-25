@@ -1,13 +1,11 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.services;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.repository;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.FirebaseRaspeMania;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.FirebaseRepository;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.CollectionHelper;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 
 public class ExampleRepository extends FirebaseRepository<ModelExample> {
 

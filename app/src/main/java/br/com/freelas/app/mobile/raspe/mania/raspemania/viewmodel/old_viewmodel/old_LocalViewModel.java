@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,12 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.services.LocalService;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Local;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.LocalService;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.LocalActivity;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.LocalComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
-public class LocalViewModel extends BaseViewModel implements GenericInterface {
+public class old_LocalViewModel extends BaseViewModel implements GenericInterface {
 
     /*--------------------------------------------------------------------------------------------*/
     private LocalService service = new LocalService(this);
@@ -21,12 +22,12 @@ public class LocalViewModel extends BaseViewModel implements GenericInterface {
     private Context context;
 
     /*--------------------------------------------------------------------------------------------*/
-    public LocalViewModel() {
+    public old_LocalViewModel() {
 
     }
 
     /*--------------------------------------------------------------------------------------------*/
-    public LocalViewModel(Context context, LocalComponente componentes) {
+    public old_LocalViewModel(Context context, LocalComponente componentes) {
 
         this.componentes = componentes;
         this.context = context;

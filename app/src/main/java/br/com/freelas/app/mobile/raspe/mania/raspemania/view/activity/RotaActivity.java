@@ -8,9 +8,9 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborad
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ColaboradorComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.RotaComponente;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ColaboradorViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.RotaViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ViewModelFactory;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ColaboradorViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.RotaViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ViewModelFactory;
 
 import android.os.Bundle;
 import android.view.View;

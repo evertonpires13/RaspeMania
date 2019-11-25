@@ -4,7 +4,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,15 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_ProdutoActivity;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ProdutoComponente;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ProdutoViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ProdutoViewModel;
 
 public class ProdutoFragment extends BaseFragment {
 
@@ -105,7 +102,12 @@ public class ProdutoFragment extends BaseFragment {
             produtoComponente.model.nome = produtoComponente.editNome.getText().toString();
             produtoComponente.model.valor = Long.parseLong(produtoComponente.editValor.getText().toString());
 
-            mViewModel.save(produtoComponente.model);
+            if(produtoComponente.model.key != null){
+                mViewModel.update(produtoComponente.model);
+            } else {
+                mViewModel.save(produtoComponente.model);
+            }
+
         }
     };
 
@@ -115,6 +117,7 @@ public class ProdutoFragment extends BaseFragment {
 
             Produto model = produtoComponente.modelList.get(i);
 
+            produtoComponente.model = model;
             produtoComponente.editNome.setText(model.nome);
             produtoComponente.editValor.setText(Long.toString(model.valor));
         }

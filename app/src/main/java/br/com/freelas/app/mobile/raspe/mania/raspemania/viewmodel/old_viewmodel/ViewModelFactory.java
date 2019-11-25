@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;

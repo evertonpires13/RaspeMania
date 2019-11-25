@@ -1,16 +1,16 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.services;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.GenericInterface;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.CollectionHelper;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 
-public class ColaboradorService extends GenericService<Colaborador> {
+public class ProdutoService extends GenericService<Produto> {
 
     /*--------------------------------------------------------------------------------------------*/
-    public ColaboradorService(GenericInterface genericInterface) {
+    public ProdutoService(GenericInterface genericInterface) {
 
-        super(CollectionHelper.COLLECTION_COLABORADOR, Colaborador.class, genericInterface);
+        super(CollectionHelper.COLLECTION_PRODUTO, Produto.class, genericInterface);
 
     }
     /*--------------------------------------------------------------------------------------------*/

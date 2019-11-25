@@ -1,20 +1,22 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.viewmodel;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
-public class ColaboradorViewModel extends BaseViewModel {
+public class LeituraViewModel extends BaseViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ColaboradorViewModel() {
+    public LeituraViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("ColaboradorViewModel");
+        mText.setValue("LeituraViewModel");
     }
 
     public LiveData<String> getText() {
         return mText;
     }
+
+
 }

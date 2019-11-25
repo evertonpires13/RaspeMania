@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProviders;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ProdutoComponente;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_ProdutoViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ViewModelFactory;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.old_ProdutoViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ViewModelFactory;
 
 import android.os.Bundle;
 import android.view.View;

@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Local;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.LocalComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.RotaComponente;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.LocalViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.RotaViewModel;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ViewModelFactory;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.old_LocalViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.RotaViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ViewModelFactory;
 
 public class LocalActivity extends AppCompatActivity {
 
@@ -22,8 +22,8 @@ public class LocalActivity extends AppCompatActivity {
     private RotaComponente componentesRota = new RotaComponente();
 
     //Create viewModel Local
-    private ViewModelProvider.Factory viewModelFactory = ViewModelFactory.createFor(new LocalViewModel(this, componentes));
-    private LocalViewModel viewModel;
+    private ViewModelProvider.Factory viewModelFactory = ViewModelFactory.createFor(new old_LocalViewModel(this, componentes));
+    private old_LocalViewModel viewModel;
 
     //Create viewModel Rota
     private ViewModelProvider.Factory viewModelFactoryRota = ViewModelFactory.createFor(new RotaViewModel(this, componentesRota));
@@ -36,7 +36,7 @@ public class LocalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local);
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LocalViewModel.class);
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(old_LocalViewModel.class);
         viewModelRota = ViewModelProviders.of(this, viewModelFactoryRota).get(RotaViewModel.class);
 
         // Verificar se tem dados

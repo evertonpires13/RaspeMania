@@ -2,6 +2,9 @@ package br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade;
 
 import java.util.List;
 
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.BaseModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
+
 public class Leitura extends BaseModel {
 
     public Local local;             //salvar sem chave

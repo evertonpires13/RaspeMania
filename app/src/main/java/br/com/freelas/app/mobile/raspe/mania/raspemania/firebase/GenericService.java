@@ -3,15 +3,12 @@ package br.com.freelas.app.mobile.raspe.mania.raspemania.firebase;
 
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
@@ -19,7 +16,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.BaseModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.BaseModel;
 
 public abstract class GenericService<T> {
 

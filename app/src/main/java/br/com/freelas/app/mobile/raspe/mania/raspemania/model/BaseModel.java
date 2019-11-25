@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.model;
 
 import com.google.firebase.auth.ActionCodeResult;
 import com.google.firebase.firestore.FieldValue;
@@ -10,11 +10,13 @@ import java.util.Date;
 public class BaseModel implements Serializable {
 
     public String key;
-    public String chave;
     public long status;                 //1 ativo or 2 inativo
     public String observacao;
 
     @ServerTimestamp
     public Date dataUltimaAtualizacao;
+
+    @Deprecated
+    public String chave;
 
 }

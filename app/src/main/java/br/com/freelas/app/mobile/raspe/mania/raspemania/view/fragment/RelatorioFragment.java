@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.viewmodel.RelatorioViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.RelatorioViewModel;
 
 public class RelatorioFragment extends Fragment {
 

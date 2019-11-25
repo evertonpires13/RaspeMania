@@ -10,19 +10,19 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 public class BaseFragment extends Fragment {
 
     protected void observeError(BaseViewModel viewModel){
-        viewModel.error.observe(this, new Observer<Boolean>() {
+        viewModel.error.observe(this, new Observer<String>() {
             @Override
-            public void onChanged(Boolean b) {
-                Toast.makeText(getContext(), "ERRO", Toast.LENGTH_SHORT).show();
+            public void onChanged(String s) {
+                Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     protected void observeSucess(BaseViewModel viewModel){
-        viewModel.sucess.observe(this, new Observer<Boolean>() {
+        viewModel.sucess.observe(this, new Observer<String>() {
             @Override
-            public void onChanged(Boolean b) {
-                Toast.makeText(getContext(), "SUCESSO", Toast.LENGTH_SHORT).show();
+            public void onChanged(String s) {
+                Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
             }
         });
     }

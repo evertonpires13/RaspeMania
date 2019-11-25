@@ -52,14 +52,7 @@ public class ExampleFragment extends BaseFragment {
         teste.status = 1;
         teste.observacao = "teste arquitetura livedata 3";
 
-        mViewModel.saveRefId(teste);
-
-        mViewModel.sucess.observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean b) {
-                textView.setText(b.toString());
-            }
-        });
+        mViewModel.save(teste);
 
     }
 

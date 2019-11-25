@@ -14,8 +14,8 @@ public class BaseViewModel extends ViewModel {
 
     //protected CompositeDisposable disposables = new CompositeDisposable();
 
-    public MutableLiveData<Boolean> error;
-    public MutableLiveData<Boolean> sucess;
+    public MutableLiveData<String> error;
+    public MutableLiveData<String> sucess;
 
     @Override
     protected void onCleared() {
