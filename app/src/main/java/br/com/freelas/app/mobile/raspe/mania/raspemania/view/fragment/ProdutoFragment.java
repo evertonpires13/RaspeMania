@@ -29,6 +29,7 @@ public class ProdutoFragment extends BaseFragment {
     private Context context = getContext();
     private ProdutoViewModel mViewModel;
     private RecyclerView recyclerView;
+    private ProdutoAdapter mAdapter;
 
     private AppCompatButton mNovoBtn;
 
@@ -70,6 +71,16 @@ public class ProdutoFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshLista();
+    }
+
+    private void refreshLista() {
+        mViewModel.getAll();
+    }
+
     private void doBindings(){
         super.onStart();
         super.observeError(mViewModel);
@@ -98,7 +109,8 @@ public class ProdutoFragment extends BaseFragment {
     }
 
     private void prepareRecyclerView(List<Produto> produtos){
-        ProdutoAdapter adapter = new ProdutoAdapter(produtos);
-        recyclerView.setAdapter(adapter);
+        mAdapter = new ProdutoAdapter(produtos);
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 }
