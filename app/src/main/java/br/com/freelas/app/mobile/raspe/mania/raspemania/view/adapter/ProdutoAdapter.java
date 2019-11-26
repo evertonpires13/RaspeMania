@@ -14,9 +14,12 @@ import java.util.List;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.MainActivity;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ProdutoActivty;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>{
+
+    public static String TAG = "ProdutoAdapter";
 
     private List<Produto> listProduto;
     private Context context;;
@@ -33,7 +36,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     }
 
     @Override
-    public void onBindViewHolder(ProdutoViewHolder holder, int position) {
+    public void onBindViewHolder(final ProdutoViewHolder holder, int position) {
         final Produto mItem = listProduto.get(position);
         holder.nomeProduto.setText(mItem.nome);
         holder.valorProduto.setText(Float.toString(mItem.valor));
@@ -41,11 +44,16 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ProdutoActivty.class);
-                context.startActivity(intent);
-                Toast.makeText(view.getContext(),"click on item: "+ mItem.nome ,Toast.LENGTH_LONG).show();
+                intent.putExtra(TAG, mItem);
+                //context.startActivity(intent);
+
+                ((MainActivity) context).startActivityForResult(intent, 1);
+
             }
         });
     }
+
+
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

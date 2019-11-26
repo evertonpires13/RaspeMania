@@ -1,24 +1,19 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-
-import javax.annotation.Nullable;
-
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.MoneyTextWatcher;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.TextHelper;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.adapter.ProdutoAdapter;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ProdutoViewModel;
 
 
@@ -29,6 +24,7 @@ public class ProdutoActivty extends BaseActivity {
     private AppCompatButton btnSalvar;
     private TextInputEditText nomeProduto;
     private TextInputEditText valorPproduto;
+    private Produto produto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +38,13 @@ public class ProdutoActivty extends BaseActivity {
         btnSalvar = findViewById(R.id.btn_salvar);
         nomeProduto = findViewById(R.id.nome_produto);
         valorPproduto = findViewById(R.id.valor_produto);
-        valorPproduto.addTextChangedListener(new MoneyTextWatcher(valorPproduto));
+        //valorPproduto.addTextChangedListener(new MoneyTextWatcher(valorPproduto));
+
+        produto = new Produto();
+
+        if (getIntent().getExtras() != null && getIntent().getExtras().getSerializable(ProdutoAdapter.TAG) != null) {
+            bindCampos((Produto) getIntent().getExtras().getSerializable(ProdutoAdapter.TAG));
+        }
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +63,12 @@ public class ProdutoActivty extends BaseActivity {
         observeSucess();
     }
 
+    private void bindCampos(Produto itemLista){
+        this.produto = itemLista;
+        nomeProduto.setText(itemLista.nome);
+        valorPproduto.setText(Float.toString(itemLista.valor));
+    }
+
     private Boolean camposValidos(){
         if(TextHelper.isEmpty(nomeProduto.getText())){
             nomeProduto.setError(getString(R.string.erro_nome_produto));
@@ -74,7 +82,9 @@ public class ProdutoActivty extends BaseActivity {
     }
 
     private Produto produto() {
-        return new Produto(nomeProduto.getText().toString(), Float.parseFloat(valorPproduto.getText().toString()));
+        produto.nome = nomeProduto.getText().toString();
+        produto.valor = Float.parseFloat(valorPproduto.getText().toString());
+        return produto;
     }
 
     private void observeSucess(){
@@ -82,8 +92,8 @@ public class ProdutoActivty extends BaseActivity {
             @Override
             public void onChanged(String s) {
             Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
+            //Snackbar.make(view, "Nova leitura", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             finish();
-            //Snackbar.make(R.layout.activity_produto, "Nova leitura", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }
