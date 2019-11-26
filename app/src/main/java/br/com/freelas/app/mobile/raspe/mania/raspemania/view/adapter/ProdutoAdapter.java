@@ -1,28 +1,24 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.MainActivity;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment.ColaboradorFragment;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment.ExampleFragment;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>{
 
     private List<Produto> listProduto;
+    private Context context;;
 
     public ProdutoAdapter(List<Produto> listProduto) {
         this.listProduto = listProduto;
@@ -43,10 +39,17 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Intent intent = new Intent(context, RotaActivity.class);
+                //context.startActivity(intent);
                 Toast.makeText(view.getContext(),"click on item: "+ mItem.nome ,Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        context = recyclerView.getContext();
     }
 
     @Override
