@@ -20,7 +20,10 @@
             </intent-filter>
         </activity>
         <!-- EXAMPLE -->
+        <activity android:name=".view.activity.ProdutoActivty" />
 
+
+        <!-- OLD -->
         <activity android:name=".view.activity.old_activity.ColaboradorActivity"/>
         <activity android:name=".view.activity.old_activity.RotaActivity" />
 

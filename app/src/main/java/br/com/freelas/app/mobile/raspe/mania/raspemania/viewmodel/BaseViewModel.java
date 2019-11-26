@@ -12,15 +12,12 @@ public class BaseViewModel extends ViewModel {
 
     static String TAG = "BaseViewModel";
 
-    //protected CompositeDisposable disposables = new CompositeDisposable();
-
     public MutableLiveData<String> error;
     public MutableLiveData<String> sucess;
 
     @Override
     protected void onCleared() {
         super.onCleared();
-        //disposables.clear();
         Log.d(TAG, "onCleared");
     }
 }

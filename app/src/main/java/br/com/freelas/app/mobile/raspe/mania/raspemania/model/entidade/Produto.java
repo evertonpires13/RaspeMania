@@ -9,6 +9,13 @@ public class Produto extends BaseModel {
     public String nome;
     public long valor;
 
+    public Produto(){}
+
+    public Produto(String nome, long valor){
+        this.nome = nome;
+        this.valor = valor;
+    }
+
     @NonNull
     @Override
     public String toString() {

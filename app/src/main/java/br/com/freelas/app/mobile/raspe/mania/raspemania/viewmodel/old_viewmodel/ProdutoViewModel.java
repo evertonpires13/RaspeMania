@@ -18,6 +18,7 @@ public class ProdutoViewModel extends BaseViewModel {
 
     private ProdutoRepository service = new ProdutoRepository();
 
+    public MutableLiveData<String> sucess;
     public MutableLiveData<List<Produto>> mList;
 
     public ProdutoViewModel() {

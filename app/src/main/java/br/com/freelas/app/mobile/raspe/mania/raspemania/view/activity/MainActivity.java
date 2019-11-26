@@ -1,7 +1,9 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity.RotaActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -62,14 +64,17 @@ public class MainActivity extends BaseActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+
+        FloatingActionButton fab = findViewById(R.id.nova_leitura);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Nova leitura", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //TODO alterar para nova leitura
+                startActivity(new Intent(getBaseContext(), RotaActivity.class));
+                //Snackbar.make(view, "Nova leitura", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

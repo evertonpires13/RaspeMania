@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.List;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ProdutoActivty;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity.RotaActivity;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.adapter.ProdutoAdapter;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ProdutoViewModel;
@@ -53,7 +54,7 @@ public class ProdutoFragment extends BaseFragment {
         mNovoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, RotaActivity.class));
+                startActivity(new Intent(context, ProdutoActivty.class));
             }
         });
     }
@@ -72,7 +73,7 @@ public class ProdutoFragment extends BaseFragment {
     private void doBindings(){
         super.onStart();
         super.observeError(mViewModel);
-        super.observeSucess(mViewModel);
+        observeSucess();
 
         observeGetAll();
     }
@@ -82,6 +83,16 @@ public class ProdutoFragment extends BaseFragment {
             @Override
             public void onChanged(List<Produto> resultList) {
                 prepareRecyclerView(resultList);
+            }
+        });
+    }
+
+    private void observeSucess(){
+        mViewModel.sucess.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+                //Snackbar.make(R.layout.activity_produto, "Nova leitura", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }

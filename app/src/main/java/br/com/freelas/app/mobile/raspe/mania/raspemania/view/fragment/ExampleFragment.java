@@ -96,6 +96,6 @@ public class ExampleFragment extends BaseFragment {
     private void doBindings(){
         super.onStart();
         super.observeError(mViewModel);
-        super.observeSucess(mViewModel);
+        //super.observeSucess(mViewModel);
     }
 }

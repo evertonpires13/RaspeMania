@@ -29,6 +29,12 @@
     <string name="leitura">Leitura</string>
     <string name="relatorios">Relatórios</string>
 
+    <!--Produto -->
+    <string name="valor_produto">Valor produto</string>
+    <string name="nome_produto">Nome produto</string>
+    <string name="erro_nome_produto">Informe o nome do produto!</string>
+    <string name="erro_valor_produto">Informe o valor do produto!</string>
+
     <!--CRUD messages -->
     <string name="inserido_sucesso">Salvo com sucesso!</string>
     <string name="inserido_error">Erro ao salvar!</string>

@@ -14,6 +14,7 @@ import java.util.List;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ProdutoActivty;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>{
 
@@ -39,8 +40,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(context, RotaActivity.class);
-                //context.startActivity(intent);
+                Intent intent = new Intent(context, ProdutoActivty.class);
+                context.startActivity(intent);
                 Toast.makeText(view.getContext(),"click on item: "+ mItem.nome ,Toast.LENGTH_LONG).show();
             }
         });
