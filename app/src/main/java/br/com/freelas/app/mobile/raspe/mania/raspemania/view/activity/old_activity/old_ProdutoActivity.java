@@ -1,11 +1,11 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ProdutoComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.old_componente.ProdutoComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.old_ProdutoViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ViewModelFactory;
 

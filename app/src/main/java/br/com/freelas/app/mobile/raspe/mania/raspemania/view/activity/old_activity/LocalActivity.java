@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProviders;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.LocalComponente;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.RotaComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.old_componente.LocalComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.old_componente.RotaComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.old_LocalViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.RotaViewModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ViewModelFactory;

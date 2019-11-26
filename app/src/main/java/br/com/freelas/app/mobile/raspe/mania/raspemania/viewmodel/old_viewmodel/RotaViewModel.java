@@ -11,8 +11,8 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.Ge
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.GenericService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.RotaService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.RotaActivity;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.RotaComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity.RotaActivity;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.old_componente.RotaComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
 public class RotaViewModel extends BaseViewModel implements GenericInterface {

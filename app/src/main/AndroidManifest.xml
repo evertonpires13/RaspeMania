@@ -21,8 +21,8 @@
         </activity>
         <!-- EXAMPLE -->
 
-        <activity android:name=".view.activity.ColaboradorActivity"/>
-        <activity android:name=".view.activity.RotaActivity" />
+        <activity android:name=".view.activity.old_activity.ColaboradorActivity"/>
+        <activity android:name=".view.activity.old_activity.RotaActivity" />
 
     </application>
 

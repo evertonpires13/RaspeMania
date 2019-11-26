@@ -10,8 +10,8 @@ import android.widget.Toast;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.GenericInterface;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.LocalService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.LocalActivity;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.LocalComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity.LocalActivity;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.old_componente.LocalComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
 public class old_LocalViewModel extends BaseViewModel implements GenericInterface {

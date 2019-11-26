@@ -60,7 +60,7 @@ public class ExampleFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textView = view.findViewById(R.id.text_example);
+       // textView = view.findViewById(R.id.text_example);
 
     }
 

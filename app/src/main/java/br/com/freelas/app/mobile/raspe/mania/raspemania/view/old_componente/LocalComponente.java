@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.old_componente;
 
 import android.widget.EditText;
 import android.widget.ListView;

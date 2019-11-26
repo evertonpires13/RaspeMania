@@ -11,8 +11,8 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.Ge
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.GenericService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.old_services.ColaboradorService;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ColaboradorActivity;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.componente.ColaboradorComponente;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity.ColaboradorActivity;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.old_componente.ColaboradorComponente;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
 public class ColaboradorViewModel extends BaseViewModel implements GenericInterface {
