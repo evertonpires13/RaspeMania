@@ -1,23 +1,11 @@
 <resources>
     <string name="app_name">Raspe Mania</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_principal">PrincipalActivity</string>
-    <string name="title_activity_menu">MenuActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_header_title">Maria José da Silva Sauro</string>
+    <string name="nav_header_subtitle">administrador</string>
+    <string name="nav_header_desc">Nome de usuário</string>
+    <string name="update_pass">Alterar senha</string>
+    <string name="menu_home">Principal</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
-
-    <!--Start here-->
     <string name="example">Example</string>
     <string name="salvar">Salvar</string>
     <string name="novo">Novo</string>
@@ -29,19 +17,20 @@
     <string name="leitura">Leitura</string>
     <string name="relatorios">Relatórios</string>
 
-    <!--Produto -->
+    <!-- Produto -->
     <string name="valor_produto">Valor produto</string>
     <string name="nome_produto">Nome produto</string>
     <string name="erro_nome_produto">Informe o nome do produto!</string>
     <string name="erro_valor_produto">Informe o valor do produto!</string>
+    <string name="produto_inserido_sucesso">Produto inserido!</string>
 
-    <!--CRUD messages -->
+    <!-- CRUD messages -->
     <string name="inserido_sucesso">Salvo com sucesso!</string>
     <string name="inserido_error">Erro ao salvar!</string>
     <string name="atializacao_error">Erro ao atualizar!</string>
 
 
-    <string name="produto_inserido_sucesso">Produto inserido!</string>
+
 
 
 

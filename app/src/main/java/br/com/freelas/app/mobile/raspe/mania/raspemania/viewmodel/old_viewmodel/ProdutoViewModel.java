@@ -131,7 +131,6 @@ public class ProdutoViewModel extends BaseViewModel {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {
                             Log.d(TAG, "Listou todos!");
-                            sucess.setValue("Listou todos");
                             mList.setValue(querySnapshot.toObjects(Produto.class));
                         }
                     })

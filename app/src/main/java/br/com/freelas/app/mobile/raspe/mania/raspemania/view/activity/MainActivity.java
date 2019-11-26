@@ -2,24 +2,20 @@ package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity.RotaActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
 
 public class MainActivity extends BaseActivity {
 
@@ -30,38 +26,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /*AppCompatButton rota = findViewById(R.id.example_btn);
-
-        rota.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), ExampleActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        // Rota
-        AppCompatButton rota_btn = findViewById(R.id.rota_btn);
-        rota_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), RotaActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Colaborador
-        AppCompatButton colaborador_btn = findViewById(R.id.colaborador_btn);
-        colaborador_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), ColaboradorActivity.class);
-                startActivity(intent);
-            }
-        });
-*/
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,8 +34,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 //TODO alterar para nova leitura
-                startActivity(new Intent(getBaseContext(), RotaActivity.class));
-                //Snackbar.make(view, "Nova leitura", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                //startActivity(new Intent(getBaseContext(), RotaActivity.class));
+                Snackbar.make(view, "Nova leitura", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
 

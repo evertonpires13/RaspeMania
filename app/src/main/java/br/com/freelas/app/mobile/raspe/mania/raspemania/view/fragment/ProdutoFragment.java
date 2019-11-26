@@ -9,12 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
@@ -28,7 +31,7 @@ public class ProdutoFragment extends BaseFragment {
 
     private Context context = getContext();
     private ProdutoViewModel mViewModel;
-    private RecyclerView recyclerView;
+    private RecyclerView mRecyclerView;
     private ProdutoAdapter mAdapter;
 
     private AppCompatButton mNovoBtn;
@@ -66,9 +69,10 @@ public class ProdutoFragment extends BaseFragment {
 
         mNovoBtn = view.findViewById(R.id.btn_novo);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }
 
     @Override
@@ -103,14 +107,13 @@ public class ProdutoFragment extends BaseFragment {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
-                //Snackbar.make(R.layout.activity_produto, "Nova leitura", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }
 
     private void prepareRecyclerView(List<Produto> produtos){
-        mAdapter = new ProdutoAdapter(produtos);
-        recyclerView.setAdapter(mAdapter);
+        mAdapter = new ProdutoAdapter(produtos, mViewModel);
+        mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
 }

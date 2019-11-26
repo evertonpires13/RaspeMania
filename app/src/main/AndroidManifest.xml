@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- EXAMPLE -->
+
         <activity android:name=".view.activity.ProdutoActivty" />
 
 

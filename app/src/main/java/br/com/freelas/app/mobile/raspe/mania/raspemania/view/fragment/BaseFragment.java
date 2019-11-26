@@ -16,7 +16,6 @@ public class BaseFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
-               // Snackbar.make(view, "Nova leitura", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }
