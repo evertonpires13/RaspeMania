@@ -52,7 +52,7 @@ public class ExampleFragment extends BaseFragment {
         teste.status = 1;
         teste.observacao = "teste arquitetura livedata 3";
 
-        mViewModel.save(teste);
+        mViewModel.saveOrUpdate(teste);
 
     }
 

@@ -36,7 +36,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     public void onBindViewHolder(ProdutoViewHolder holder, int position) {
         final Produto mItem = listProduto.get(position);
         holder.nomeProduto.setText(mItem.nome);
-        holder.valorProduto.setText(Long.toString(mItem.valor));
+        holder.valorProduto.setText(Float.toString(mItem.valor));
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

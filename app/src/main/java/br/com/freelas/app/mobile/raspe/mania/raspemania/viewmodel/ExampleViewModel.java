@@ -9,6 +9,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.repository.ExampleRepository;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 
 public class ExampleViewModel extends BaseViewModel {
 
@@ -25,10 +26,22 @@ public class ExampleViewModel extends BaseViewModel {
     }
 
     /**
+     * Sava ou atualiza um objeto
+     * @param obj
+     */
+    public void saveOrUpdate(ModelExample obj) {
+        if(obj.key == null){
+            save(obj);
+        } else {
+            update(obj);
+        }
+    }
+
+    /**
      * Add a new document with a key
      * @param obj
      */
-    public void save(ModelExample obj) {
+    private void save(ModelExample obj) {
         try {
             service.saveRefId(obj)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -55,7 +68,7 @@ public class ExampleViewModel extends BaseViewModel {
      * Update document existent
      * @param obj
      */
-    public void update(ModelExample obj){
+    private void update(ModelExample obj){
         try {
             service.update(obj, obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import javax.annotation.Nullable;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.MoneyTextWatcher;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.TextHelper;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
@@ -41,6 +42,7 @@ public class ProdutoActivty extends BaseActivity {
         btnSalvar = findViewById(R.id.btn_salvar);
         nomeProduto = findViewById(R.id.nome_produto);
         valorPproduto = findViewById(R.id.valor_produto);
+        valorPproduto.addTextChangedListener(new MoneyTextWatcher(valorPproduto));
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +50,7 @@ public class ProdutoActivty extends BaseActivity {
                 if(!camposValidos()){
                    return;
                 }
-                mViewModel.save(produto());
+                mViewModel.saveOrUpdate(produto());
             }
         });
     }
@@ -72,7 +74,7 @@ public class ProdutoActivty extends BaseActivity {
     }
 
     private Produto produto() {
-        return new Produto(nomeProduto.getText().toString(), Long.parseLong(valorPproduto.getText().toString()));
+        return new Produto(nomeProduto.getText().toString(), Float.parseFloat(valorPproduto.getText().toString()));
     }
 
     private void observeSucess(){

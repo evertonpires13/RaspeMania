@@ -13,7 +13,7 @@ public class ProdutoRepository extends BaseRepository<Produto> {
 
     static String TAG = "PPRODUTO_REPOSITORY";
 
-    private String collection = CollectionHelper.COLLECTION_EXAMPLE;
+    private String collection = CollectionHelper.COLLECTION_PRODUTO;
     protected FirebaseFirestore db;
     public Produto object;
 
@@ -22,7 +22,7 @@ public class ProdutoRepository extends BaseRepository<Produto> {
      */
 
     public ProdutoRepository() {
-        super(CollectionHelper.COLLECTION_EXAMPLE, Produto.class);
+        super(CollectionHelper.COLLECTION_PRODUTO, Produto.class);
     }
 
     /**

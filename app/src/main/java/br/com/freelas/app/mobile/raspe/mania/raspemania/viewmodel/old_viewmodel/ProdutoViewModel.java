@@ -28,10 +28,22 @@ public class ProdutoViewModel extends BaseViewModel {
     }
 
     /**
+     * Sava ou atualiza um objeto
+     * @param obj
+     */
+    public void saveOrUpdate(Produto obj) {
+        if(obj.key == null){
+            save(obj);
+        } else {
+            update(obj);
+        }
+    }
+
+    /**
      * Add a new document with a key
      * @param obj
      */
-    public void save(Produto obj) {
+    private void save(Produto obj) {
         try {
             service.saveRefId(obj)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -58,7 +70,7 @@ public class ProdutoViewModel extends BaseViewModel {
      * Update document existent
      * @param obj
      */
-    public void update(Produto obj){
+    private void update(Produto obj){
         try {
             service.update(obj, obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
