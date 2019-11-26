@@ -1,6 +1,5 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +14,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.ModelExample;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ExampleViewModel;
 
 public class ExampleFragment extends BaseFragment {
-
-    private ExampleViewModel mViewModel;
-    private TextView textView;
 
     public static ExampleFragment newInstance() {
         return new ExampleFragment();
@@ -41,19 +34,6 @@ public class ExampleFragment extends BaseFragment {
         //Isso notifica nosso Fragment que a Activity pai completou seu ciclo no onCreate e é aqui
         // que podemos interagir com segurança com a interface de usuário.
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ExampleViewModel.class);
-        // TODO: Use the ViewModel
-
-        doBindings();
-
-        ModelExample teste = new ModelExample();
-        teste.nome = "daniele tste 3";
-        teste.idade = 33;
-        teste.status = 1;
-        teste.observacao = "teste arquitetura livedata 3";
-
-        mViewModel.saveOrUpdate(teste);
-
     }
 
     @Override
@@ -93,9 +73,4 @@ public class ExampleFragment extends BaseFragment {
         super.onStop();
     }
 
-    private void doBindings(){
-        super.onStart();
-        super.observeError(mViewModel);
-        //super.observeSucess(mViewModel);
-    }
 }
