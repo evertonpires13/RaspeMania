@@ -8,7 +8,7 @@ public class LocalService extends GenericService<Local> {
     /*--------------------------------------------------------------------------------------------*/
     public LocalService(GenericInterface genericInterface) {
 
-        super(CollectionHelper.COLLECTION_LOCAL, Local.class, genericInterface);
+        super(CollectionHelper.COLLECTION_ESTABELECIMENTO, Local.class, genericInterface);
 
     }
     /*--------------------------------------------------------------------------------------------*/

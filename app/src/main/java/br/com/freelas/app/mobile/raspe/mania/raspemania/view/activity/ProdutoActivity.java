@@ -18,7 +18,7 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.
 
 
 
-public class ProdutoActivty extends BaseActivity {
+public class ProdutoActivity extends BaseActivity {
 
     private ProdutoViewModel mViewModel;
     private AppCompatButton btnSalvar;

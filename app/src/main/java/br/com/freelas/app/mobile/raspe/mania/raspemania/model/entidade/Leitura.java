@@ -1,11 +1,12 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade;
 
+import java.io.Serializable;
 import java.util.List;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.BaseModel;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.old_entidade.Local;
 
-public class Leitura extends BaseModel {
+public class Leitura extends BaseModel implements Serializable {
 
     public Local local;             //salvar sem chave
     public Produto produto;         //salvar sem chave

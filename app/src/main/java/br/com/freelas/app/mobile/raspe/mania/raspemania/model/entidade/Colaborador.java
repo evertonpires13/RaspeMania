@@ -2,9 +2,11 @@ package br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
+
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.BaseModel;
 
-public class Colaborador extends BaseModel {
+public class Colaborador extends BaseModel implements Serializable {
 
     public String nome;
     public String apelido;
