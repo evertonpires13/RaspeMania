@@ -1,16 +1,18 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.List;
+
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.repository.ProdutoRepository;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.BaseViewModel;
 
 public class ProdutoViewModel extends BaseViewModel {
 

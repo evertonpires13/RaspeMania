@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.firebase.FirebaseRaspeMania;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.CollectionHelper;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.ConstantHelper;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Relatorio;
 
 public class RelatorioRepository extends BaseRepository<Relatorio> {
@@ -39,6 +40,7 @@ public class RelatorioRepository extends BaseRepository<Relatorio> {
 
         this.object = entity;
         object.key = myId;
+        object.status = ConstantHelper.ATIVO;
 
         return db.collection(collection).document(myId).set(object);
     }

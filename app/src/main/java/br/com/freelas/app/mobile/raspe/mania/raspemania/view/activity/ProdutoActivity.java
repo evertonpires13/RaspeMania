@@ -7,14 +7,12 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.MoneyTextWatcher;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.TextHelper;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.adapter.ProdutoAdapter;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ProdutoViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ProdutoViewModel;
 
 
 

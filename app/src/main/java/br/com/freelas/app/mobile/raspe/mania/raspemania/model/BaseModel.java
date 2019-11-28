@@ -16,6 +16,7 @@ public class BaseModel implements Serializable {
     @ServerTimestamp
     public Date dataUltimaAtualizacao;
 
+    //TODO apagar isso
     @Deprecated
     public String chave;
 

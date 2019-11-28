@@ -1,8 +1,7 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.old_activity.RotaActivity;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;

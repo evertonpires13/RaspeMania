@@ -8,13 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
+
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.helper.ConstantHelper;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ProdutoActivity;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ProdutoViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ProdutoViewModel;
+
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>{
 
@@ -42,6 +47,14 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         final Produto mItem = listProduto.get(position);
         holder.nomeProduto.setText(mItem.nome);
         holder.valorProduto.setText(Float.toString(mItem.valor));
+
+        if(mItem.status == ConstantHelper.ATIVO) {
+            holder.status_ativo.setVisibility(View.VISIBLE);
+            holder.status_inativo.setVisibility(View.INVISIBLE);
+        } else {
+            holder.status_ativo.setVisibility(View.INVISIBLE);
+            holder.status_inativo.setVisibility(View.VISIBLE);
+        }
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +91,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         public TextView valorProduto;
         public ConstraintLayout constraintLayout;
         public AppCompatImageButton deleteProduto;
+        public AppCompatImageView status_inativo;
+        public AppCompatImageView status_ativo;
 
         public ProdutoViewHolder(View itemView) {
             super(itemView);
@@ -85,6 +100,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             this.valorProduto = (TextView) itemView.findViewById(R.id.valor_produto);
             this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_produto);
             this.deleteProduto = (AppCompatImageButton) itemView.findViewById(R.id.delete_produto_btn);
+            this.status_inativo = (AppCompatImageView) itemView.findViewById(R.id.status_inativo);
+            this.status_ativo = (AppCompatImageView) itemView.findViewById(R.id.status_ativo);
         }
     }
 }

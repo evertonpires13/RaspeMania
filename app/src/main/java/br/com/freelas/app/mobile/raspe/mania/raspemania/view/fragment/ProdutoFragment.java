@@ -23,7 +23,7 @@ import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ProdutoActivity;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.adapter.ProdutoAdapter;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.old_viewmodel.ProdutoViewModel;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ProdutoViewModel;
 
 public class ProdutoFragment extends BaseFragment {
 

@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -18,6 +16,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ColaboradorActivity;
@@ -108,10 +109,9 @@ public class ColaboradorFragment extends BaseFragment {
         });
     }
 
-    private void prepareRecyclerView(List<Colaborador> Colaboradors){
-        mAdapter = new ColaboradorAdapter(Colaboradors, mViewModel);
+    private void prepareRecyclerView(List<Colaborador> colaboradores){
+        mAdapter = new ColaboradorAdapter(colaboradores, mViewModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
 }
-
