@@ -48,6 +48,8 @@ public class ProdutoFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        showProgressDialog();
+
         context = getContext();
         mViewModel = ViewModelProviders.of(this).get(ProdutoViewModel.class);
         doBindings();
@@ -76,6 +78,7 @@ public class ProdutoFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        showProgressDialog();
         refreshLista();
     }
 
@@ -107,11 +110,13 @@ public class ProdutoFragment extends BaseFragment {
                 Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
             }
         });
+        hideProgressDialog();
     }
 
     private void prepareRecyclerView(List<Produto> produtos){
         mAdapter = new ProdutoAdapter(produtos, mViewModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+        hideProgressDialog();
     }
 }
