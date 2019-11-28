@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name=".view.activity.ui.login.LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".view.activity.ProdutoActivity"
             android:label="@string/produto"/>
         <activity android:name=".view.activity.EstabelecimentoActivity"
@@ -27,6 +29,16 @@
             android:label="@string/colaborador"/>
         <activity android:name=".view.activity.RotaActivity"
             android:label="@string/rota"/>
+=======
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".view.activity.ProdutoActivity" /> <!-- OLD -->
+        <activity android:name=".view.activity.old_activity.ColaboradorActivity" />
+        <activity android:name=".view.activity.old_activity.RotaActivity" />
+>>>>>>> origin/feature/login
     </application>
 
 </manifest>
