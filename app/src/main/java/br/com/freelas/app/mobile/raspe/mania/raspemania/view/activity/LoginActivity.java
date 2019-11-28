@@ -1,4 +1,4 @@
-package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ui.login;
+package br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.BaseActivity;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 

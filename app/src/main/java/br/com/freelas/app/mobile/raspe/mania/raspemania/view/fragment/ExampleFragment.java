@@ -1,17 +1,13 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
 
@@ -26,7 +22,7 @@ public class ExampleFragment extends BaseFragment {
         //onde você constrói ou infla sua interface,
         // faz conexão com alguma fonte de dados e retorna à Activity pai
         // para poder integrá-lo em sua hierarquia de Views
-        return inflater.inflate(R.layout.fragment_example, container, false);
+        return inflater.inflate(R.layout.fragment_produto, container, false);
     }
 
     @Override

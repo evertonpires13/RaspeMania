@@ -34,7 +34,7 @@ public class RotaActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rota2);
+        setContentView(R.layout.activity_rota);
 
         mViewModel = ViewModelProviders.of(this).get(RotaViewModel.class);
         mViewModelColaborador = ViewModelProviders.of(this).get(ColaboradorViewModel.class);

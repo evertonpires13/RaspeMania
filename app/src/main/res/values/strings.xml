@@ -4,6 +4,7 @@
     <string name="nav_header_subtitle">administrador</string>
     <string name="nav_header_desc">Nome de usuário</string>
     <string name="update_pass">Alterar senha</string>
+    <string name="logout">Sair</string>
     <string name="menu_home">Principal</string>
     <string name="loading">Carregando...</string>
 
@@ -29,7 +30,6 @@
     <string name="inserido_sucesso">Salvo com sucesso!</string>
     <string name="inserido_error">Erro ao salvar!</string>
     <string name="atializacao_error">Erro ao atualizar!</string>
-<<<<<<< HEAD
 
     <!-- Colaborador -->
     <string name="nome_colaborador">Nome</string>
@@ -60,7 +60,6 @@
     <string name="erro_estabelecimento_codigo">Informe o código!</string>
     <string name="erro_estabelecimento_porcentagem">Informe a porcentagem!</string>
 
-=======
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -87,8 +86,5 @@
     <string name="auth_failed">Authentication failed</string>
     <string name="firebase_status_fmt">Firebase User: %s</string>
     <string name="firebase_user_management">Firebase User Management</string>
-    <string name="loading">Loading…</string>
->>>>>>> origin/feature/login
-
 
 </resources>
