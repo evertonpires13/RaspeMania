@@ -29,8 +29,34 @@
     <string name="inserido_error">Erro ao salvar!</string>
     <string name="atializacao_error">Erro ao atualizar!</string>
 
+    <!-- Colaborador -->
+    <string name="nome_colaborador">Nome</string>
+    <string name="apelido_colaborador">Apelido</string>
+    <string name="email_colaborador">E-Mail</string>
+    <string name="senha_colaborador">Senha</string>
+    <string name="perfil_colaborador">Perfil</string>
+    <string name="erro_nome_colaborador">Informe o nome do colaborador!</string>
+    <string name="erro_apelido_colaborador">Informe o apelido do colaborador!</string>
+    <string name="erro_email_colaborador">Informe o e-mail do colaborador!</string>
+    <string name="erro_senha_colaborador">Informe a senha do colaborador!</string>
 
 
+    <!-- Rota -->
+    <string name="rota_descricao">Nome</string>
+    <string name="rota_colaborador">Apelido</string>
+    <string name="erro_rota_descricao">Informe a rota!</string>
+
+
+    <!-- Estabelecimento -->
+    <string name="estabelecimento_estoque">Estoque</string>
+    <string name="estabelecimento_endereco">Endereço</string>
+    <string name="estabelecimento_codigo">Código</string>
+    <string name="estabelecimento_porcentagem">Porcentagem</string>
+    <string name="estabelecimento_rota">Rota</string>
+    <string name="erro_estabelecimento_estoque">Informe a quantidade em estoque!</string>
+    <string name="erro_estabelecimento_endereco">Informe o endereço!</string>
+    <string name="erro_estabelecimento_codigo">Informe o código!</string>
+    <string name="erro_estabelecimento_porcentagem">Informe a porcentagem!</string>
 
 
 

@@ -11,7 +11,8 @@ public class Colaborador extends BaseModel implements Serializable {
     public String nome;
     public String apelido;
     public String senha;
-    public long perfil;                     //1 adm or 2 colaborador
+    public String email;
+    public int perfil;                     //1 adm or 2 colaborador
 
     @NonNull
     @Override

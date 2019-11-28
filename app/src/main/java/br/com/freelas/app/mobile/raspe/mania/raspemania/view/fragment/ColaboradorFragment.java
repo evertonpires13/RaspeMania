@@ -1,28 +1,38 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Colaborador;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.ColaboradorActivity;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.adapter.ColaboradorAdapter;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.ColaboradorViewModel;
 
 public class ColaboradorFragment extends BaseFragment {
 
     private Context context = getContext();
     private ColaboradorViewModel mViewModel;
+    private RecyclerView mRecyclerView;
+    private ColaboradorAdapter mAdapter;
+
+    private AppCompatButton mNovoBtn;
+
 
     public static ColaboradorFragment newInstance() {
         return new ColaboradorFragment();
@@ -42,12 +52,24 @@ public class ColaboradorFragment extends BaseFragment {
         doBindings();
         mViewModel.getAll();
 
+        mNovoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, ColaboradorActivity.class));
+            }
+        });
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mNovoBtn = view.findViewById(R.id.btn_novo);
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }
 
     @Override
@@ -72,7 +94,7 @@ public class ColaboradorFragment extends BaseFragment {
         mViewModel.mList.observe(this, new Observer<List<Colaborador>>() {
             @Override
             public void onChanged(List<Colaborador> resultList) {
-
+                prepareRecyclerView(resultList);
             }
         });
     }
@@ -86,8 +108,10 @@ public class ColaboradorFragment extends BaseFragment {
         });
     }
 
-    private void prepareRecyclerView(List<Produto> produtos){
-
+    private void prepareRecyclerView(List<Colaborador> Colaboradors){
+        mAdapter = new ColaboradorAdapter(Colaboradors, mViewModel);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 }
 

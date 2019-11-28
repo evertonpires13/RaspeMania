@@ -9,6 +9,9 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.EstabelecimentoActivity"></activity>
+        <activity android:name=".view.activity.ColaboradorActivity" />
+        <activity android:name=".view.activity.RotaActivity" />
         <activity
             android:name=".view.activity.MainActivity"
             android:label="@string/app_name"
@@ -19,14 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.activity.ProdutoActivity" />
-
-
-        <!-- OLD -->
-        <activity android:name=".view.activity.old_activity.ColaboradorActivity"/>
+        <activity android:name=".view.activity.ProdutoActivity" /> <!-- OLD -->
+        <activity android:name=".view.activity.old_activity.ColaboradorActivity" />
         <activity android:name=".view.activity.old_activity.RotaActivity" />
-
     </application>
 
 </manifest>
