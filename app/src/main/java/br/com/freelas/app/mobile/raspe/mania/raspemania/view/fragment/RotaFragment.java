@@ -1,28 +1,38 @@
 package br.com.freelas.app.mobile.raspe.mania.raspemania.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.R;
-import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Produto;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.model.entidade.Rota;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.activity.RotaActivity;
+import br.com.freelas.app.mobile.raspe.mania.raspemania.view.adapter.RotaAdapter;
 import br.com.freelas.app.mobile.raspe.mania.raspemania.viewmodel.RotaViewModel;
 
 public class RotaFragment extends BaseFragment {
 
     private Context context = getContext();
     private RotaViewModel mViewModel;
+    private RecyclerView mRecyclerView;
+    private RotaAdapter mAdapter;
+
+    private AppCompatButton mNovoBtn;
+
 
     public static RotaFragment newInstance() {
         return new RotaFragment();
@@ -35,6 +45,7 @@ public class RotaFragment extends BaseFragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
         super.onActivityCreated(savedInstanceState);
 
         context = getContext();
@@ -42,12 +53,24 @@ public class RotaFragment extends BaseFragment {
         doBindings();
         mViewModel.getAll();
 
+        mNovoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, RotaActivity.class));
+            }
+        });
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mNovoBtn = view.findViewById(R.id.btn_novo);
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }
 
     @Override
@@ -72,7 +95,7 @@ public class RotaFragment extends BaseFragment {
         mViewModel.mList.observe(this, new Observer<List<Rota>>() {
             @Override
             public void onChanged(List<Rota> resultList) {
-
+                prepareRecyclerView(resultList);
             }
         });
     }
@@ -86,7 +109,9 @@ public class RotaFragment extends BaseFragment {
         });
     }
 
-    private void prepareRecyclerView(List<Produto> produtos){
-
+    private void prepareRecyclerView(List<Rota> rotas){
+        mAdapter = new RotaAdapter(rotas, mViewModel);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 }
