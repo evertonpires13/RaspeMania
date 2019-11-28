@@ -5,7 +5,7 @@
     <string name="nav_header_desc">Nome de usuário</string>
     <string name="update_pass">Alterar senha</string>
     <string name="menu_home">Principal</string>
-    <string name="loading">Carregando…</string>
+    <string name="loading">Carregando...</string>
 
     <string name="example">Example</string>
     <string name="salvar">Salvar</string>
