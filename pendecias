@@ -2,3 +2,6 @@
 - Aletrar o metodo delete para exclusão logica
 - Alterar os metodos getAll para trazer apenas os não excluidos
 - Ajustar layout
+- Terminar login (criar base local, usuario logado, alterar senha etc)
+- Tratar exibição de itens por perfil (adm ou colaborador)
+- Incluir status ativo ou inativo na alteração
