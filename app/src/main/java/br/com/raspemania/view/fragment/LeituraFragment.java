@@ -37,6 +37,9 @@ public class LeituraFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //TODO: alterar o progress bar
+        hideProgressDialog();
+
         context = getContext();
         mViewModel = ViewModelProviders.of(this).get(LeituraViewModel.class);
         doBindings();

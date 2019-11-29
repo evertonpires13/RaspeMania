@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -18,6 +16,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
 import br.com.raspemania.R;
 import br.com.raspemania.model.entidade.Estabelecimento;
 import br.com.raspemania.view.activity.EstabelecimentoActivity;
@@ -104,6 +105,7 @@ public class EstabelecimentoFragment extends BaseFragment {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+                hideProgressDialog();
             }
         });
     }
@@ -112,5 +114,6 @@ public class EstabelecimentoFragment extends BaseFragment {
         mAdapter = new EstabelecimentoAdapter(Estabelecimentos, mViewModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+        hideProgressDialog();
     }
 }

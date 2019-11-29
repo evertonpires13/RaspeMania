@@ -48,8 +48,6 @@ public class ProdutoFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        showProgressDialog();
-
         context = getContext();
         mViewModel = ViewModelProviders.of(this).get(ProdutoViewModel.class);
         doBindings();
@@ -78,7 +76,6 @@ public class ProdutoFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        showProgressDialog();
         refreshLista();
     }
 

@@ -105,6 +105,7 @@ public class ColaboradorFragment extends BaseFragment {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+                hideProgressDialog();
             }
         });
     }
@@ -113,5 +114,6 @@ public class ColaboradorFragment extends BaseFragment {
         mAdapter = new ColaboradorAdapter(colaboradores, mViewModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+        hideProgressDialog();
     }
 }

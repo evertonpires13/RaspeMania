@@ -37,6 +37,8 @@ public class RelatorioFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        hideProgressDialog();
+
         context = getContext();
         mViewModel = ViewModelProviders.of(this).get(LeituraViewModel.class);
         doBindings();

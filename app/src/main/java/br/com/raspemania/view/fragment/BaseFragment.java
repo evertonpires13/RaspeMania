@@ -1,8 +1,10 @@
 package br.com.raspemania.view.fragment;
 
 import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -17,6 +19,7 @@ public class BaseFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+                hideProgressDialog();
             }
         });
     }
@@ -38,6 +41,18 @@ public class BaseFragment extends Fragment {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        showProgressDialog();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        showProgressDialog();
     }
 
     @Override
