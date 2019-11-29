@@ -1,3 +1,4 @@
 - Tratar requisições quando estiver offline - sem internet (o firebase nao retorna nada)
 - Aletrar o metodo delete para exclusão logica
 - Alterar os metodos getAll para trazer apenas os não excluidos
+- Ajustar layout
