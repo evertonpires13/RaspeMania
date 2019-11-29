@@ -5,7 +5,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "br.com.freelas.app.mobile.raspe.mania.raspemania"
+        applicationId "br.com.raspemania"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1

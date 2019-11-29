@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.freelas.app.mobile.raspe.mania.raspemania">
+    package="br.com.raspemania">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
+        <!--<activity
             android:name=".view.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name"
@@ -19,7 +19,28 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <activity
+            android:name=".view.activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        </activity>-->
+
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+         <activity android:name=".view.activity.LoginActivity"
+            android:label="@string/login"/>
+
+
         <activity android:name=".view.activity.ProdutoActivity"
             android:label="@string/produto"/>
         <activity android:name=".view.activity.EstabelecimentoActivity"
@@ -28,11 +49,6 @@
             android:label="@string/colaborador"/>
         <activity android:name=".view.activity.RotaActivity"
             android:label="@string/rota"/>
-        <activity
-            android:name=".view.activity.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
     </application>
 
 </manifest>

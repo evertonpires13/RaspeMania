@@ -38,12 +38,6 @@
                 android:id="@+id/nav_estabelecimento"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="@string/estabelecimento" />
-
-            <item
-                android:id="@+id/nav_example"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="@string/example" />
-
         </menu>
     </item>
 </menu>
