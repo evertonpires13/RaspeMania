@@ -5,3 +5,4 @@
 - Terminar login (criar base local, usuario logado, alterar senha etc)
 - Tratar exibição de itens por perfil (adm ou colaborador)
 - Incluir status ativo ou inativo na alteração
+- Verificar se tem conexão (nas consultas)
