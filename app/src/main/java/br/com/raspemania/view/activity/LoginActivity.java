@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,8 +23,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private static final String TAG = "EmailPassword";
 
-    private TextView mStatusTextView;
-    private TextView mDetailTextView;
+    //private TextView mStatusTextView;
+    //private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
 
@@ -35,19 +34,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login3);
 
         // Views
-        mStatusTextView = findViewById(R.id.status);
-        mDetailTextView = findViewById(R.id.detail);
+        //mStatusTextView = findViewById(R.id.status);
+        //mDetailTextView = findViewById(R.id.detail);
         mEmailField = findViewById(R.id.fieldEmail);
         mPasswordField = findViewById(R.id.fieldPassword);
 
          // Buttons
         findViewById(R.id.emailSignInButton).setOnClickListener(this);
-        findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
-        findViewById(R.id.signOutButton).setOnClickListener(this);
-        findViewById(R.id.verifyEmailButton).setOnClickListener(this);
+        //findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
+        //findViewById(R.id.signOutButton).setOnClickListener(this);
+        //findViewById(R.id.verifyEmailButton).setOnClickListener(this);
 
         // [START initialize_auth]
         // Initialize Firebase Auth
@@ -198,34 +197,34 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             startActivity(intent);
 
         } else {
-            mStatusTextView.setText(R.string.signed_out);
-            mDetailTextView.setText(null);
+            //mStatusTextView.setText(R.string.signed_out);
+            //mDetailTextView.setText(null);
 
-            findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
-            findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
-            findViewById(R.id.signedInButtons).setVisibility(View.GONE);
+            //findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
+            //findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
+            //findViewById(R.id.signedInButtons).setVisibility(View.GONE);
         }
     }
 
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
-            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+            //mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
+                    //user.getEmail(), user.isEmailVerified()));
+            //mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
-            findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
-            findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);
-            findViewById(R.id.signedInButtons).setVisibility(View.VISIBLE);
+            //findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
+            //findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);
+            //findViewById(R.id.signedInButtons).setVisibility(View.VISIBLE);
 
-            findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
+            //findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
         } else {
-            mStatusTextView.setText(R.string.signed_out);
-            mDetailTextView.setText(null);
+            //mStatusTextView.setText(R.string.signed_out);
+            //mDetailTextView.setText(null);
 
-            findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
-            findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
-            findViewById(R.id.signedInButtons).setVisibility(View.GONE);
+            //findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
+            //findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
+            //findViewById(R.id.signedInButtons).setVisibility(View.GONE);
         }
     }
 
