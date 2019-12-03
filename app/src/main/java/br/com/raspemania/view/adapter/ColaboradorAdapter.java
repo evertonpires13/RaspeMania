@@ -45,7 +45,7 @@ public class ColaboradorAdapter extends RecyclerView.Adapter<ColaboradorAdapter.
     public void onBindViewHolder(final ColaboradorAdapter.ColaboradorViewHolder holder, int position) {
 
         final Colaborador mItem = listColaborador.get(position);
-        holder.nomeColaborador.setText(mItem.nome);
+        holder.nomeColaborador.setText(mItem.email);
         holder.apelidoColaborador.setText(mItem.apelido);
 
         if(mItem.status == ConstantHelper.ATIVO) {
@@ -68,6 +68,7 @@ public class ColaboradorAdapter extends RecyclerView.Adapter<ColaboradorAdapter.
         holder.deleteColaborador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO alterar isso - setar como inativo e proibir o login
                 mViewmodel.delete(mItem);
                 listColaborador.remove(mItem);
                 notifyDataSetChanged();
@@ -96,7 +97,7 @@ public class ColaboradorAdapter extends RecyclerView.Adapter<ColaboradorAdapter.
 
         public ColaboradorViewHolder(View itemView) {
             super(itemView);
-            this.nomeColaborador = (TextView) itemView.findViewById(R.id.nome_colaborador);
+            this.nomeColaborador = (TextView) itemView.findViewById(R.id.email_colaborador);
             this.apelidoColaborador = (TextView) itemView.findViewById(R.id.apelido_colaborador);
             this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_colaborador);
             this.status_inativo = (AppCompatImageView) itemView.findViewById(R.id.status_inativo);

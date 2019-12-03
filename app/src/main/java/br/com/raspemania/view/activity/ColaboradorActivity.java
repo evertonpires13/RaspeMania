@@ -34,7 +34,7 @@ public class ColaboradorActivity extends BaseActivity {
         doBindings();
 
         btnSalvar = findViewById(R.id.btn_salvar_colaborador);
-        mNome = findViewById(R.id.nome_colaborador);
+        mNome = findViewById(R.id.email_colaborador);
         mApelido = findViewById(R.id.apelido_colaborador);
 
         mColaborador = new Colaborador();
@@ -62,7 +62,7 @@ public class ColaboradorActivity extends BaseActivity {
 
     private void bindCampos(Colaborador itemLista){
         this.mColaborador = itemLista;
-        mNome.setText(itemLista.nome);
+        mNome.setText(itemLista.email);
         mApelido.setText(itemLista.apelido);
     }
 
@@ -79,7 +79,7 @@ public class ColaboradorActivity extends BaseActivity {
     }
 
     private Colaborador colaborador() {
-        mColaborador.nome = mNome.getText().toString();
+        mColaborador.email = mNome.getText().toString();
         mColaborador.apelido = mApelido.getText().toString();
         return mColaborador;
     }

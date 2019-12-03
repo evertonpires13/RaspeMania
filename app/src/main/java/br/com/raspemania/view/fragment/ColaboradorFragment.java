@@ -1,7 +1,6 @@
 package br.com.raspemania.view.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -21,7 +19,6 @@ import java.util.List;
 
 import br.com.raspemania.R;
 import br.com.raspemania.model.entidade.Colaborador;
-import br.com.raspemania.view.activity.ColaboradorActivity;
 import br.com.raspemania.view.adapter.ColaboradorAdapter;
 import br.com.raspemania.viewmodel.ColaboradorViewModel;
 
@@ -32,7 +29,7 @@ public class ColaboradorFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     private ColaboradorAdapter mAdapter;
 
-    private AppCompatButton mNovoBtn;
+    //private AppCompatButton mNovoBtn;
 
 
     public static ColaboradorFragment newInstance() {
@@ -53,19 +50,19 @@ public class ColaboradorFragment extends BaseFragment {
         doBindings();
         mViewModel.getAll();
 
-        mNovoBtn.setOnClickListener(new View.OnClickListener() {
+        /*mNovoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(context, ColaboradorActivity.class));
             }
-        });
+        });*/
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mNovoBtn = view.findViewById(R.id.btn_novo);
+        //mNovoBtn = view.findViewById(R.id.btn_novo);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);

@@ -19,15 +19,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nome_colaborador"
+            android:id="@+id/email_colaborador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="left"
-            android:hint="@string/nome_colaborador"
+            android:hint="@string/email_colaborador"
             android:inputType="text"
             android:textSize="24sp"
-            android:textColor="@android:color/black" />
+            android:enabled="false"
+            android:text="@string/rota"
+            android:textColor="@android:color/darker_gray" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
