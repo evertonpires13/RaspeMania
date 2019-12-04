@@ -101,7 +101,7 @@ public class LeituraFragment extends BaseFragment {
         mViewModel.mList.observe(this, new Observer<List<Leitura>>() {
             @Override
             public void onChanged(List<Leitura> resultList) {
-
+                hideProgressDialog();
             }
         });
     }
