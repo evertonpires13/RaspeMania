@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
-
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
 import br.com.raspemania.R;
 import br.com.raspemania.model.entidade.Estabelecimento;
 import br.com.raspemania.view.activity.EstabelecimentoActivity;
@@ -48,6 +49,7 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
         final Estabelecimento mItem = listEstabelecimento.get(position);
         holder.codigo.setText(mItem.codigo);
         holder.rota.setText(mItem.rota.nome);
+        holder.endereco.setText(mItem.endereco);
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +84,7 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
     public static class EstabelecimentoViewHolder extends RecyclerView.ViewHolder {
         public TextView codigo;
         public TextView rota;
+        public TextView endereco;
         public ConstraintLayout constraintLayout;
         public AppCompatImageButton deleteEstabelecimento;
 
@@ -89,7 +92,8 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
             super(itemView);
             this.codigo = (TextView) itemView.findViewById(R.id.codigo_estabelecimento);
             this.rota = (TextView) itemView.findViewById(R.id.nome_rota);
-            this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_estabelecimento);
+            this.endereco = (TextView) itemView.findViewById(R.id.endereco_rota);
+            this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_item_estabelecimento);
             this.deleteEstabelecimento = (AppCompatImageButton) itemView.findViewById(R.id.delete_estabelecimento_btn);
         }
     }

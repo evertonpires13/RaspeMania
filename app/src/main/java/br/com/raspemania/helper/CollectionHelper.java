@@ -7,4 +7,5 @@ public class CollectionHelper {
     public static final String COLLECTION_ESTABELECIMENTO = COLLECTION_PRINCIPAL + "_local";
     public static final String COLLECTION_PRODUTO = COLLECTION_PRINCIPAL + "_produto";
     public static final String COLLECTION_ROTA = COLLECTION_PRINCIPAL + "_rota";
+    public static final String COLLECTION_LEITURA = COLLECTION_PRINCIPAL + "_leitura";
 }

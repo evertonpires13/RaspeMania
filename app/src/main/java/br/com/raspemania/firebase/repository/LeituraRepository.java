@@ -13,7 +13,7 @@ public class LeituraRepository extends BaseRepository<Leitura> {
 
     static String TAG = "LEITURA_REPOSITORY";
 
-    private String collection = CollectionHelper.COLLECTION_COLABORADOR;
+    private String collection = CollectionHelper.COLLECTION_LEITURA;
     protected FirebaseFirestore db;
     public Leitura object;
 
@@ -22,7 +22,7 @@ public class LeituraRepository extends BaseRepository<Leitura> {
      */
 
     public LeituraRepository() {
-        super(CollectionHelper.COLLECTION_COLABORADOR, Leitura.class);
+        super(CollectionHelper.COLLECTION_LEITURA, Leitura.class);
     }
 
     /**

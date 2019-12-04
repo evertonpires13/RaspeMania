@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
-
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
 import br.com.raspemania.R;
 import br.com.raspemania.model.entidade.Rota;
 import br.com.raspemania.view.activity.RotaActivity;
@@ -93,8 +94,8 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
             super(itemView);
             this.nome = (TextView) itemView.findViewById(R.id.nome_rota);
             this.colaborador = (TextView) itemView.findViewById(R.id.apelido_colaborador);
-            this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_rota);
-            this.deleteRota = (AppCompatImageButton) itemView.findViewById(R.id.delete_rota_btn);
+            this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_item_rota);
+            this.deleteRota = (AppCompatImageButton) itemView.findViewById(R.id.delete_rota);
         }
     }
 }

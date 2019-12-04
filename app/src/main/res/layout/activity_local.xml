@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.activity.old_activity.LocalActivity">
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/editCodigo"
@@ -41,10 +40,6 @@
         android:text="salvar local" />
 
 
-    <ListView
-        android:id="@+id/lista"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+
 
 </LinearLayout>

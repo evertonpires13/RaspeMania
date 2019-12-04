@@ -53,6 +53,9 @@
             android:label="@string/colaborador"/>
         <activity android:name=".view.activity.RotaActivity"
             android:label="@string/rota"/>
+
+        <!--<activity android:name=".view.activity.LeituraActivity"></activity>-->
+
     </application>
 
 </manifest>
