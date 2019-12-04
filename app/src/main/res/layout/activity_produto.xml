@@ -64,7 +64,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/side_nav_bar"
         android:text="@string/salvar"
         android:textAllCaps="false"
         android:textColor="@color/white"

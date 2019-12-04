@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Raspe Mania</string>
+    <string name="nav_header_image">Raspe Mania</string>
     <string name="nav_header_title">Maria José da Silva Sauro</string>
     <string name="nav_header_subtitle">administrador</string>
     <string name="nav_header_desc">Nome de usuário</string>

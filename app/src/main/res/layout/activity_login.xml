@@ -79,7 +79,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/green"
+        android:background="@drawable/side_nav_bar"
         android:text="@string/login"
         android:textAllCaps="false"
         android:textColor="@color/white"
