@@ -115,6 +115,7 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
         mColaborador.email = user.getEmail();
         mColaborador.uid = user.getUid();
         mColaborador.senha = mPasswordField.getText().toString();
+        //Tratar erro ao salvar usuario
         mViewModel.saveOrUpdate(mColaborador);
     }
 

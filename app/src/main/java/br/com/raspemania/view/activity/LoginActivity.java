@@ -8,18 +8,25 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import br.com.raspemania.R;
+import br.com.raspemania.firebase.FirebaseRaspeMania;
+import br.com.raspemania.helper.CollectionHelper;
+import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.helper.ErrorHelper;
-import br.com.raspemania.viewmodel.ColaboradorViewModel;
+import br.com.raspemania.model.entidade.Colaborador;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
@@ -28,8 +35,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText mEmailField;
     private EditText mPasswordField;
     private FirebaseAuth mAuth;
-
-    private ColaboradorViewModel mViewModel;
+    private FirebaseFirestore db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         mAuth = FirebaseAuth.getInstance();
 
-        mViewModel = ViewModelProviders.of(this).get(ColaboradorViewModel.class);
+        this.db = FirebaseRaspeMania.getDatabase();
     }
 
     @Override
@@ -53,7 +59,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mPasswordField.getText().clear();
         mEmailField.getText().clear();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        doLogin(currentUser);
+        tryLogin(currentUser);
     }
 
     private void signIn(String email, String password) {
@@ -71,7 +77,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            doLogin(user);
+                            tryLogin(user);
                         } else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException().getCause());
                             ErrorHelper.errorLogin("GERAL", LoginActivity.this, mEmailField, mPasswordField);
@@ -105,23 +111,52 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         return valid;
     }
-    private void doLogin(FirebaseUser user) {
-        hideProgressDialog();
+    private void tryLogin(FirebaseUser user) {
         if (user != null) {
-            //TODO tratar retorno de erro
-            startActivity(new Intent(this, MainActivity.class));
-
-
-            //mViewModel.getByEmail(user.getEmail());
-            /*if(mColaborador.status == ConstantHelper.INATIVO) {
-                mAuth.signOut();
-                finish();
-                startActivity(new Intent(this, LoginActivity.class));
-                Toast.makeText(this, "Usuário está inativo", Toast.LENGTH_LONG).show();
-            } else {
-                startActivity(new Intent(this, MainActivity.class));
-            }*/
+            try {
+                getByEmail(user.getEmail());
+            } catch (Exception e) {
+                e.printStackTrace();
+                ErrorHelper.errorLogin("GERAL", LoginActivity.this, null, null);
+            }
         }
+    }
+
+    private void doLogin() {
+        hideProgressDialog();
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    public void getByEmail(String email) throws Exception {
+        db.collection(CollectionHelper.COLLECTION_COLABORADOR)
+                .whereEqualTo("email", email)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot document : queryDocumentSnapshots) {
+                            Colaborador colaborador = document.toObject(Colaborador.class);
+                            if(colaborador.status == ConstantHelper.INATIVO){
+                                signOut();
+                                ErrorHelper.errorLogin("INVALID_USER", LoginActivity.this, null, null);
+                            } else {
+                                doLogin();
+                            }
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        signOut();
+                        ErrorHelper.errorLogin("ERROR_GET_USER", LoginActivity.this, null, null);
+                    }
+                });
+    }
+
+    public void signOut(){
+        hideProgressDialog();
+        mAuth.signOut();
     }
 
     @Override

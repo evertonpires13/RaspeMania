@@ -153,20 +153,4 @@ public class ColaboradorViewModel extends BaseViewModel {
             error.setValue("Erro ao listar!");
         }
     }
-
-    /**
-     * Get by email
-     */
-    public void getByEmail(String email) {
-
-        try {
-            service.getByEmail(email);
-        } catch (Exception e) {
-            e.printStackTrace();
-            error.setValue("Erro ao listar!");
-        }
-
-    }
-
-
 }
