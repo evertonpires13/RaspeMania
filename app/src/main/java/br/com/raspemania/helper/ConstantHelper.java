@@ -8,4 +8,8 @@ public class ConstantHelper {
     //Perfil colaborador
     public static int PERFIL_ADM = 1;
     public static int PERFIL_COLABORADOR = 2;
+
+    public static String COLABORADOR_PREF = "colaborador";
+
+
 }

@@ -9,18 +9,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import br.com.raspemania.R;
+import br.com.raspemania.firebase.FirebaseRaspeMania;
+import br.com.raspemania.helper.CollectionHelper;
+import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.helper.ErrorHelper;
+import br.com.raspemania.helper.SharedPrefHelper;
 import br.com.raspemania.model.entidade.Colaborador;
-import br.com.raspemania.viewmodel.ColaboradorViewModel;
 
 public class CadastroUsuarioActivity extends BaseActivity implements View.OnClickListener {
 
@@ -32,7 +38,7 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
 
     private FirebaseAuth mAuth;
 
-    private ColaboradorViewModel mViewModel;
+    private FirebaseFirestore db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,8 +53,6 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
         findViewById(R.id.possuoCadastroText).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
-
-        mViewModel = ViewModelProviders.of(this).get(ColaboradorViewModel.class);
     }
 
     @Override
@@ -57,8 +61,6 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
         mPasswordField.getText().clear();
         mEmailField.getText().clear();
         mApelidoField.getText().clear();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        doLogin(currentUser);
     }
 
     private void createAccount(String email, String password) {
@@ -78,8 +80,8 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
                             FirebaseUser user = mAuth.getCurrentUser();
                             sendEmailVerification();
                             //TODO verificar de tem internet
-                            cadastroColaborador(user);
-                            doLogin(user);
+                            saveColaborador(user);
+
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             ErrorHelper.errorLogin("GERAL", CadastroUsuarioActivity.this, mEmailField, mPasswordField);
@@ -109,14 +111,36 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
                 });
     }
 
-    private void cadastroColaborador(FirebaseUser user) {
+    public void saveColaborador(FirebaseUser user) {
+
+        this.db = FirebaseRaspeMania.getDatabase();
+
+        DocumentReference ref = db.collection(CollectionHelper.COLLECTION_COLABORADOR).document();
+        String myId = ref.getId();
+
         Colaborador mColaborador = new Colaborador();
         mColaborador.apelido = mApelidoField.getText().toString();
         mColaborador.email = user.getEmail();
         mColaborador.uid = user.getUid();
         mColaborador.senha = mPasswordField.getText().toString();
-        //Tratar erro ao salvar usuario
-        mViewModel.saveOrUpdate(mColaborador);
+        mColaborador.key = myId;
+        mColaborador.status = ConstantHelper.ATIVO;
+        mColaborador.perfil = ConstantHelper.PERFIL_ADM;
+
+        db.collection(CollectionHelper.COLLECTION_COLABORADOR).document(myId).set(mColaborador)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    doLogin();
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    signOut();
+                    ErrorHelper.errorLogin("ERROR_CADASTRO_USER", CadastroUsuarioActivity.this, null, null);
+                }
+            });
     }
 
     private boolean validateForm() {
@@ -148,13 +172,15 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
 
         return valid;
     }
-    private void doLogin(FirebaseUser user) {
-        hideProgressDialog();
-        if (user != null) {
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
+    private void doLogin() {
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
+    }
 
-        }
+    public void signOut(){
+        hideProgressDialog();
+        SharedPrefHelper.clearShared(this);
+        mAuth.signOut();
     }
 
     @Override

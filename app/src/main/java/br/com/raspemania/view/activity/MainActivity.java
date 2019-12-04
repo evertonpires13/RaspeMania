@@ -18,6 +18,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.ConstantHelper;
+import br.com.raspemania.helper.SharedPrefHelper;
+import br.com.raspemania.model.entidade.Colaborador;
 
 
 public class MainActivity extends BaseActivity {
@@ -25,14 +28,19 @@ public class MainActivity extends BaseActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     private FirebaseAuth mAuth;
-
+    private Colaborador mColaborador;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        hideProgressDialog();
+
         mAuth = FirebaseAuth.getInstance();
+
+        mColaborador = SharedPrefHelper.getSharedOBJECT(this, ConstantHelper.COLABORADOR_PREF, Colaborador.class);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,17 +56,19 @@ public class MainActivity extends BaseActivity {
         });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        mNavigationView = findViewById(R.id.nav_view);
+
+        carregaMenu();
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_colaborador, R.id.nav_estabelecimento,
                 R.id.nav_leitura, R.id.nav_relatorio, R.id.nav_rota, R.id.nav_produto)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        NavigationUI.setupWithNavController(mNavigationView, navController);
     }
 
     @Override
@@ -74,6 +84,7 @@ public class MainActivity extends BaseActivity {
 
         if (id == R.id.logout) {
             mAuth.signOut();
+            SharedPrefHelper.clearShared(this);
             finish();
             return true;
         }
@@ -85,5 +96,28 @@ public class MainActivity extends BaseActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void carregaMenu(){
+
+        if(mColaborador.perfil == ConstantHelper.PERFIL_ADM){
+
+            Menu menuNav= mNavigationView.getMenu();
+
+            MenuItem relatorioMenu = menuNav.findItem(R.id.nav_relatorio);
+            relatorioMenu.setVisible(true);
+
+            MenuItem colaboradorMenu = menuNav.findItem(R.id.nav_colaborador);
+            colaboradorMenu.setVisible(true);
+
+            MenuItem estabelecimentoMenu = menuNav.findItem(R.id.nav_estabelecimento);
+            estabelecimentoMenu.setVisible(true);
+
+            MenuItem produtoMenu = menuNav.findItem(R.id.nav_produto);
+            produtoMenu.setVisible(true);
+
+            MenuItem rotaMenu = menuNav.findItem(R.id.nav_rota);
+            rotaMenu.setVisible(true);
+        }
     }
 }

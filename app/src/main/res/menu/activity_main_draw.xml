@@ -17,6 +17,7 @@
         <item
             android:id="@+id/nav_relatorio"
             android:icon="@drawable/ic_menu_share"
+            android:visible="false"
             android:title="@string/relatorios" />
     </group>
 
@@ -25,18 +26,22 @@
             <item
                 android:id="@+id/nav_colaborador"
                 android:icon="@drawable/ic_menu_manage"
+                android:visible="false"
                 android:title="@string/colaborador" />
             <item
                 android:id="@+id/nav_produto"
                 android:icon="@drawable/ic_menu_manage"
+                android:visible="false"
                 android:title="@string/produto" />
             <item
                 android:id="@+id/nav_rota"
                 android:icon="@drawable/ic_menu_manage"
+                android:visible="false"
                 android:title="@string/rota" />
             <item
                 android:id="@+id/nav_estabelecimento"
                 android:icon="@drawable/ic_menu_manage"
+                android:visible="false"
                 android:title="@string/estabelecimento" />
         </menu>
     </item>

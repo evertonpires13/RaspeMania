@@ -26,6 +26,7 @@ import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.helper.CollectionHelper;
 import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.helper.ErrorHelper;
+import br.com.raspemania.helper.SharedPrefHelper;
 import br.com.raspemania.model.entidade.Colaborador;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -49,8 +50,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         findViewById(R.id.cadastrarNovoText).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
-
-        this.db = FirebaseRaspeMania.getDatabase();
     }
 
     @Override
@@ -114,20 +113,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void tryLogin(FirebaseUser user) {
         if (user != null) {
             try {
+                showProgressDialog();
                 getByEmail(user.getEmail());
             } catch (Exception e) {
+                hideProgressDialog();
                 e.printStackTrace();
                 ErrorHelper.errorLogin("GERAL", LoginActivity.this, null, null);
             }
         }
     }
 
-    private void doLogin() {
-        hideProgressDialog();
+    private void doLogin(Colaborador colaborador) {
+        SharedPrefHelper.setSharedOBJECT(this, ConstantHelper.COLABORADOR_PREF, colaborador);
         startActivity(new Intent(this, MainActivity.class));
     }
 
     public void getByEmail(String email) throws Exception {
+        this.db = FirebaseRaspeMania.getDatabase();
         db.collection(CollectionHelper.COLLECTION_COLABORADOR)
                 .whereEqualTo("email", email)
                 .get()
@@ -140,7 +142,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 signOut();
                                 ErrorHelper.errorLogin("INVALID_USER", LoginActivity.this, null, null);
                             } else {
-                                doLogin();
+                                doLogin(colaborador);
                             }
                         }
                     }
@@ -156,6 +158,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     public void signOut(){
         hideProgressDialog();
+        SharedPrefHelper.clearShared(this);
         mAuth.signOut();
     }
 
@@ -165,6 +168,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         if (i == R.id.emailSignInButton) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.cadastrarNovoText) {
+            finish();
             startActivity(new Intent(this, CadastroUsuarioActivity.class));
         }
     }

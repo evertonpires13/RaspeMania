@@ -93,6 +93,10 @@ public class ErrorHelper {
                 Toast.makeText(context, "Usuário está inativo", Toast.LENGTH_LONG).show();
                 break;
 
+            case "ERROR_CADASTRO_USER":
+                Toast.makeText(context, "Erro ao cadastrar usuário!", Toast.LENGTH_LONG).show();
+                break;
+
             default: Toast.makeText(context, "Ocorreu um erro inesperado. Favor entrar em contato com raspemania@gmail.com", Toast.LENGTH_LONG).show();
         }
     }
