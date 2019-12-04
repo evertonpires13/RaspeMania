@@ -1,6 +1,7 @@
 package br.com.raspemania.view.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -15,7 +16,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.List;
 
 import br.com.raspemania.R;
-import br.com.raspemania.helper.TextHelper;
 import br.com.raspemania.model.entidade.Estabelecimento;
 import br.com.raspemania.model.entidade.Rota;
 import br.com.raspemania.view.adapter.EstabelecimentoAdapter;
@@ -95,19 +95,19 @@ public class EstabelecimentoActivity extends BaseActivity {
     }
 
     private Boolean camposValidos() {
-        if (TextHelper.isEmpty(estabelecimento_estoque.getText())) {
+        if (TextUtils.isEmpty(estabelecimento_estoque.getText())) {
             estabelecimento_estoque.setError(getString(R.string.erro_estabelecimento_estoque));
             return false;
         }
-        if (TextHelper.isEmpty(estabelecimento_endereco.getText())) {
+        if (TextUtils.isEmpty(estabelecimento_endereco.getText())) {
             estabelecimento_endereco.setError(getString(R.string.erro_estabelecimento_endereco));
             return false;
         }
-        if (TextHelper.isEmpty(estabelecimento_codigo.getText())) {
+        if (TextUtils.isEmpty(estabelecimento_codigo.getText())) {
             estabelecimento_codigo.setError(getString(R.string.erro_estabelecimento_codigo));
             return false;
         }
-        if (TextHelper.isEmpty(estabelecimento_porcentagem.getText())) {
+        if (TextUtils.isEmpty(estabelecimento_porcentagem.getText())) {
             estabelecimento_porcentagem.setError(getString(R.string.erro_estabelecimento_porcentagem));
             return false;
         }

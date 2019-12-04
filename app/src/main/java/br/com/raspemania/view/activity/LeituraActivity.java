@@ -2,6 +2,7 @@ package br.com.raspemania.view.activity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.raspemania.R;
-import br.com.raspemania.helper.TextHelper;
 import br.com.raspemania.model.entidade.Estabelecimento;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.model.entidade.PremiacaoList;
@@ -144,12 +144,12 @@ public class LeituraActivity extends BaseActivity {
 
     private Boolean camposValidos() {
 
-        if (TextHelper.isEmpty(textQuantidadeVendida.getText())) {
+        if (TextUtils.isEmpty(textQuantidadeVendida.getText())) {
             textQuantidadeVendida.setError(getString(R.string.erro_rota_descricao));
             return false;
         }
 
-        if (TextHelper.isEmpty(textQuantidadeReposicao.getText())) {
+        if (TextUtils.isEmpty(textQuantidadeReposicao.getText())) {
             textQuantidadeReposicao.setError(getString(R.string.erro_rota_descricao));
             return false;
         }

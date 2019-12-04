@@ -1,20 +1,21 @@
 package br.com.raspemania.view.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import br.com.raspemania.R;
-import br.com.raspemania.helper.TextHelper;
 import br.com.raspemania.model.entidade.Colaborador;
 import br.com.raspemania.model.entidade.Rota;
 import br.com.raspemania.view.adapter.RotaAdapter;
@@ -88,7 +89,7 @@ public class RotaActivity extends BaseActivity {
     }
 
     private Boolean camposValidos() {
-        if (TextHelper.isEmpty(rota_descricao.getText())) {
+        if (TextUtils.isEmpty(rota_descricao.getText())) {
             rota_descricao.setError(getString(R.string.erro_rota_descricao));
             return false;
         }

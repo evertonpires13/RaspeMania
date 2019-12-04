@@ -1,6 +1,7 @@
 package br.com.raspemania.view.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,7 +12,6 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.textfield.TextInputEditText;
 
 import br.com.raspemania.R;
-import br.com.raspemania.helper.TextHelper;
 import br.com.raspemania.model.entidade.Colaborador;
 import br.com.raspemania.view.adapter.ColaboradorAdapter;
 import br.com.raspemania.viewmodel.ColaboradorViewModel;
@@ -67,11 +67,11 @@ public class ColaboradorActivity extends BaseActivity {
     }
 
     private Boolean camposValidos(){
-        if(TextHelper.isEmpty(mNome.getText())){
+        if(TextUtils.isEmpty(mNome.getText())){
             mNome.setError(getString(R.string.erro_nome_colaborador));
             return false;
         }
-        if(TextHelper.isEmpty(mApelido.getText())){
+        if(TextUtils.isEmpty(mApelido.getText())){
             mApelido.setError(getString(R.string.erro_apelido_colaborador));
             return false;
         }

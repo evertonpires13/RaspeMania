@@ -1,15 +1,17 @@
 package br.com.raspemania.view.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.textfield.TextInputEditText;
+
 import br.com.raspemania.R;
-import br.com.raspemania.helper.TextHelper;
 import br.com.raspemania.model.entidade.Produto;
 import br.com.raspemania.view.adapter.ProdutoAdapter;
 import br.com.raspemania.viewmodel.ProdutoViewModel;
@@ -68,11 +70,11 @@ public class ProdutoActivity extends BaseActivity {
     }
 
     private Boolean camposValidos(){
-        if(TextHelper.isEmpty(nomeProduto.getText())){
+        if(TextUtils.isEmpty(nomeProduto.getText())){
             nomeProduto.setError(getString(R.string.erro_nome_produto));
             return false;
         }
-        if(TextHelper.isEmpty(valorPproduto.getText())){
+        if(TextUtils.isEmpty(valorPproduto.getText())){
             valorPproduto.setError(getString(R.string.erro_valor_produto));
             return false;
         }
