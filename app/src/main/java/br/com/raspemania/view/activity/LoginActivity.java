@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.com.raspemania.R;
 import br.com.raspemania.helper.ErrorHelper;
+import br.com.raspemania.viewmodel.ColaboradorViewModel;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
@@ -27,6 +29,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText mPasswordField;
     private FirebaseAuth mAuth;
 
+    private ColaboradorViewModel mViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         findViewById(R.id.cadastrarNovoText).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+
+        mViewModel = ViewModelProviders.of(this).get(ColaboradorViewModel.class);
     }
 
     @Override
@@ -103,7 +108,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void doLogin(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
+            //TODO tratar retorno de erro
             startActivity(new Intent(this, MainActivity.class));
+
+
+            //mViewModel.getByEmail(user.getEmail());
+            /*if(mColaborador.status == ConstantHelper.INATIVO) {
+                mAuth.signOut();
+                finish();
+                startActivity(new Intent(this, LoginActivity.class));
+                Toast.makeText(this, "Usuário está inativo", Toast.LENGTH_LONG).show();
+            } else {
+                startActivity(new Intent(this, MainActivity.class));
+            }*/
         }
     }
 

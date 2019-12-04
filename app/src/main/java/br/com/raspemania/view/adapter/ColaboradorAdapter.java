@@ -68,9 +68,7 @@ public class ColaboradorAdapter extends RecyclerView.Adapter<ColaboradorAdapter.
         holder.deleteColaborador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO alterar isso - setar como inativo e proibir o login
                 mViewmodel.delete(mItem);
-                listColaborador.remove(mItem);
                 notifyDataSetChanged();
             }
         });

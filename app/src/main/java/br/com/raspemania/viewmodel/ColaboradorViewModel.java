@@ -12,6 +12,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 import br.com.raspemania.firebase.repository.ColaboradorRepository;
+import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.model.entidade.Colaborador;
 
 public class ColaboradorViewModel extends BaseViewModel {
@@ -22,6 +23,7 @@ public class ColaboradorViewModel extends BaseViewModel {
 
     public MutableLiveData<String> sucess;
     public MutableLiveData<List<Colaborador>> mList;
+    public MutableLiveData<Colaborador> mColaborador;
 
     public ColaboradorViewModel() {
         sucess = new MutableLiveData<>();
@@ -101,25 +103,28 @@ public class ColaboradorViewModel extends BaseViewModel {
      * @param obj
      */
     public void delete(Colaborador obj){
+
         try {
-            service.delete(obj.key)
+            obj.status = ConstantHelper.INATIVO;
+            service.update(obj, obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "Deletado com sucesso!");
-                            sucess.setValue("Deletado com sucesso!");
+                            Log.d(TAG, "Salvo com sucesso!");
+                            sucess.setValue("Atualizado com sucesso!");
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Erro ao deletar!", e);
-                            error.setValue("Erro ao deletar!");
+                            Log.w(TAG, "Erro ao atualizar", e);
+                            error.setValue("Erro ao atualizar");
                         }
                     });;
         } catch (Exception e) {
             e.printStackTrace();
-            error.setValue("Erro ao deletar!");
+            error.setValue("Erro ao atualizar");
         }
     }
 
@@ -148,4 +153,20 @@ public class ColaboradorViewModel extends BaseViewModel {
             error.setValue("Erro ao listar!");
         }
     }
+
+    /**
+     * Get by email
+     */
+    public void getByEmail(String email) {
+
+        try {
+            service.getByEmail(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+            error.setValue("Erro ao listar!");
+        }
+
+    }
+
+
 }
