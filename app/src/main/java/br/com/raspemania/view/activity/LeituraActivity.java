@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.LeituraHelper;
 import br.com.raspemania.helper.MoneyTextWatcher;
 import br.com.raspemania.model.entidade.Estabelecimento;
 import br.com.raspemania.model.entidade.Leitura;
@@ -128,8 +129,8 @@ public class LeituraActivity extends BaseActivity {
 
             valorQuantidadeVendida.setText(String.valueOf(leituraAux.quantidadeVendida));
             valorReposicao.setText(String.valueOf(leituraAux.quantidadeReposicao));
-            valorPremiacao.setText(getPremiacao(leituraAux));
-            valorRetirado.setText(getValorRetirado(leituraAux));
+            valorPremiacao.setText(LeituraHelper.getPremiacao(leituraAux));
+            valorRetirado.setText(LeituraHelper.getValorRetirado(leituraAux));
 
             viewDialog.findViewById(R.id.btn_cancelar).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -153,38 +154,6 @@ public class LeituraActivity extends BaseActivity {
 
         }
     };
-
-    private String getPremiacao (Leitura leitura) {
-        long qtd = 0;
-        float valor = 0;
-
-        for(PremiacaoList premiacao : leitura.premiacaoList){
-            qtd = qtd + premiacao.quantidadePremiada;
-            valor = valor + (premiacao.valorPremiado*premiacao.quantidadePremiada);
-        }
-        return String.valueOf(qtd) + " /R$ " + String.valueOf(valor);
-    }
-
-    private Float getTotalPremiado (Leitura leitura) {
-
-        float valor = 0;
-
-        for(PremiacaoList premiacao : leitura.premiacaoList){
-            valor = valor + (premiacao.valorPremiado*premiacao.quantidadePremiada);
-        }
-        return valor;
-    }
-
-    private String getValorRetirado(Leitura leitura) {
-        float qtVendida = leitura.quantidadeVendida;
-        float valorProduto = leitura.produto.valor;
-        float comissao = leitura.local.porcentagem;
-        float totalPremiado = getTotalPremiado(leitura);
-
-        float valorRetirado = ((qtVendida*valorProduto)-((qtVendida*valorProduto)*(comissao/100F)))-totalPremiado;
-
-        return "R$ "+ String.valueOf(valorRetirado);
-    }
 
     private Leitura leitura() {
 

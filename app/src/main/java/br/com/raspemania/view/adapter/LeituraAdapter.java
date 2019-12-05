@@ -9,9 +9,11 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.LeituraHelper;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.viewmodel.LeituraViewModel;
 
@@ -40,7 +42,11 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
 
         final Leitura mItem = listLeitura.get(position);
         holder.codigoEstabelecimento.setText(mItem.local.codigo);
-        holder.dataCadastro.setText(mItem.dataUltimaAtualizacao.toString());
+        holder.dataCadastro.setText(DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(mItem.dataUltimaAtualizacao));
+        holder.valorQuantidadeVendida.setText(String.valueOf(mItem.quantidadeVendida));
+        holder.valorReposicao.setText(String.valueOf(mItem.quantidadeReposicao));
+        holder.valorPremiacao.setText(LeituraHelper.getPremiacao(mItem));
+        holder.valorRetirado.setText(LeituraHelper.getValorRetirado(mItem));
 
         holder.deleteLeitura.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +73,20 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
         public AppCompatTextView codigoEstabelecimento;
         public AppCompatTextView dataCadastro;
         public AppCompatImageButton deleteLeitura;
+        public AppCompatTextView valorQuantidadeVendida;
+        public AppCompatTextView valorReposicao;
+        public AppCompatTextView valorPremiacao;
+        public AppCompatTextView valorRetirado;
 
         public LeituraViewHolder(View itemView) {
             super(itemView);
             this.codigoEstabelecimento = (AppCompatTextView) itemView.findViewById(R.id.codigoEstabelecimento);
             this.dataCadastro = (AppCompatTextView) itemView.findViewById(R.id.dataCadastro);
             this.deleteLeitura = (AppCompatImageButton) itemView.findViewById(R.id.deleteLeitura);
+            this.valorQuantidadeVendida = (AppCompatTextView) itemView.findViewById(R.id.valorQuantidadeVendida);
+            this.valorReposicao = (AppCompatTextView) itemView.findViewById(R.id.valorReposicao);
+            this.valorPremiacao = (AppCompatTextView) itemView.findViewById(R.id.valorPremiacao);
+            this.valorRetirado = (AppCompatTextView) itemView.findViewById(R.id.valorRetirado);
         }
     }
 }
