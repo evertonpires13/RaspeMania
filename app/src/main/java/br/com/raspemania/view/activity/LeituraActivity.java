@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -113,6 +114,9 @@ public class LeituraActivity extends BaseActivity {
             leitura.premiacaoList.add(premiacaoList);
 
             prepareRecyclerView(leitura.premiacaoList);
+
+            textQuantidade.getText().clear();
+            textValor.getText().clear();
         }
     };
 
@@ -124,9 +128,21 @@ public class LeituraActivity extends BaseActivity {
                 return;
             }
 
+            Leitura leituraAux = leitura();
+
             LayoutInflater li = getLayoutInflater();
 
             viewDialog = li.inflate(R.layout.dialog_premiacao, null);
+            AppCompatTextView valorQuantidadeVendida = viewDialog.findViewById(R.id.valorQuantidadeVendida);
+            AppCompatTextView valorReposicao = viewDialog.findViewById(R.id.valorReposicao);
+            AppCompatTextView valorPremiacao = viewDialog.findViewById(R.id.valorPremiacao);
+            AppCompatTextView valorRetirado = viewDialog.findViewById(R.id.valorRetirado);
+
+            valorQuantidadeVendida.setText(String.valueOf(leituraAux.quantidadeVendida));
+            valorReposicao.setText(String.valueOf(leituraAux.quantidadeReposicao));
+            valorPremiacao.setText(getPremiacao(leituraAux));
+            valorRetirado.setText(getValorRetirado(leituraAux));
+
             viewDialog.findViewById(R.id.btn_cancelar).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -143,13 +159,44 @@ public class LeituraActivity extends BaseActivity {
             });
 
             AlertDialog.Builder builder = new AlertDialog.Builder(LeituraActivity.this);
-            //builder.setTitle("Adicionar Premiação");
             builder.setView(viewDialog);
             alertDialog = builder.create();
             alertDialog.show();
 
         }
     };
+
+    private String getPremiacao (Leitura leitura) {
+        long qtd = 0;
+        float valor = 0;
+
+        for(PremiacaoList premiacao : leitura.premiacaoList){
+            qtd = qtd + premiacao.quantidadePremiada;
+            valor = valor + (premiacao.valorPremiado*premiacao.quantidadePremiada);
+        }
+        return String.valueOf(qtd) + " /R$ " + String.valueOf(valor);
+    }
+
+    private Float getTotalPremiado (Leitura leitura) {
+
+        float valor = 0;
+
+        for(PremiacaoList premiacao : leitura.premiacaoList){
+            valor = valor + (premiacao.valorPremiado*premiacao.quantidadePremiada);
+        }
+        return valor;
+    }
+
+    private String getValorRetirado(Leitura leitura) {
+        float qtVendida = leitura.quantidadeVendida;
+        float valorProduto = leitura.produto.valor;
+        float comissao = leitura.local.porcentagem;
+        float totalPremiado = getTotalPremiado(leitura);
+
+        float valorRetirado = ((qtVendida*valorProduto)-((qtVendida*valorProduto)*(comissao/100F)))-totalPremiado;
+
+        return String.valueOf(valorRetirado);
+    }
 
     private Leitura leitura() {
 
