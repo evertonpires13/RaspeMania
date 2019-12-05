@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:text="José da Silva"
         android:textColorHint="@android:color/darker_gray"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/status_ativo"
         app:layout_constraintTop_toTopOf="parent" />
 

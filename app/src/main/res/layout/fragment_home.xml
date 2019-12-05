@@ -15,7 +15,7 @@
         android:text="Raspe Mania"
         android:textAlignment="center"
         android:textColor="#4F000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

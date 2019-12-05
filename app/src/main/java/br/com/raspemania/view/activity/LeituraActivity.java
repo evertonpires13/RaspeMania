@@ -2,11 +2,13 @@ package br.com.raspemania.view.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -51,6 +53,9 @@ public class LeituraActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
     private PremiacaoAdapter mAdapter;
 
+    private AlertDialog alertDialog;
+    private View viewDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -94,6 +99,7 @@ public class LeituraActivity extends BaseActivity {
         });
 
         btnAdicionar.setOnClickListener(clickAdicionarPremiacao);
+        btnSalvar.setOnClickListener(clickSalvarPremiacao);
 
     }
 
@@ -107,6 +113,41 @@ public class LeituraActivity extends BaseActivity {
             leitura.premiacaoList.add(premiacaoList);
 
             prepareRecyclerView(leitura.premiacaoList);
+        }
+    };
+
+    private View.OnClickListener clickSalvarPremiacao = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            if (!camposValidos()) {
+                return;
+            }
+
+            LayoutInflater li = getLayoutInflater();
+
+            viewDialog = li.inflate(R.layout.dialog_premiacao, null);
+            viewDialog.findViewById(R.id.btn_cancelar).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.dismiss();
+                }
+            });
+
+            viewDialog.findViewById(R.id.btn_salvar).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewModelLeitura.saveOrUpdate(leitura());
+                    alertDialog.dismiss();
+                }
+            });
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(LeituraActivity.this);
+            //builder.setTitle("Adicionar Premiação");
+            builder.setView(viewDialog);
+            alertDialog = builder.create();
+            alertDialog.show();
+
         }
     };
 

@@ -49,7 +49,7 @@
             android:hint="Qtd. Vendida"
             android:inputType="numberSigned"
             android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +74,7 @@
             android:hint="Qtd. Reposição"
             android:inputType="numberSigned"
             android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,12 +83,13 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/green"
         android:focusable="false"
-        app:layout_constraintBottom_toTopOf="@+id/recycler"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_qtd_premiacao" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_id"
@@ -148,11 +149,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
         android:layout_weight="1"
         android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/btn_salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_qtd_premiacao" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_salvar"
