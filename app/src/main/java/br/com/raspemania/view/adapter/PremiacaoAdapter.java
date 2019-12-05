@@ -67,7 +67,7 @@ public class PremiacaoAdapter extends RecyclerView.Adapter<PremiacaoAdapter.Prem
         public PremiacaoViewHolder(View itemView) {
             super(itemView);
             this.qtdPremiacaoList = (AppCompatEditText) itemView.findViewById(R.id.qtdPremiacaoList);
-            this.valorPremiacao = (AppCompatEditText) itemView.findViewById(R.id.valorPremiacao);
+            this.valorPremiacao = (AppCompatEditText) itemView.findViewById(R.id.valorReposicao);
             this.delete_produto_btn = (AppCompatImageButton) itemView.findViewById(R.id.delete_produto_btn);
         }
     }

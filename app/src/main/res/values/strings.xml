@@ -16,6 +16,8 @@
 
     <string name="example">Example</string>
     <string name="salvar">Salvar</string>
+    <string name="voltar">Voltar</string>
+    <string name="confirmar">Confirmar</string>
     <string name="novo">Novo</string>
 
     <string name="colaborador">Colaborador</string>
@@ -92,5 +94,9 @@
     <string name="auth_failed">Authentication failed</string>
     <string name="firebase_status_fmt">Firebase User: %s</string>
     <string name="firebase_user_management">Firebase User Management</string>
+
+    <!-- Leitura -->
+    <string name="erro_leitura_qtd_vendide">Informe a quantidade vendida!</string>
+    <string name="erro_leitura_reposicao">Informe a quantidade de reposição!</string>
 
 </resources>

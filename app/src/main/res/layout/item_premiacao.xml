@@ -24,7 +24,7 @@
         app:layout_constraintWidth_percent="0.3" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/valorPremiacao"
+        android:id="@+id/valorReposicao"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.textfield.TextInputEditText;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.MoneyTextWatcher;
 import br.com.raspemania.model.entidade.Produto;
 import br.com.raspemania.view.adapter.ProdutoAdapter;
 import br.com.raspemania.viewmodel.ProdutoViewModel;
@@ -41,7 +42,7 @@ public class ProdutoActivity extends BaseActivity {
         nomeProduto = findViewById(R.id.nome_produto);
         valorPproduto = findViewById(R.id.valor_produto);
         mStatus = findViewById(R.id.produto_status);
-        //valorPproduto.addTextChangedListener(new MoneyTextWatcher(valorPproduto));
+        valorPproduto.addTextChangedListener(new MoneyTextWatcher(valorPproduto));
 
         super.spinnerStatus(mStatus);
 
@@ -71,7 +72,7 @@ public class ProdutoActivity extends BaseActivity {
     private void bindCampos(Produto itemLista){
         this.produto = itemLista;
         nomeProduto.setText(itemLista.nome);
-        valorPproduto.setText(Float.toString(itemLista.valor));
+        valorPproduto.setText(Float.toString(itemLista.valor*10));
         mStatus.setSelection(super.setSpinner(itemLista.status));
     }
 

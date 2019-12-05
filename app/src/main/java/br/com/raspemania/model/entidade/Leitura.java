@@ -12,7 +12,7 @@ public class Leitura extends BaseModel implements Serializable {
     public Produto produto;         //salvar sem chave
     public int quantidadeVendida;
     public List<PremiacaoList> premiacaoList;
-    public long hasReposicao;
+    //public long hasReposicao;
     public int quantidadeReposicao;
 
     //total premiado = (premiacaoList.quantidadePremiada * premiacaoList.valorPremiado) + [n]
