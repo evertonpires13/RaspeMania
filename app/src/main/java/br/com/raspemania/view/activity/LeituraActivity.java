@@ -1,18 +1,20 @@
 package br.com.raspemania.view.activity;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -24,6 +26,7 @@ import br.com.raspemania.model.entidade.Estabelecimento;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.model.entidade.PremiacaoList;
 import br.com.raspemania.model.entidade.Produto;
+import br.com.raspemania.view.adapter.PremiacaoAdapter;
 import br.com.raspemania.viewmodel.EstabelecimentoViewModel;
 import br.com.raspemania.viewmodel.LeituraViewModel;
 import br.com.raspemania.viewmodel.ProdutoViewModel;
@@ -31,21 +34,25 @@ import br.com.raspemania.viewmodel.ProdutoViewModel;
 public class LeituraActivity extends BaseActivity {
 
     /*--------------------------------------------------------------------------------------------*/
-    private ListView listviewPremiacao;
+    //private ListView listviewPremiacao;
     private Spinner spinnerProduto;
     private Spinner spinnerLocal;
     private TextInputEditText textQuantidadeVendida;
     private TextInputEditText textQuantidadeReposicao;
     private AppCompatButton btnSalvar;
-    private AppCompatButton btnAdicionar;
+    private AppCompatImageButton btnAdicionar;
 
     private ProdutoViewModel mViewModelProduto;
     private EstabelecimentoViewModel mViewModelEstabelecimento;
     private LeituraViewModel mViewModelLeitura;
     private Leitura leitura;
 
-    private AlertDialog alertDialog;
-    private View view1;
+    private RecyclerView mRecyclerView;
+    private PremiacaoAdapter mAdapter;
+    private ArrayList<PremiacaoList> mListPremiacao;
+
+    //private AlertDialog alertDialog;
+    //private View view1;
 
     /*--------------------------------------------------------------------------------------------*/
     @Override
@@ -58,13 +65,18 @@ public class LeituraActivity extends BaseActivity {
         spinnerLocal = findViewById(R.id.spinnerLocal);
         textQuantidadeVendida = findViewById(R.id.textQuantidadeVendida);
         textQuantidadeReposicao = findViewById(R.id.textQuantidadeReposicao);
-        listviewPremiacao = findViewById(R.id.listviewPremiacao);
+        //listviewPremiacao = findViewById(R.id.listviewPremiacao);
         btnSalvar = findViewById(R.id.btn_salvar);
         btnAdicionar = findViewById(R.id.btn_adicionar);
 
         mViewModelProduto = ViewModelProviders.of(this).get(ProdutoViewModel.class);
         mViewModelEstabelecimento = ViewModelProviders.of(this).get(EstabelecimentoViewModel.class);
         mViewModelLeitura = ViewModelProviders.of(this).get(LeituraViewModel.class);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         doBindings();
 
@@ -86,44 +98,23 @@ public class LeituraActivity extends BaseActivity {
 
     }
 
+
     /*-------------------------------------------------------------------------------------------*/
     private View.OnClickListener clickAdicionarPremiacao = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
-            LayoutInflater li = getLayoutInflater();
+            AppCompatEditText textQuantidade = findViewById(R.id.add_qtd_premiacao);
+            AppCompatEditText textValor = findViewById(R.id.add_valor_premiacao);
+            PremiacaoList premiacaoList = new PremiacaoList();
+            premiacaoList.quantidadePremiada = Integer.parseInt(textQuantidade.getText().toString());
+            premiacaoList.valorPremiado = Long.parseLong(textValor.getText().toString());
+            leitura.premiacaoList.add(premiacaoList);
 
-            view1 = li.inflate(R.layout.dialog_premiacao, null);
-            view1.findViewById(R.id.btn_cancelar).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    alertDialog.dismiss();
-                }
-            });
+            //ArrayAdapter<PremiacaoList> adapter = new ArrayAdapter<PremiacaoList>(LeituraActivity.this, R.layout.item_premiacao, leitura.premiacaoList);
+            //listviewPremiacao.setAdapter(adapter);
 
-            view1.findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    TextInputEditText textQuantidade = view1.findViewById(R.id.textQuantidade);
-                    TextInputEditText textValor = view1.findViewById(R.id.textValor);
-                    PremiacaoList premiacaoList = new PremiacaoList();
-                    premiacaoList.quantidadePremiada = Integer.parseInt(textQuantidade.getText().toString());
-                    premiacaoList.valorPremiado = Long.parseLong(textValor.getText().toString());
-                    leitura.premiacaoList.add(premiacaoList);
-
-                    ArrayAdapter<PremiacaoList> adapter = new ArrayAdapter<PremiacaoList>(LeituraActivity.this, android.R.layout.simple_list_item_1, leitura.premiacaoList);
-                    listviewPremiacao.setAdapter(adapter);
-
-                    alertDialog.dismiss();
-                }
-            });
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(LeituraActivity.this);
-            builder.setTitle("Adicionar Premiação");
-            builder.setView(view1);
-            alertDialog = builder.create();
-            alertDialog.show();
-
+            prepareRecyclerView(leitura.premiacaoList);
 
         }
     };
@@ -182,7 +173,7 @@ public class LeituraActivity extends BaseActivity {
         mViewModelProduto.mList.observe(this, new Observer<List<Produto>>() {
             @Override
             public void onChanged(List<Produto> resultList) {
-                ArrayAdapter<Produto> adapter = new ArrayAdapter<>(LeituraActivity.this, android.R.layout.simple_list_item_1, resultList);
+                ArrayAdapter<Produto> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, resultList);
                 spinnerProduto.setAdapter(adapter);
 
             }
@@ -195,7 +186,7 @@ public class LeituraActivity extends BaseActivity {
         mViewModelEstabelecimento.mList.observe(this, new Observer<List<Estabelecimento>>() {
             @Override
             public void onChanged(List<Estabelecimento> resultList) {
-                ArrayAdapter<Estabelecimento> adapter = new ArrayAdapter<>(LeituraActivity.this, android.R.layout.simple_list_item_1, resultList);
+                ArrayAdapter<Estabelecimento> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, resultList);
                 spinnerLocal.setAdapter(adapter);
             }
         });
@@ -211,5 +202,12 @@ public class LeituraActivity extends BaseActivity {
             }
         });
     }
-    /*-------------------------------------------------------------------------------------------*/
+
+    private void prepareRecyclerView(List<PremiacaoList> premiacoes){
+        mAdapter = new PremiacaoAdapter(premiacoes);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+        hideProgressDialog();
+    }
+
 }

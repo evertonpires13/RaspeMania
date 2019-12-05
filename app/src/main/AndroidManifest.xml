@@ -54,6 +54,7 @@
         <activity android:name=".view.activity.RotaActivity"
             android:label="@string/rota"/>
         <activity android:name=".view.activity.LeituraActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/leitura"/>
 
     </application>

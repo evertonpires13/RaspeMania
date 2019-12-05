@@ -29,10 +29,7 @@ public class LeituraFragment extends BaseFragment {
 
     private Context context = getContext();
     private LeituraViewModel mViewModel;
-
-
     private RecyclerView mRecyclerView;
-
     private AppCompatButton mNovoBtn;
 
 
