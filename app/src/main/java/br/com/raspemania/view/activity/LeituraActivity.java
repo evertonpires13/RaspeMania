@@ -55,7 +55,6 @@ public class LeituraActivity extends BaseActivity {
     private PremiacaoAdapter mAdapter;
 
     private AlertDialog alertDialog;
-    private View viewDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,17 +87,6 @@ public class LeituraActivity extends BaseActivity {
         leitura = new Leitura();
         leitura.premiacaoList = new ArrayList<PremiacaoList>();
 
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!camposValidos()) {
-                    return;
-                }
-                Toast.makeText(LeituraActivity.this, "sssssss", Toast.LENGTH_SHORT).show();
-                mViewModelLeitura.saveOrUpdate(leitura());
-            }
-        });
-
         btnAdicionar.setOnClickListener(clickAdicionarPremiacao);
         btnSalvar.setOnClickListener(clickSalvarPremiacao);
 
@@ -128,11 +116,11 @@ public class LeituraActivity extends BaseActivity {
                 return;
             }
 
-            Leitura leituraAux = leitura();
+            final Leitura leituraAux = leitura();
 
             LayoutInflater li = getLayoutInflater();
 
-            viewDialog = li.inflate(R.layout.dialog_premiacao, null);
+            View viewDialog = li.inflate(R.layout.dialog_premiacao, null);
             AppCompatTextView valorQuantidadeVendida = viewDialog.findViewById(R.id.valorQuantidadeVendida);
             AppCompatTextView valorReposicao = viewDialog.findViewById(R.id.valorReposicao);
             AppCompatTextView valorPremiacao = viewDialog.findViewById(R.id.valorPremiacao);
@@ -153,7 +141,7 @@ public class LeituraActivity extends BaseActivity {
             viewDialog.findViewById(R.id.btn_salvar).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewModelLeitura.saveOrUpdate(leitura());
+                    mViewModelLeitura.saveOrUpdate(leituraAux);
                     alertDialog.dismiss();
                 }
             });
@@ -195,7 +183,7 @@ public class LeituraActivity extends BaseActivity {
 
         float valorRetirado = ((qtVendida*valorProduto)-((qtVendida*valorProduto)*(comissao/100F)))-totalPremiado;
 
-        return String.valueOf(valorRetirado);
+        return "R$ "+ String.valueOf(valorRetirado);
     }
 
     private Leitura leitura() {
