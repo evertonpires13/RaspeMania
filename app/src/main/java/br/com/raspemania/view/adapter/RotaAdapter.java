@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.model.entidade.Rota;
 import br.com.raspemania.view.activity.RotaActivity;
 import br.com.raspemania.viewmodel.RotaViewModel;
@@ -50,6 +52,14 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
             holder.nome.setText(mItem.nome);
             holder.colaborador.setText(mItem.colaborador.apelido);
 
+            if(mItem.status == ConstantHelper.ATIVO) {
+                holder.status_ativo.setVisibility(View.VISIBLE);
+                holder.status_inativo.setVisibility(View.INVISIBLE);
+            } else {
+                holder.status_ativo.setVisibility(View.INVISIBLE);
+                holder.status_inativo.setVisibility(View.VISIBLE);
+            }
+
             holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -63,7 +73,7 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
                 @Override
                 public void onClick(View view) {
                     mViewmodel.delete(mItem);
-                    listRota.remove(mItem);
+                    //listRota.remove(mItem);
                     notifyDataSetChanged();
                 }
             });
@@ -89,6 +99,8 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
         public TextView colaborador;
         public ConstraintLayout constraintLayout;
         public AppCompatImageButton deleteRota;
+        public AppCompatImageView status_inativo;
+        public AppCompatImageView status_ativo;
 
         public RotaViewHolder(View itemView) {
             super(itemView);
@@ -96,6 +108,8 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
             this.colaborador = (TextView) itemView.findViewById(R.id.apelido_colaborador);
             this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_item_rota);
             this.deleteRota = (AppCompatImageButton) itemView.findViewById(R.id.delete_rota);
+            this.status_inativo = (AppCompatImageView) itemView.findViewById(R.id.status_inativo);
+            this.status_ativo = (AppCompatImageView) itemView.findViewById(R.id.status_ativo);
         }
     }
 }

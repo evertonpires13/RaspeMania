@@ -25,7 +25,7 @@
         android:layout_margin="16dp"
         android:text="@string/novo"
         android:textAllCaps="false"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/side_nav_bar"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

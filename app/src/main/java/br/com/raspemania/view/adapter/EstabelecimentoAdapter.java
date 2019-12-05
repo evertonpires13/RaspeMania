@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.model.entidade.Estabelecimento;
 import br.com.raspemania.view.activity.EstabelecimentoActivity;
 import br.com.raspemania.viewmodel.EstabelecimentoViewModel;
@@ -51,6 +53,14 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
         holder.rota.setText(mItem.rota.nome);
         holder.endereco.setText(mItem.endereco);
 
+        if(mItem.status == ConstantHelper.ATIVO) {
+            holder.status_ativo.setVisibility(View.VISIBLE);
+            holder.status_inativo.setVisibility(View.INVISIBLE);
+        } else {
+            holder.status_ativo.setVisibility(View.INVISIBLE);
+            holder.status_inativo.setVisibility(View.VISIBLE);
+        }
+
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +74,7 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
             @Override
             public void onClick(View view) {
                 mViewmodel.delete(mItem);
-                listEstabelecimento.remove(mItem);
+                //listEstabelecimento.remove(mItem);
                 notifyDataSetChanged();
             }
         });
@@ -87,6 +97,8 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
         public TextView endereco;
         public ConstraintLayout constraintLayout;
         public AppCompatImageButton deleteEstabelecimento;
+        public AppCompatImageView status_inativo;
+        public AppCompatImageView status_ativo;
 
         public EstabelecimentoViewHolder(View itemView) {
             super(itemView);
@@ -95,6 +107,8 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
             this.endereco = (TextView) itemView.findViewById(R.id.endereco_rota);
             this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_item_estabelecimento);
             this.deleteEstabelecimento = (AppCompatImageButton) itemView.findViewById(R.id.delete_estabelecimento_btn);
+            this.status_inativo = (AppCompatImageView) itemView.findViewById(R.id.status_inativo);
+            this.status_ativo = (AppCompatImageView) itemView.findViewById(R.id.status_ativo);
         }
     }
 }

@@ -69,7 +69,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             @Override
             public void onClick(View view) {
                 mViewmodel.delete(mItem);
-                listProduto.remove(mItem);
+                //listProduto.remove(mItem);
                 notifyDataSetChanged();
             }
         });

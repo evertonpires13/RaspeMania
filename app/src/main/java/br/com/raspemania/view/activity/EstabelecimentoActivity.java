@@ -27,13 +27,14 @@ public class EstabelecimentoActivity extends BaseActivity {
     private EstabelecimentoViewModel mViewModel;
     private RotaViewModel mViewModelRota;
     private AppCompatButton btnSalvar;
-    private TextInputEditText estabelecimento_estoque;
-    private TextInputEditText estabelecimento_endereco;
-    private TextInputEditText estabelecimento_codigo;
-    private TextInputEditText estabelecimento_porcentagem;
-    private Spinner estabelecimento_rota;
-
-    private Estabelecimento estabelecimento;
+    private TextInputEditText mEstabelecimentoEstoque;
+    private TextInputEditText mEstabelecimentoEndereco;
+    private TextInputEditText mEstabelecimentoCodigo;
+    private TextInputEditText mEstabelecimentoPorcentagem;
+    private Spinner mEstabelecimentoRota;
+    private Spinner mStatus;
+    private ArrayAdapter<Rota> adapter;
+    private Estabelecimento mEstabelecimento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +47,16 @@ public class EstabelecimentoActivity extends BaseActivity {
         doBindings();
 
         btnSalvar = findViewById(R.id.btn_salvar);
-        estabelecimento_estoque = findViewById(R.id.estabelecimento_estoque);
-        estabelecimento_endereco = findViewById(R.id.estabelecimento_endereco);
-        estabelecimento_codigo = findViewById(R.id.estabelecimento_codigo);
-        estabelecimento_porcentagem = findViewById(R.id.estabelecimento_porcentagem);
-        estabelecimento_rota = findViewById(R.id.estabelecimento_rota);
+        mEstabelecimentoEstoque = findViewById(R.id.estabelecimento_estoque);
+        mEstabelecimentoEndereco = findViewById(R.id.estabelecimento_endereco);
+        mEstabelecimentoCodigo = findViewById(R.id.estabelecimento_codigo);
+        mEstabelecimentoPorcentagem = findViewById(R.id.estabelecimento_porcentagem);
+        mEstabelecimentoRota = findViewById(R.id.estabelecimento_rota);
+        mStatus = findViewById(R.id.estabelecimento_status);
 
-        estabelecimento = new Estabelecimento();
+        super.spinnerStatus(mStatus);
+
+        mEstabelecimento = new Estabelecimento();
 
         if (getIntent().getExtras() != null && getIntent().getExtras().getSerializable(EstabelecimentoAdapter.TAG) != null) {
             bindCampos((Estabelecimento) getIntent().getExtras().getSerializable(EstabelecimentoAdapter.TAG));
@@ -85,42 +89,44 @@ public class EstabelecimentoActivity extends BaseActivity {
     }
 
     private void bindCampos(Estabelecimento itemLista) {
-        this.estabelecimento = itemLista;
-        estabelecimento_estoque.setText(itemLista.estoque + "");
-        estabelecimento_endereco.setText(itemLista.endereco);
-        estabelecimento_codigo.setText(itemLista.codigo);
-        estabelecimento_porcentagem.setText(itemLista.porcentagem + "");
+        this.mEstabelecimento = itemLista;
+        mEstabelecimentoEstoque.setText(itemLista.estoque + "");
+        mEstabelecimentoEndereco.setText(itemLista.endereco);
+        mEstabelecimentoCodigo.setText(itemLista.codigo);
+        mEstabelecimentoPorcentagem.setText(itemLista.porcentagem + "");
+        mStatus.setSelection(super.setSpinner(itemLista.status));
         //  private Spinner estabelecimento_rota;
 
     }
 
     private Boolean camposValidos() {
-        if (TextUtils.isEmpty(estabelecimento_estoque.getText())) {
-            estabelecimento_estoque.setError(getString(R.string.erro_estabelecimento_estoque));
+        if (TextUtils.isEmpty(mEstabelecimentoEstoque.getText())) {
+            mEstabelecimentoEstoque.setError(getString(R.string.erro_estabelecimento_estoque));
             return false;
         }
-        if (TextUtils.isEmpty(estabelecimento_endereco.getText())) {
-            estabelecimento_endereco.setError(getString(R.string.erro_estabelecimento_endereco));
+        if (TextUtils.isEmpty(mEstabelecimentoEndereco.getText())) {
+            mEstabelecimentoEndereco.setError(getString(R.string.erro_estabelecimento_endereco));
             return false;
         }
-        if (TextUtils.isEmpty(estabelecimento_codigo.getText())) {
-            estabelecimento_codigo.setError(getString(R.string.erro_estabelecimento_codigo));
+        if (TextUtils.isEmpty(mEstabelecimentoCodigo.getText())) {
+            mEstabelecimentoCodigo.setError(getString(R.string.erro_estabelecimento_codigo));
             return false;
         }
-        if (TextUtils.isEmpty(estabelecimento_porcentagem.getText())) {
-            estabelecimento_porcentagem.setError(getString(R.string.erro_estabelecimento_porcentagem));
+        if (TextUtils.isEmpty(mEstabelecimentoPorcentagem.getText())) {
+            mEstabelecimentoPorcentagem.setError(getString(R.string.erro_estabelecimento_porcentagem));
             return false;
         }
         return true;
     }
 
     private Estabelecimento estabelecimento() {
-        estabelecimento.estoque = Integer.parseInt(estabelecimento_estoque.getText().toString());
-        estabelecimento.porcentagem = Integer.parseInt(estabelecimento_porcentagem.getText().toString());
-        estabelecimento.codigo = estabelecimento_codigo.getText().toString();
-        estabelecimento.endereco = estabelecimento_endereco.getText().toString();
-        estabelecimento.rota = (Rota) estabelecimento_rota.getSelectedItem();
-        return estabelecimento;
+        mEstabelecimento.estoque = Integer.parseInt(mEstabelecimentoEstoque.getText().toString());
+        mEstabelecimento.porcentagem = Integer.parseInt(mEstabelecimentoPorcentagem.getText().toString());
+        mEstabelecimento.codigo = mEstabelecimentoCodigo.getText().toString();
+        mEstabelecimento.endereco = mEstabelecimentoEndereco.getText().toString();
+        mEstabelecimento.rota = (Rota) mEstabelecimentoRota.getSelectedItem();
+        mEstabelecimento.status = super.getStatusSpinner((String) mStatus.getSelectedItem());
+        return mEstabelecimento;
     }
 
     private void observeSucess() {
@@ -134,14 +140,23 @@ public class EstabelecimentoActivity extends BaseActivity {
         });
     }
 
+    public void bindSpinner(Rota rota) {
+        for(int i = 0; i < adapter.getCount(); i++) {
+            if (adapter.getItem(i).nome.equalsIgnoreCase(rota.nome)) {
+                mEstabelecimentoRota.setSelection(i);
+                break;
+            }
+        }
+    }
+
     private void observeGetAllRotas() {
 
         mViewModelRota.mList.observe(this, new Observer<List<Rota>>() {
             @Override
             public void onChanged(List<Rota> resultList) {
-                ArrayAdapter<Rota> adapter = new ArrayAdapter<>(EstabelecimentoActivity.this, android.R.layout.simple_list_item_1, resultList);
-                estabelecimento_rota.setAdapter(adapter);
-                // prepareRecyclerView(resultList);
+                adapter = new ArrayAdapter<>(EstabelecimentoActivity.this, R.layout.item_spinner_default, resultList);
+                mEstabelecimentoRota.setAdapter(adapter);
+                if(mEstabelecimento.rota != null) bindSpinner(mEstabelecimento.rota);
             }
         });
     }

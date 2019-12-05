@@ -12,6 +12,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 import br.com.raspemania.firebase.repository.RotaRepository;
+import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.model.entidade.Rota;
 
 public class RotaViewModel extends BaseViewModel {
@@ -100,7 +101,7 @@ public class RotaViewModel extends BaseViewModel {
      * Delete a document
      * @param obj
      */
-    public void delete(Rota obj){
+    /*public void delete(Rota obj){
         try {
             service.delete(obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -120,6 +121,36 @@ public class RotaViewModel extends BaseViewModel {
         } catch (Exception e) {
             e.printStackTrace();
             error.setValue("Erro ao deletar!");
+        }
+    }*/
+
+    /**
+     * Update a document - set status Inativo
+     * @param obj
+     */
+    public void delete(Rota obj){
+
+        try {
+            obj.status = ConstantHelper.INATIVO;
+            service.update(obj, obj.key)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "Salvo com sucesso!");
+                            sucess.setValue("Status atualizado com sucesso!");
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Erro ao atualizar", e);
+                            error.setValue("Erro ao atualizar");
+                        }
+                    });;
+        } catch (Exception e) {
+            e.printStackTrace();
+            error.setValue("Erro ao atualizar");
         }
     }
 

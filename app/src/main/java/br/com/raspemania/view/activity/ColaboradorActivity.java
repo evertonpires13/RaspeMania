@@ -3,6 +3,7 @@ package br.com.raspemania.view.activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -23,6 +24,8 @@ public class ColaboradorActivity extends BaseActivity {
     private TextInputEditText mNome;
     private TextInputEditText mApelido;
     private Colaborador mColaborador;
+    private Spinner mStatus;
+    private Spinner mPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,11 @@ public class ColaboradorActivity extends BaseActivity {
         btnSalvar = findViewById(R.id.btn_salvar_colaborador);
         mNome = findViewById(R.id.email_colaborador);
         mApelido = findViewById(R.id.apelido_colaborador);
+        mStatus = findViewById(R.id.colaborador_status);
+        mPerfil = findViewById(R.id.colaborador_perfil);
+
+        super.spinnerStatus(mStatus);
+        super.spinnerPerfil(mPerfil);
 
         mColaborador = new Colaborador();
 
@@ -64,6 +72,8 @@ public class ColaboradorActivity extends BaseActivity {
         this.mColaborador = itemLista;
         mNome.setText(itemLista.email);
         mApelido.setText(itemLista.apelido);
+        mStatus.setSelection(super.setSpinner(itemLista.status));
+        mPerfil.setSelection(super.setSpinner(itemLista.perfil));
     }
 
     private Boolean camposValidos(){
@@ -81,6 +91,8 @@ public class ColaboradorActivity extends BaseActivity {
     private Colaborador colaborador() {
         mColaborador.email = mNome.getText().toString();
         mColaborador.apelido = mApelido.getText().toString();
+        mColaborador.status = super.getStatusSpinner((String) mStatus.getSelectedItem());
+        mColaborador.perfil = super.getPerfilSpinner((String) mPerfil.getSelectedItem());
         return mColaborador;
     }
 

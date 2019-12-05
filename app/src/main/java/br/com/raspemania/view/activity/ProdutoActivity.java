@@ -3,6 +3,7 @@ package br.com.raspemania.view.activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -25,6 +26,7 @@ public class ProdutoActivity extends BaseActivity {
     private TextInputEditText nomeProduto;
     private TextInputEditText valorPproduto;
     private Produto produto;
+    private Spinner mStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,10 @@ public class ProdutoActivity extends BaseActivity {
         btnSalvar = findViewById(R.id.btn_salvar);
         nomeProduto = findViewById(R.id.nome_produto);
         valorPproduto = findViewById(R.id.valor_produto);
+        mStatus = findViewById(R.id.produto_status);
         //valorPproduto.addTextChangedListener(new MoneyTextWatcher(valorPproduto));
+
+        super.spinnerStatus(mStatus);
 
         produto = new Produto();
 
@@ -67,6 +72,7 @@ public class ProdutoActivity extends BaseActivity {
         this.produto = itemLista;
         nomeProduto.setText(itemLista.nome);
         valorPproduto.setText(Float.toString(itemLista.valor));
+        mStatus.setSelection(super.setSpinner(itemLista.status));
     }
 
     private Boolean camposValidos(){
@@ -84,6 +90,7 @@ public class ProdutoActivity extends BaseActivity {
     private Produto produto() {
         produto.nome = nomeProduto.getText().toString();
         produto.valor = Float.parseFloat(valorPproduto.getText().toString());
+        produto.status = super.getStatusSpinner((String) mStatus.getSelectedItem());
         return produto;
     }
 

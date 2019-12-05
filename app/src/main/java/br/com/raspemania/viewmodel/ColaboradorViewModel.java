@@ -99,7 +99,7 @@ public class ColaboradorViewModel extends BaseViewModel {
     }
 
     /**
-     * Delete a document
+     * Update a document - set status Inativo
      * @param obj
      */
     public void delete(Colaborador obj){
@@ -111,7 +111,7 @@ public class ColaboradorViewModel extends BaseViewModel {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "Salvo com sucesso!");
-                            sucess.setValue("Atualizado com sucesso!");
+                            sucess.setValue("Status atualizado com sucesso!");
 
                         }
                     })
@@ -121,7 +121,7 @@ public class ColaboradorViewModel extends BaseViewModel {
                             Log.w(TAG, "Erro ao atualizar", e);
                             error.setValue("Erro ao atualizar");
                         }
-                    });;
+                    });
         } catch (Exception e) {
             e.printStackTrace();
             error.setValue("Erro ao atualizar");
