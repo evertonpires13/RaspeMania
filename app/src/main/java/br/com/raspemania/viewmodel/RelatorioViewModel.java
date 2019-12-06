@@ -12,7 +12,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 import br.com.raspemania.firebase.repository.RelatorioRepository;
-import br.com.raspemania.model.entidade.Relatorio;
 
 public class RelatorioViewModel extends BaseViewModel {
 

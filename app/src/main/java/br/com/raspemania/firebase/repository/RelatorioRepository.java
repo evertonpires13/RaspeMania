@@ -7,7 +7,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.helper.CollectionHelper;
 import br.com.raspemania.helper.ConstantHelper;
-import br.com.raspemania.model.entidade.Relatorio;
 
 public class RelatorioRepository extends BaseRepository<Relatorio> {
 

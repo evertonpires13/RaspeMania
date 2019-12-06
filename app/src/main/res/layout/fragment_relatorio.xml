@@ -115,4 +115,15 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="352dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="32dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

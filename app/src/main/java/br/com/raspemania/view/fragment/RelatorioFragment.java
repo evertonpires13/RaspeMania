@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.model.consulta.RelatorioConsulta;
 import br.com.raspemania.model.entidade.Cliente;
 import br.com.raspemania.model.entidade.Colaborador;
 import br.com.raspemania.model.entidade.Rota;
@@ -33,11 +34,13 @@ public class RelatorioFragment extends BaseFragment {
     private ClienteViewModel mViewModelCliente;
     private RotaViewModel mViewModelRota;
     private ColaboradorViewModel mViewModelColaborador;
-    private AppCompatButton mBuscar;
 
+    private AppCompatButton mBuscar;
     private Spinner spinnerCliente;
     private Spinner spinnerRota;
     private Spinner spinnerColaborador;
+    //dataIncio;
+    //dataFim;
 
     public static LeituraFragment newInstance() {
         return new LeituraFragment();
@@ -70,6 +73,11 @@ public class RelatorioFragment extends BaseFragment {
         mBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RelatorioConsulta filtros = new RelatorioConsulta();
+                filtros.cliente = (Cliente) spinnerCliente.getSelectedItem();
+                filtros.colaborador = (Colaborador) spinnerColaborador.getSelectedItem();
+                filtros.rota = (Rota) spinnerRota.getSelectedItem();
+                //filtros.dataFim =
                 startActivity(new Intent(context, RelatorioActivity.class));
             }
         });
