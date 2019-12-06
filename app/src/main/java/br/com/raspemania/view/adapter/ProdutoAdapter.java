@@ -46,7 +46,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
         final Produto mItem = listProduto.get(position);
         holder.nomeProduto.setText(mItem.nome);
-        holder.valorProduto.setText(Float.toString(mItem.valor));
+        holder.valorProduto.setText(Double.toString(mItem.valor));
 
         if(mItem.status == ConstantHelper.ATIVO) {
             holder.status_ativo.setVisibility(View.VISIBLE);

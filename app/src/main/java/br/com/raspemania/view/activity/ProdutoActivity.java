@@ -72,7 +72,7 @@ public class ProdutoActivity extends BaseActivity {
     private void bindCampos(Produto itemLista){
         this.produto = itemLista;
         nomeProduto.setText(itemLista.nome);
-        valorPproduto.setText(Float.toString(itemLista.valor*10));
+        valorPproduto.setText(Double.toString(itemLista.valor*10));
         mStatus.setSelection(super.setSpinner(itemLista.status));
     }
 
@@ -90,7 +90,7 @@ public class ProdutoActivity extends BaseActivity {
 
     private Produto produto() {
         produto.nome = nomeProduto.getText().toString();
-        produto.valor = Float.parseFloat(valorPproduto.getText().toString());
+        produto.valor = Double.parseDouble(valorPproduto.getText().toString().replace(".", "").replace(",", "."));
         produto.status = super.getStatusSpinner((String) mStatus.getSelectedItem());
         return produto;
     }

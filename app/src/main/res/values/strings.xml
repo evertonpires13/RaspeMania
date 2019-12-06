@@ -60,7 +60,7 @@
     <string name="estabelecimento_estoque">Estoque</string>
     <string name="estabelecimento_endereco">Endereço</string>
     <string name="estabelecimento_codigo">Código</string>
-    <string name="estabelecimento_porcentagem">Porcentagem</string>
+    <string name="estabelecimento_porcentagem">Porcentagem (%)</string>
     <string name="estabelecimento_rota">Rota</string>
     <string name="erro_estabelecimento_estoque">Informe a quantidade em estoque!</string>
     <string name="erro_estabelecimento_endereco">Informe o endereço!</string>

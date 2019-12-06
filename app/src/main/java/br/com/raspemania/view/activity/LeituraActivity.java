@@ -99,7 +99,7 @@ public class LeituraActivity extends BaseActivity {
 
             PremiacaoList premiacaoList = new PremiacaoList();
             premiacaoList.quantidadePremiada = Integer.parseInt(textQuantidade.getText().toString());
-            premiacaoList.valorPremiado = Float.parseFloat(textValor.getText().toString());
+            premiacaoList.valorPremiado = Double.parseDouble(textValor.getText().toString().replace(".", "").replace(",", "."));
             leitura.premiacaoList.add(premiacaoList);
 
             prepareRecyclerView(leitura.premiacaoList);
