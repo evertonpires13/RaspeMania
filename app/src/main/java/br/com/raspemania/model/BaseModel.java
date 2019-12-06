@@ -12,4 +12,6 @@ public class BaseModel implements Serializable {
 
     @ServerTimestamp
     public Date dataUltimaAtualizacao;
+
+
 }

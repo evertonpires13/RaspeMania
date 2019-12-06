@@ -16,6 +16,7 @@
 
     <string name="example">Example</string>
     <string name="salvar">Salvar</string>
+    <string name="buscar">Buscar Leituras</string>
     <string name="voltar">Voltar</string>
     <string name="confirmar">Confirmar</string>
     <string name="novo">Novo</string>
@@ -23,7 +24,7 @@
     <string name="colaborador">Colaborador</string>
     <string name="rota">Rota</string>
     <string name="produto">Produto</string>
-    <string name="estabelecimento">Estabelecimento</string>
+    <string name="cliente">Cliente</string>
     <string name="leitura">Leitura</string>
     <string name="relatorios">Relatórios</string>
 
@@ -56,16 +57,16 @@
     <string name="erro_rota_descricao">Informe a rota!</string>
 
 
-    <!-- Estabelecimento -->
-    <string name="estabelecimento_estoque">Estoque</string>
-    <string name="estabelecimento_endereco">Endereço</string>
-    <string name="estabelecimento_codigo">Código</string>
-    <string name="estabelecimento_porcentagem">Porcentagem (%)</string>
-    <string name="estabelecimento_rota">Rota</string>
-    <string name="erro_estabelecimento_estoque">Informe a quantidade em estoque!</string>
-    <string name="erro_estabelecimento_endereco">Informe o endereço!</string>
-    <string name="erro_estabelecimento_codigo">Informe o código!</string>
-    <string name="erro_estabelecimento_porcentagem">Informe a porcentagem!</string>
+    <!-- Cliente -->
+    <string name="cliente_estoque">Estoque</string>
+    <string name="cliente_endereco">Endereço</string>
+    <string name="cliente_codigo">Código</string>
+    <string name="cliente_porcentagem">Porcentagem (%)</string>
+    <string name="cliente_rota">Rota</string>
+    <string name="erro_cliente_estoque">Informe a quantidade em estoque!</string>
+    <string name="erro_cliente_endereco">Informe o endereço!</string>
+    <string name="erro_cliente_codigo">Informe o código!</string>
+    <string name="erro_cliente_porcentagem">Informe a porcentagem!</string>
 
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
@@ -98,5 +99,7 @@
     <!-- Leitura -->
     <string name="erro_leitura_qtd_vendide">Informe a quantidade vendida!</string>
     <string name="erro_leitura_reposicao">Informe a quantidade de reposição!</string>
+    <string name="data_inicio">Data Início</string>
+    <string name="data_fim">Data Fim</string>
 
 </resources>

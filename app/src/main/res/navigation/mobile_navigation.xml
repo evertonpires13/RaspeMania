@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_colaborador" />
 
     <fragment
-        android:id="@+id/nav_estabelecimento"
-        android:name="br.com.raspemania.view.fragment.EstabelecimentoFragment"
-        android:label="@string/estabelecimento"
-        tools:layout="@layout/fragment_estabelecimento" />
+        android:id="@+id/nav_cliente"
+        android:name="br.com.raspemania.view.fragment.ClienteFragment"
+        android:label="@string/cliente"
+        tools:layout="@layout/fragment_cliente" />
 
     <fragment
         android:id="@+id/nav_leitura"

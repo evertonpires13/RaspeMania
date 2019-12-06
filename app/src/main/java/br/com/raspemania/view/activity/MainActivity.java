@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
         carregaMenu();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_colaborador, R.id.nav_estabelecimento,
+                R.id.nav_home, R.id.nav_colaborador, R.id.nav_cliente,
                 R.id.nav_leitura, R.id.nav_relatorio, R.id.nav_rota, R.id.nav_produto)
                 .setDrawerLayout(drawer)
                 .build();
@@ -109,8 +109,8 @@ public class MainActivity extends BaseActivity {
             MenuItem colaboradorMenu = menuNav.findItem(R.id.nav_colaborador);
             colaboradorMenu.setVisible(true);
 
-            MenuItem estabelecimentoMenu = menuNav.findItem(R.id.nav_estabelecimento);
-            estabelecimentoMenu.setVisible(true);
+            MenuItem clienteMenu = menuNav.findItem(R.id.nav_cliente);
+            clienteMenu.setVisible(true);
 
             MenuItem produtoMenu = menuNav.findItem(R.id.nav_produto);
             produtoMenu.setVisible(true);

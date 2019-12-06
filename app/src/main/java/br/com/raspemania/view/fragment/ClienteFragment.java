@@ -20,28 +20,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.com.raspemania.R;
-import br.com.raspemania.model.entidade.Estabelecimento;
-import br.com.raspemania.view.activity.EstabelecimentoActivity;
-import br.com.raspemania.view.adapter.EstabelecimentoAdapter;
-import br.com.raspemania.viewmodel.EstabelecimentoViewModel;
+import br.com.raspemania.model.entidade.Cliente;
+import br.com.raspemania.view.activity.ClienteActivity;
+import br.com.raspemania.view.adapter.ClienteAdapter;
+import br.com.raspemania.viewmodel.ClienteViewModel;
 
-public class EstabelecimentoFragment extends BaseFragment {
+public class ClienteFragment extends BaseFragment {
 
     private Context context = getContext();
-    private EstabelecimentoViewModel mViewModel;
+    private ClienteViewModel mViewModel;
     private RecyclerView mRecyclerView;
-    private EstabelecimentoAdapter mAdapter;
+    private ClienteAdapter mAdapter;
 
     private AppCompatButton mNovoBtn;
 
 
-    public static EstabelecimentoFragment newInstance() {
-        return new EstabelecimentoFragment();
+    public static ClienteFragment newInstance() {
+        return new ClienteFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_estabelecimento, container, false);
+        return inflater.inflate(R.layout.fragment_cliente, container, false);
     }
 
     @Override
@@ -49,14 +49,14 @@ public class EstabelecimentoFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
 
         context = getContext();
-        mViewModel = ViewModelProviders.of(this).get(EstabelecimentoViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ClienteViewModel.class);
         doBindings();
         mViewModel.getAll();
 
         mNovoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, EstabelecimentoActivity.class));
+                startActivity(new Intent(context, ClienteActivity.class));
             }
         });
     }
@@ -92,9 +92,9 @@ public class EstabelecimentoFragment extends BaseFragment {
     }
 
     private void observeGetAll(){
-        mViewModel.mList.observe(this, new Observer<List<Estabelecimento>>() {
+        mViewModel.mList.observe(this, new Observer<List<Cliente>>() {
             @Override
-            public void onChanged(List<Estabelecimento> resultList) {
+            public void onChanged(List<Cliente> resultList) {
                 prepareRecyclerView(resultList);
             }
         });
@@ -110,8 +110,8 @@ public class EstabelecimentoFragment extends BaseFragment {
         });
     }
 
-    private void prepareRecyclerView(List<Estabelecimento> Estabelecimentos){
-        mAdapter = new EstabelecimentoAdapter(Estabelecimentos, mViewModel);
+    private void prepareRecyclerView(List<Cliente> Clientes){
+        mAdapter = new ClienteAdapter(Clientes, mViewModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
         hideProgressDialog();

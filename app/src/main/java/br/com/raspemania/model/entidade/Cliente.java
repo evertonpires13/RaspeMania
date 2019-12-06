@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 import br.com.raspemania.model.BaseModel;
 
-public class Estabelecimento extends BaseModel implements Serializable {
+public class Cliente extends BaseModel implements Serializable {
 
     public int estoque;
     public String endereco;

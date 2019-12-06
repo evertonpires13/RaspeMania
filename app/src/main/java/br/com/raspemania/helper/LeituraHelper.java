@@ -29,7 +29,7 @@ public class LeituraHelper {
     public static String getValorRetirado(Leitura leitura) {
         int qtVendida = leitura.quantidadeVendida;
         Double valorProduto = leitura.produto.valor;
-        Double comissao = leitura.local.porcentagem;
+        Double comissao = leitura.cliente.porcentagem;
         Double totalPremiado = getTotalPremiado(leitura);
 
         Double valorRetirado = ((qtVendida*valorProduto)-((qtVendida*valorProduto)*(comissao/100D)))-totalPremiado;

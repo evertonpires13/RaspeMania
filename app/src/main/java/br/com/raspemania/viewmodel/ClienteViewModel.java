@@ -11,30 +11,30 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
-import br.com.raspemania.firebase.repository.EstabelecimentoRepository;
+import br.com.raspemania.firebase.repository.ClienteRepository;
 import br.com.raspemania.helper.ConstantHelper;
-import br.com.raspemania.model.entidade.Estabelecimento;
+import br.com.raspemania.model.entidade.Cliente;
 
-public class EstabelecimentoViewModel extends BaseViewModel {
+public class ClienteViewModel extends BaseViewModel {
 
-    static String TAG = "ESTABELECIMENTO_VIEW_MODEL";
+    static String TAG = "CLIENTE _VIEW_MODEL";
 
-    private EstabelecimentoRepository service = new EstabelecimentoRepository();
+    private ClienteRepository service = new ClienteRepository();
 
     public MutableLiveData<String> sucess;
-    public MutableLiveData<List<Estabelecimento>> mList;
+    public MutableLiveData<List<Cliente>> mList;
 
-    public EstabelecimentoViewModel() {
+    public ClienteViewModel() {
         sucess = new MutableLiveData<>();
         error = new MutableLiveData<>();
-        mList = new MutableLiveData<List<Estabelecimento>>();
+        mList = new MutableLiveData<List<Cliente>>();
     }
 
     /**
      * Sava ou atualiza um objeto
      * @param obj
      */
-    public void saveOrUpdate(Estabelecimento obj) {
+    public void saveOrUpdate(Cliente obj) {
         if(obj.key == null){
             save(obj);
         } else {
@@ -46,7 +46,7 @@ public class EstabelecimentoViewModel extends BaseViewModel {
      * Add a new document with a key
      * @param obj
      */
-    private void save(Estabelecimento obj) {
+    private void save(Cliente obj) {
         try {
             service.saveRefId(obj)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -73,7 +73,7 @@ public class EstabelecimentoViewModel extends BaseViewModel {
      * Update document existent
      * @param obj
      */
-    private void update(Estabelecimento obj){
+    private void update(Cliente obj){
         try {
             service.update(obj, obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -101,7 +101,7 @@ public class EstabelecimentoViewModel extends BaseViewModel {
      * Delete a document
      * @param obj
      */
-   /* public void delete(Estabelecimento obj){
+   /* public void delete(Cliente obj){
         try {
             service.delete(obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -128,7 +128,7 @@ public class EstabelecimentoViewModel extends BaseViewModel {
      * Update a document - set status Inativo
      * @param obj
      */
-    public void delete(Estabelecimento obj){
+    public void delete(Cliente obj){
 
         try {
             obj.status = ConstantHelper.INATIVO;
@@ -164,7 +164,7 @@ public class EstabelecimentoViewModel extends BaseViewModel {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {
                             Log.d(TAG, "Listou todos!");
-                            mList.setValue(querySnapshot.toObjects(Estabelecimento.class));
+                            mList.setValue(querySnapshot.toObjects(Cliente.class));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

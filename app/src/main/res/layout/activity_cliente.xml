@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_estabelecimento_activity">
+    android:id="@+id/layout_cliente_activity">
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -21,12 +21,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/estabelecimento_codigo"
+            android:id="@+id/cliente_codigo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="left"
-            android:hint="@string/estabelecimento_codigo"
+            android:hint="@string/cliente_codigo"
             android:inputType="text"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
@@ -47,12 +47,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/estabelecimento_endereco"
+            android:id="@+id/cliente_endereco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="left"
-            android:hint="@string/estabelecimento_endereco"
+            android:hint="@string/cliente_endereco"
             android:inputType="text"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
@@ -73,12 +73,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/estabelecimento_estoque"
+            android:id="@+id/cliente_estoque"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="left"
-            android:hint="@string/estabelecimento_estoque"
+            android:hint="@string/cliente_estoque"
             android:inputType="numberSigned"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
@@ -99,12 +99,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/estabelecimento_porcentagem"
+            android:id="@+id/cliente_porcentagem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="left"
-            android:hint="@string/estabelecimento_porcentagem"
+            android:hint="@string/cliente_porcentagem"
             android:inputType="numberSigned"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
@@ -112,7 +112,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
-        android:id="@+id/estabelecimento_rota"
+        android:id="@+id/cliente_rota"
         style="@style/FirebaseUI.CountrySpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
 
     <Spinner
-        android:id="@+id/estabelecimento_status"
+        android:id="@+id/cliente_status"
         style="@style/FirebaseUI.CountrySpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/estabelecimento_rota" />
+        app:layout_constraintTop_toBottomOf="@+id/cliente_rota" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_salvar"

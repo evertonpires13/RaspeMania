@@ -8,7 +8,7 @@ import br.com.raspemania.model.BaseModel;
 
 public class Leitura extends BaseModel implements Serializable {
 
-    public Estabelecimento local;             //salvar sem chave
+    public Cliente cliente;             //salvar sem chave
     public Produto produto;         //salvar sem chave
     public int quantidadeVendida;
     public List<PremiacaoList> premiacaoList;

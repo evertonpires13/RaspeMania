@@ -39,10 +39,10 @@
                 android:visible="false"
                 android:title="@string/rota" />
             <item
-                android:id="@+id/nav_estabelecimento"
+                android:id="@+id/nav_cliente"
                 android:icon="@drawable/ic_menu_manage"
                 android:visible="false"
-                android:title="@string/estabelecimento" />
+                android:title="@string/cliente" />
         </menu>
     </item>
 </menu>

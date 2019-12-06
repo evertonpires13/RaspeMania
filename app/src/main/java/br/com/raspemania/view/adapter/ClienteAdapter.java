@@ -16,39 +16,39 @@ import java.util.List;
 
 import br.com.raspemania.R;
 import br.com.raspemania.helper.ConstantHelper;
-import br.com.raspemania.model.entidade.Estabelecimento;
-import br.com.raspemania.view.activity.EstabelecimentoActivity;
-import br.com.raspemania.viewmodel.EstabelecimentoViewModel;
+import br.com.raspemania.model.entidade.Cliente;
+import br.com.raspemania.view.activity.ClienteActivity;
+import br.com.raspemania.viewmodel.ClienteViewModel;
 
-public class EstabelecimentoAdapter extends RecyclerView.Adapter<EstabelecimentoAdapter.EstabelecimentoViewHolder> {
+public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteViewHolder> {
 
 
-    public static String TAG = "EstabelecimentoAdapter";
+    public static String TAG = "ClienteAdapter";
 
-    private List<Estabelecimento> listEstabelecimento;
+    private List<Cliente> listCliente;
     private Context context;
-    private EstabelecimentoViewModel mViewmodel;
+    private ClienteViewModel mViewmodel;
 
 
-    public EstabelecimentoAdapter(List<Estabelecimento> listEstabelecimento, EstabelecimentoViewModel viewmodel) {
-        this.listEstabelecimento = listEstabelecimento;
+    public ClienteAdapter(List<Cliente> listCliente, ClienteViewModel viewmodel) {
+        this.listCliente = listCliente;
         this.mViewmodel = viewmodel;
     }
 
     @Override
-    public EstabelecimentoAdapter.EstabelecimentoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ClienteAdapter.ClienteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem = layoutInflater.inflate(R.layout.item_estabelecimento, parent, false);
-        EstabelecimentoAdapter.EstabelecimentoViewHolder viewHolder = new EstabelecimentoAdapter.EstabelecimentoViewHolder(listItem);
+        View listItem = layoutInflater.inflate(R.layout.item_cliente, parent, false);
+        ClienteAdapter.ClienteViewHolder viewHolder = new ClienteAdapter.ClienteViewHolder(listItem);
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(final EstabelecimentoAdapter.EstabelecimentoViewHolder holder, int position) {
+    public void onBindViewHolder(final ClienteAdapter.ClienteViewHolder holder, int position) {
 
-        final Estabelecimento mItem = listEstabelecimento.get(position);
+        final Cliente mItem = listCliente.get(position);
         holder.codigo.setText(mItem.codigo);
         holder.rota.setText(mItem.rota.nome);
         holder.endereco.setText(mItem.endereco);
@@ -64,17 +64,17 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EstabelecimentoActivity.class);
+                Intent intent = new Intent(context, ClienteActivity.class);
                 intent.putExtra(TAG, mItem);
                 context.startActivity(intent);
             }
         });
 
-        holder.deleteEstabelecimento.setOnClickListener(new View.OnClickListener() {
+        holder.deleteCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mViewmodel.delete(mItem);
-                //listEstabelecimento.remove(mItem);
+                //listCliente.remove(mItem);
                 notifyDataSetChanged();
             }
         });
@@ -88,25 +88,25 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
 
     @Override
     public int getItemCount() {
-        return listEstabelecimento.size();
+        return listCliente.size();
     }
 
-    public static class EstabelecimentoViewHolder extends RecyclerView.ViewHolder {
+    public static class ClienteViewHolder extends RecyclerView.ViewHolder {
         public TextView codigo;
         public TextView rota;
         public TextView endereco;
         public ConstraintLayout constraintLayout;
-        public AppCompatImageButton deleteEstabelecimento;
+        public AppCompatImageButton deleteCliente;
         public AppCompatImageView status_inativo;
         public AppCompatImageView status_ativo;
 
-        public EstabelecimentoViewHolder(View itemView) {
+        public ClienteViewHolder(View itemView) {
             super(itemView);
-            this.codigo = (TextView) itemView.findViewById(R.id.codigo_estabelecimento);
+            this.codigo = (TextView) itemView.findViewById(R.id.codigo_cliente);
             this.rota = (TextView) itemView.findViewById(R.id.nome_rota);
             this.endereco = (TextView) itemView.findViewById(R.id.endereco_rota);
-            this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_item_estabelecimento);
-            this.deleteEstabelecimento = (AppCompatImageButton) itemView.findViewById(R.id.delete_estabelecimento_btn);
+            this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_item_cliente);
+            this.deleteCliente = (AppCompatImageButton) itemView.findViewById(R.id.delete_cliente_btn);
             this.status_inativo = (AppCompatImageView) itemView.findViewById(R.id.status_inativo);
             this.status_ativo = (AppCompatImageView) itemView.findViewById(R.id.status_ativo);
         }

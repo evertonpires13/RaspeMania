@@ -26,20 +26,19 @@ import java.util.List;
 
 import br.com.raspemania.R;
 import br.com.raspemania.helper.LeituraHelper;
-import br.com.raspemania.helper.MoneyTextWatcher;
-import br.com.raspemania.model.entidade.Estabelecimento;
+import br.com.raspemania.model.entidade.Cliente;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.model.entidade.PremiacaoList;
 import br.com.raspemania.model.entidade.Produto;
 import br.com.raspemania.view.adapter.PremiacaoAdapter;
-import br.com.raspemania.viewmodel.EstabelecimentoViewModel;
+import br.com.raspemania.viewmodel.ClienteViewModel;
 import br.com.raspemania.viewmodel.LeituraViewModel;
 import br.com.raspemania.viewmodel.ProdutoViewModel;
 
 public class LeituraActivity extends BaseActivity {
 
     private Spinner spinnerProduto;
-    private Spinner spinnerLocal;
+    private Spinner spinnerCliente;
     private TextInputEditText textQuantidadeVendida;
     private TextInputEditText textQuantidadeReposicao;
     private AppCompatButton btnSalvar;
@@ -48,7 +47,7 @@ public class LeituraActivity extends BaseActivity {
     private AppCompatEditText textValor;
 
     private ProdutoViewModel mViewModelProduto;
-    private EstabelecimentoViewModel mViewModelEstabelecimento;
+    private ClienteViewModel mViewModelCliente;
     private LeituraViewModel mViewModelLeitura;
     private Leitura leitura;
 
@@ -65,17 +64,17 @@ public class LeituraActivity extends BaseActivity {
 
         textQuantidade = findViewById(R.id.add_qtd_premiacao);
         textValor = findViewById(R.id.add_valor_premiacao);
-        textValor.addTextChangedListener(new MoneyTextWatcher(textValor));
+        //textValor.addTextChangedListener(new MoneyTextWatcher(textValor));
 
         spinnerProduto = findViewById(R.id.spinnerProduto);
-        spinnerLocal = findViewById(R.id.spinnerLocal);
+        spinnerCliente = findViewById(R.id.spinnerCliente);
         textQuantidadeVendida = findViewById(R.id.textQuantidadeVendida);
         textQuantidadeReposicao = findViewById(R.id.textQuantidadeReposicao);
         btnSalvar = findViewById(R.id.btn_salvar);
         btnAdicionar = findViewById(R.id.btn_adicionar);
 
         mViewModelProduto = ViewModelProviders.of(this).get(ProdutoViewModel.class);
-        mViewModelEstabelecimento = ViewModelProviders.of(this).get(EstabelecimentoViewModel.class);
+        mViewModelCliente = ViewModelProviders.of(this).get(ClienteViewModel.class);
         mViewModelLeitura = ViewModelProviders.of(this).get(LeituraViewModel.class);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -99,7 +98,8 @@ public class LeituraActivity extends BaseActivity {
 
             PremiacaoList premiacaoList = new PremiacaoList();
             premiacaoList.quantidadePremiada = Integer.parseInt(textQuantidade.getText().toString());
-            premiacaoList.valorPremiado = Double.parseDouble(textValor.getText().toString().replace(".", "").replace(",", "."));
+            premiacaoList.valorPremiado = Double.parseDouble(textValor.getText().toString());
+            //premiacaoList.valorPremiado = Double.parseDouble(textValor.getText().toString().replace(".", "").replace(",", "."));
             leitura.premiacaoList.add(premiacaoList);
 
             prepareRecyclerView(leitura.premiacaoList);
@@ -157,7 +157,7 @@ public class LeituraActivity extends BaseActivity {
 
     private Leitura leitura() {
 
-        leitura.local = (Estabelecimento) spinnerLocal.getSelectedItem();
+        leitura.cliente = (Cliente) spinnerCliente.getSelectedItem();
         leitura.produto = (Produto) spinnerProduto.getSelectedItem();
         leitura.quantidadeReposicao = Integer.parseInt(textQuantidadeReposicao.getText().toString());
         leitura.quantidadeVendida = Integer.parseInt(textQuantidadeVendida.getText().toString());
@@ -185,14 +185,14 @@ public class LeituraActivity extends BaseActivity {
         super.onResume();
 
         mViewModelProduto.getAll();
-        mViewModelEstabelecimento.getAll();
+        mViewModelCliente.getAll();
     }
 
     private void doBindings() {
         super.onStart();
         super.observeError(mViewModelLeitura);
         observeSucessSpinnerProduto();
-        observeSucessSpinnerEstabelecimento();
+        observeSucessSpinnerCliente();
         observeSucess();
     }
 
@@ -208,13 +208,13 @@ public class LeituraActivity extends BaseActivity {
         });
     }
 
-    private void observeSucessSpinnerEstabelecimento() {
+    private void observeSucessSpinnerCliente() {
 
-        mViewModelEstabelecimento.mList.observe(this, new Observer<List<Estabelecimento>>() {
+        mViewModelCliente.mList.observe(this, new Observer<List<Cliente>>() {
             @Override
-            public void onChanged(List<Estabelecimento> resultList) {
-                ArrayAdapter<Estabelecimento> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, resultList);
-                spinnerLocal.setAdapter(adapter);
+            public void onChanged(List<Cliente> resultList) {
+                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, resultList);
+                spinnerCliente.setAdapter(adapter);
             }
         });
     }

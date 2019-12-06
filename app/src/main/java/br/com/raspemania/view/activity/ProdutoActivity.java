@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.textfield.TextInputEditText;
 
 import br.com.raspemania.R;
-import br.com.raspemania.helper.MoneyTextWatcher;
 import br.com.raspemania.model.entidade.Produto;
 import br.com.raspemania.view.adapter.ProdutoAdapter;
 import br.com.raspemania.viewmodel.ProdutoViewModel;
@@ -25,7 +24,7 @@ public class ProdutoActivity extends BaseActivity {
     private ProdutoViewModel mViewModel;
     private AppCompatButton btnSalvar;
     private TextInputEditText nomeProduto;
-    private TextInputEditText valorPproduto;
+    private TextInputEditText valorProduto;
     private Produto produto;
     private Spinner mStatus;
 
@@ -40,9 +39,9 @@ public class ProdutoActivity extends BaseActivity {
 
         btnSalvar = findViewById(R.id.btn_salvar);
         nomeProduto = findViewById(R.id.nome_produto);
-        valorPproduto = findViewById(R.id.valor_produto);
+        valorProduto = findViewById(R.id.valor_produto);
         mStatus = findViewById(R.id.produto_status);
-        valorPproduto.addTextChangedListener(new MoneyTextWatcher(valorPproduto));
+        //valorPproduto.addTextChangedListener(new MoneyTextWatcher(valorPproduto));
 
         super.spinnerStatus(mStatus);
 
@@ -72,7 +71,7 @@ public class ProdutoActivity extends BaseActivity {
     private void bindCampos(Produto itemLista){
         this.produto = itemLista;
         nomeProduto.setText(itemLista.nome);
-        valorPproduto.setText(Double.toString(itemLista.valor*10));
+        valorProduto.setText(Double.toString(itemLista.valor));
         mStatus.setSelection(super.setSpinner(itemLista.status));
     }
 
@@ -81,8 +80,8 @@ public class ProdutoActivity extends BaseActivity {
             nomeProduto.setError(getString(R.string.erro_nome_produto));
             return false;
         }
-        if(TextUtils.isEmpty(valorPproduto.getText())){
-            valorPproduto.setError(getString(R.string.erro_valor_produto));
+        if(TextUtils.isEmpty(valorProduto.getText())){
+            valorProduto.setError(getString(R.string.erro_valor_produto));
             return false;
         }
         return true;
@@ -90,7 +89,8 @@ public class ProdutoActivity extends BaseActivity {
 
     private Produto produto() {
         produto.nome = nomeProduto.getText().toString();
-        produto.valor = Double.parseDouble(valorPproduto.getText().toString().replace(".", "").replace(",", "."));
+        produto.valor = Double.parseDouble(valorProduto.getText().toString());
+        //produto.valor = Double.parseDouble(valorProduto.getText().toString().replace(".", "").replace(",", "."));
         produto.status = super.getStatusSpinner((String) mStatus.getSelectedItem());
         return produto;
     }

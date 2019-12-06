@@ -7,22 +7,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.helper.CollectionHelper;
 import br.com.raspemania.helper.ConstantHelper;
-import br.com.raspemania.model.entidade.Estabelecimento;
+import br.com.raspemania.model.entidade.Cliente;
 
-public class EstabelecimentoRepository extends BaseRepository<Estabelecimento> {
+public class ClienteRepository extends BaseRepository<Cliente> {
 
-    static String TAG = "ESTABELECIMENTO_REPOSITORY";
+    static String TAG = "CLIENTE _REPOSITORY";
 
-    private String collection = CollectionHelper.COLLECTION_ESTABELECIMENTO;
+    private String collection = CollectionHelper.COLLECTION_CLIENTE;
     protected FirebaseFirestore db;
-    public Estabelecimento object;
+    public Cliente object;
 
     /**
      * Constructor
      */
 
-    public EstabelecimentoRepository() {
-        super(CollectionHelper.COLLECTION_ESTABELECIMENTO, Estabelecimento.class);
+    public ClienteRepository() {
+        super(CollectionHelper.COLLECTION_CLIENTE, Cliente.class);
     }
 
     /**
@@ -31,7 +31,7 @@ public class EstabelecimentoRepository extends BaseRepository<Estabelecimento> {
      * @return Task<Void>
      * @throws Exception
      */
-    public Task<Void> saveRefId(Estabelecimento entity) throws Exception {
+    public Task<Void> saveRefId(Cliente entity) throws Exception {
 
         this.db = FirebaseRaspeMania.getDatabase();
 

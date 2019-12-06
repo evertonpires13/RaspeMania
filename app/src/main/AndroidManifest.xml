@@ -46,14 +46,21 @@
         <activity android:name=".view.activity.CadastroUsuarioActivity"
             android:label="@string/cadastrar"/>
         <activity android:name=".view.activity.ProdutoActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/produto"/>
-        <activity android:name=".view.activity.EstabelecimentoActivity"
-            android:label="@string/estabelecimento"/>
+        <activity android:name=".view.activity.ClienteActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:label="@string/cliente"/>
         <activity android:name=".view.activity.ColaboradorActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/colaborador"/>
         <activity android:name=".view.activity.RotaActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/rota"/>
         <activity android:name=".view.activity.LeituraActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:label="@string/leitura"/>
+        <activity android:name=".view.activity.RelatorioActivity"
             android:windowSoftInputMode="adjustPan"
             android:label="@string/leitura"/>
 

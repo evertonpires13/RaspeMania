@@ -41,7 +41,7 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
     public void onBindViewHolder(final LeituraAdapter.LeituraViewHolder holder, int position) {
 
         final Leitura mItem = listLeitura.get(position);
-        holder.codigoEstabelecimento.setText(mItem.local.codigo);
+        holder.codigoCliente.setText(mItem.cliente.codigo);
         holder.dataCadastro.setText(DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(mItem.dataUltimaAtualizacao));
         holder.valorQuantidadeVendida.setText(String.valueOf(mItem.quantidadeVendida));
         holder.valorReposicao.setText(String.valueOf(mItem.quantidadeReposicao));
@@ -70,7 +70,7 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
     }
 
     public static class LeituraViewHolder extends RecyclerView.ViewHolder {
-        public AppCompatTextView codigoEstabelecimento;
+        public AppCompatTextView codigoCliente;
         public AppCompatTextView dataCadastro;
         public AppCompatImageButton deleteLeitura;
         public AppCompatTextView valorQuantidadeVendida;
@@ -80,7 +80,7 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
 
         public LeituraViewHolder(View itemView) {
             super(itemView);
-            this.codigoEstabelecimento = (AppCompatTextView) itemView.findViewById(R.id.codigoEstabelecimento);
+            this.codigoCliente = (AppCompatTextView) itemView.findViewById(R.id.codigoCliente);
             this.dataCadastro = (AppCompatTextView) itemView.findViewById(R.id.dataCadastro);
             this.deleteLeitura = (AppCompatImageButton) itemView.findViewById(R.id.deleteLeitura);
             this.valorQuantidadeVendida = (AppCompatTextView) itemView.findViewById(R.id.valorQuantidadeVendida);
