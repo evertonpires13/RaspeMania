@@ -9,7 +9,7 @@ import br.com.raspemania.model.BaseModel;
 public class Produto extends BaseModel implements Serializable {
 
     public String nome;
-    public float valor;
+    public Double valor;
 
     public Produto(){}
 

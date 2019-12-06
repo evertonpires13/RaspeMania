@@ -11,7 +11,7 @@ public class Estabelecimento extends BaseModel implements Serializable {
     public int estoque;
     public String endereco;
     public String codigo;
-    public int porcentagem;                     //valor de comissão do lugar
+    public Double porcentagem;                     //valor de comissão do lugar
     public Rota rota;
 
     @NonNull

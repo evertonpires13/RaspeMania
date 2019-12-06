@@ -121,7 +121,7 @@ public class EstabelecimentoActivity extends BaseActivity {
 
     private Estabelecimento estabelecimento() {
         mEstabelecimento.estoque = Integer.parseInt(mEstabelecimentoEstoque.getText().toString());
-        mEstabelecimento.porcentagem = Integer.parseInt(mEstabelecimentoPorcentagem.getText().toString());
+        mEstabelecimento.porcentagem = Double.parseDouble(mEstabelecimentoPorcentagem.getText().toString().replace(".", "").replace(",", "."));
         mEstabelecimento.codigo = mEstabelecimentoCodigo.getText().toString();
         mEstabelecimento.endereco = mEstabelecimentoEndereco.getText().toString();
         mEstabelecimento.rota = (Rota) mEstabelecimentoRota.getSelectedItem();
