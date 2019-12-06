@@ -12,6 +12,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 import br.com.raspemania.firebase.repository.RelatorioRepository;
+import br.com.raspemania.model.consulta.RelatorioConsulta;
 
 public class RelatorioViewModel extends BaseViewModel {
 
@@ -20,19 +21,19 @@ public class RelatorioViewModel extends BaseViewModel {
     private RelatorioRepository service = new RelatorioRepository();
 
     public MutableLiveData<String> sucess;
-    public MutableLiveData<List<Relatorio>> mList;
+    public MutableLiveData<List<RelatorioConsulta>> mList;
 
     public RelatorioViewModel() {
         sucess = new MutableLiveData<>();
         error = new MutableLiveData<>();
-        mList = new MutableLiveData<List<Relatorio>>();
+        mList = new MutableLiveData<List<RelatorioConsulta>>();
     }
 
     /**
      * Sava ou atualiza um objeto
      * @param obj
      */
-    public void saveOrUpdate(Relatorio obj) {
+    public void saveOrUpdate(RelatorioConsulta obj) {
         if(obj.key == null){
             save(obj);
         } else {
@@ -44,7 +45,7 @@ public class RelatorioViewModel extends BaseViewModel {
      * Add a new document with a key
      * @param obj
      */
-    private void save(Relatorio obj) {
+    private void save(RelatorioConsulta obj) {
         try {
             service.saveRefId(obj)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -71,7 +72,7 @@ public class RelatorioViewModel extends BaseViewModel {
      * Update document existent
      * @param obj
      */
-    private void update(Relatorio obj){
+    private void update(RelatorioConsulta obj){
         try {
             service.update(obj, obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -99,7 +100,7 @@ public class RelatorioViewModel extends BaseViewModel {
      * Delete a document
      * @param obj
      */
-    public void delete(Relatorio obj){
+    public void delete(RelatorioConsulta obj){
         try {
             service.delete(obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -132,7 +133,7 @@ public class RelatorioViewModel extends BaseViewModel {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {
                             Log.d(TAG, "Listou todos!");
-                            mList.setValue(querySnapshot.toObjects(Relatorio.class));
+                            mList.setValue(querySnapshot.toObjects(RelatorioConsulta.class));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

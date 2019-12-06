@@ -7,21 +7,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.helper.CollectionHelper;
 import br.com.raspemania.helper.ConstantHelper;
+import br.com.raspemania.model.consulta.RelatorioConsulta;
 
-public class RelatorioRepository extends BaseRepository<Relatorio> {
+public class RelatorioRepository extends BaseRepository<RelatorioConsulta> {
 
     static String TAG = "RELATORIO_REPOSITORY";
 
     private String collection = CollectionHelper.COLLECTION_COLABORADOR;
     protected FirebaseFirestore db;
-    public Relatorio object;
+    public RelatorioConsulta object;
 
     /**
      * Constructor
      */
 
     public RelatorioRepository() {
-        super(CollectionHelper.COLLECTION_COLABORADOR, Relatorio.class);
+        super(CollectionHelper.COLLECTION_COLABORADOR, RelatorioConsulta.class);
     }
 
     /**
@@ -30,7 +31,7 @@ public class RelatorioRepository extends BaseRepository<Relatorio> {
      * @return Task<Void>
      * @throws Exception
      */
-    public Task<Void> saveRefId(Relatorio entity) throws Exception {
+    public Task<Void> saveRefId(RelatorioConsulta entity) throws Exception {
 
         this.db = FirebaseRaspeMania.getDatabase();
 
