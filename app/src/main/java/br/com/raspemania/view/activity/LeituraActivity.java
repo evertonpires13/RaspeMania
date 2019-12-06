@@ -90,6 +90,8 @@ public class LeituraActivity extends BaseActivity {
         btnAdicionar.setOnClickListener(clickAdicionarPremiacao);
         btnSalvar.setOnClickListener(clickSalvarPremiacao);
 
+        mViewModelProduto.getAll();
+        mViewModelCliente.getAll();
     }
 
     private View.OnClickListener clickAdicionarPremiacao = new View.OnClickListener() {
@@ -183,7 +185,6 @@ public class LeituraActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-
         mViewModelProduto.getAll();
         mViewModelCliente.getAll();
     }
@@ -191,6 +192,8 @@ public class LeituraActivity extends BaseActivity {
     private void doBindings() {
         super.onStart();
         super.observeError(mViewModelLeitura);
+        super.observeError(mViewModelProduto);
+        super.observeError(mViewModelCliente);
         observeSucessSpinnerProduto();
         observeSucessSpinnerCliente();
         observeSucess();
