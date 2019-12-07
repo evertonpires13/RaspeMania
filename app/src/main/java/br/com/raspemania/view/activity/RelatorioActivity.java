@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.model.consulta.RelatorioConsulta;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.view.adapter.RelatorioAdapter;
+import br.com.raspemania.view.fragment.RelatorioFragment;
 import br.com.raspemania.viewmodel.LeituraViewModel;
 
 public class RelatorioActivity extends BaseActivity {
@@ -25,7 +26,7 @@ public class RelatorioActivity extends BaseActivity {
     private AppCompatTextView mValorPremiacaoResumo;
     private AppCompatTextView mValorRetiradoResumo;
 
-    private List<Leitura> mLeituraList;
+    //private List<Leitura> mLeituraList;
 
     private RecyclerView mRecyclerView;
     private RelatorioAdapter mAdapter;
@@ -53,9 +54,13 @@ public class RelatorioActivity extends BaseActivity {
         doBindings();
 
         showProgressDialog();
-        mViewModelLeitura.getAll();
 
-        mLeituraList = new ArrayList<Leitura>();
+        if (getIntent().getExtras() != null && getIntent().getExtras().getSerializable(RelatorioFragment.TAG) != null) {
+            RelatorioConsulta aux = (RelatorioConsulta) getIntent().getExtras().getSerializable(RelatorioFragment.TAG);
+            mViewModelLeitura.getAll(aux);
+        }
+
+        //mLeituraList = new ArrayList<Leitura>();
     }
 
     @Override

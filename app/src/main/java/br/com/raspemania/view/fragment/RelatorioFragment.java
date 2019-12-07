@@ -1,5 +1,6 @@
 package br.com.raspemania.view.fragment;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.raspemania.R;
@@ -29,18 +38,26 @@ import br.com.raspemania.viewmodel.RotaViewModel;
 
 public class RelatorioFragment extends BaseFragment {
 
+    public static String TAG = "RelatorioFragment";
+
     private Context context = getContext();
     //private LeituraViewModel mViewModel;
     private ClienteViewModel mViewModelCliente;
     private RotaViewModel mViewModelRota;
     private ColaboradorViewModel mViewModelColaborador;
+    private RelatorioConsulta mFiltros;
 
     private AppCompatButton mBuscar;
     private Spinner spinnerCliente;
     private Spinner spinnerRota;
     private Spinner spinnerColaborador;
-    //dataIncio;
-    //dataFim;
+    private TextInputEditText dataFim;
+    private TextInputEditText dataInicio;
+
+    private AppCompatImageButton calendar_inicio;
+    private AppCompatImageButton calendar_fim;
+
+    private DatePickerDialog picker;
 
     public static LeituraFragment newInstance() {
         return new LeituraFragment();
@@ -73,14 +90,58 @@ public class RelatorioFragment extends BaseFragment {
         mBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RelatorioConsulta filtros = new RelatorioConsulta();
-                filtros.cliente = (Cliente) spinnerCliente.getSelectedItem();
-                filtros.colaborador = (Colaborador) spinnerColaborador.getSelectedItem();
-                filtros.rota = (Rota) spinnerRota.getSelectedItem();
-                //filtros.dataFim =
-                startActivity(new Intent(context, RelatorioActivity.class));
+                try {
+                    mFiltros = filtros();
+                    Intent intent = new Intent(context, RelatorioActivity.class);
+                    intent.putExtra(TAG, mFiltros);
+                    context.startActivity(intent);
+                } catch (ParseException e) {
+                    Toast.makeText(context, "Ocorreu um erro inesperado!", Toast.LENGTH_LONG).show();
+                }
             }
         });
+
+
+        //dataFim.setInputType(InputType.TYPE_NULL);
+        calendar_fim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(context,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                dataFim.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
+            }
+        });
+
+        //dataIncio.setInputType(InputType.TYPE_NULL);
+        calendar_inicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(context,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                dataInicio.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
+            }
+        });
+
     }
 
     private void doBindings() {
@@ -91,6 +152,17 @@ public class RelatorioFragment extends BaseFragment {
         observeSucessSpinnerCliente();
         observeSucessSpinnerColaborador();
         observeSucessSpinnerRota();
+    }
+
+    private RelatorioConsulta filtros() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        RelatorioConsulta filtros = new RelatorioConsulta();
+        filtros.cliente = (Cliente) spinnerCliente.getSelectedItem();
+        filtros.colaborador = (Colaborador) spinnerColaborador.getSelectedItem();
+        filtros.rota = (Rota) spinnerRota.getSelectedItem();
+        filtros.dataFim = dateFormat.parse(dataFim.getText().toString());
+        filtros.dataInicio = dateFormat.parse(dataInicio.getText().toString());
+        return filtros;
     }
 
     private void observeSucessSpinnerCliente() {
@@ -134,6 +206,10 @@ public class RelatorioFragment extends BaseFragment {
         spinnerCliente = view.findViewById(R.id.spinnerCliente);
         spinnerColaborador = view.findViewById(R.id.spinnerColaborador);
         spinnerRota = view.findViewById(R.id.spinnerRota);
+        dataFim = view.findViewById(R.id.dataFim);
+        dataInicio = view.findViewById(R.id.dataIncio);
+        calendar_fim = view.findViewById(R.id.calendar_fim);
+        calendar_inicio = view.findViewById(R.id.calendar_inicio);
     }
 
     @Override

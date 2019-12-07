@@ -12,6 +12,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 import br.com.raspemania.firebase.repository.LeituraRepository;
+import br.com.raspemania.model.consulta.RelatorioConsulta;
 import br.com.raspemania.model.entidade.Leitura;
 
 public class LeituraViewModel extends BaseViewModel {
@@ -129,6 +130,32 @@ public class LeituraViewModel extends BaseViewModel {
     public void getAll() {
         try {
             service.getAll()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot querySnapshot) {
+                            Log.d(TAG, "Listou todos!");
+                            mList.setValue(querySnapshot.toObjects(Leitura.class));
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Erro ao listar!", e);
+                            error.setValue("Erro ao listar!");
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+            error.setValue("Erro ao listar!");
+        }
+    }
+
+    /**
+     * Get all examples with filters
+     */
+    public void getAll(RelatorioConsulta filtros) {
+        try {
+            service.getAll(filtros)
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {

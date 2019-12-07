@@ -3,10 +3,12 @@ package br.com.raspemania.firebase.repository;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.helper.CollectionHelper;
 import br.com.raspemania.helper.ConstantHelper;
+import br.com.raspemania.model.consulta.RelatorioConsulta;
 import br.com.raspemania.model.entidade.Leitura;
 
 public class LeituraRepository extends BaseRepository<Leitura> {
@@ -43,5 +45,21 @@ public class LeituraRepository extends BaseRepository<Leitura> {
         object.status = ConstantHelper.ATIVO;
 
         return db.collection(collection).document(myId).set(object);
+    }
+
+    /**
+     * Get all documents by collection with filters
+     * @return
+     * @throws Exception
+     */
+    public Task<QuerySnapshot> getAll(RelatorioConsulta filtros) throws Exception {
+
+        this.db = FirebaseRaspeMania.getDatabase();
+
+        return db.collection(collection)
+                .whereEqualTo("cliente.key", filtros.cliente.key)
+                .whereEqualTo("cliente.rota.key", filtros.rota.key)
+                .whereEqualTo("cliente.rota.colaborador.key", filtros.colaborador.key)
+                .get();
     }
 }
