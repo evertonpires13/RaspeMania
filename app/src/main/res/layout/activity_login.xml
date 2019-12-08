@@ -12,7 +12,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/ic_add"
+        android:background="@drawable/ic_logo_1"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
