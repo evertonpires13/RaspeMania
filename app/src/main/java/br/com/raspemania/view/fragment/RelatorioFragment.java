@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,6 @@ public class RelatorioFragment extends BaseFragment {
     public static String TAG = "RelatorioFragment";
 
     private Context context = getContext();
-    //private LeituraViewModel mViewModel;
     private ClienteViewModel mViewModelCliente;
     private RotaViewModel mViewModelRota;
     private ColaboradorViewModel mViewModelColaborador;
@@ -59,6 +59,8 @@ public class RelatorioFragment extends BaseFragment {
     private AppCompatImageButton calendar_fim;
 
     private DatePickerDialog picker;
+
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public static LeituraFragment newInstance() {
         return new LeituraFragment();
@@ -156,13 +158,23 @@ public class RelatorioFragment extends BaseFragment {
     }
 
     private RelatorioConsulta filtros() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         RelatorioConsulta filtros = new RelatorioConsulta();
-        filtros.cliente = (Cliente) spinnerCliente.getSelectedItem();
-        filtros.colaborador = (Colaborador) spinnerColaborador.getSelectedItem();
-        filtros.rota = (Rota) spinnerRota.getSelectedItem();
-        filtros.dataFim = dateFormat.parse(dataFim.getText().toString());
-        filtros.dataInicio = dateFormat.parse(dataInicio.getText().toString());
+
+        if(spinnerCliente.getSelectedItemPosition() != 0){
+            filtros.cliente = (Cliente) spinnerCliente.getSelectedItem();
+        }
+        if(spinnerColaborador.getSelectedItemPosition() != 0){
+            filtros.colaborador = (Colaborador) spinnerColaborador.getSelectedItem();
+        }
+        if(spinnerRota.getSelectedItemPosition() != 0){
+            filtros.rota = (Rota) spinnerRota.getSelectedItem();
+        }
+        if(!TextUtils.isEmpty(dataFim.getText())){
+            filtros.dataFim = dateFormat.parse(dataFim.getText().toString());
+        }
+        if(!TextUtils.isEmpty(dataInicio.getText())){
+            filtros.dataInicio = dateFormat.parse(dataInicio.getText().toString());
+        }
         return filtros;
     }
 
