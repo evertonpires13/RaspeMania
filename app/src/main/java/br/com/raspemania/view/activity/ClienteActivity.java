@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.SpinnerHelper;
 import br.com.raspemania.model.entidade.Cliente;
 import br.com.raspemania.model.entidade.Rota;
 import br.com.raspemania.view.adapter.ClienteAdapter;
@@ -116,6 +117,17 @@ public class ClienteActivity extends BaseActivity {
             mClientePorcentagem.setError(getString(R.string.erro_cliente_porcentagem));
             return false;
         }
+        if (!validStatus(mStatus)) {
+            Toast.makeText(this, getString(R.string.erro_spinner_status), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        Rota r = (Rota) mClienteRota.getSelectedItem();
+        if (r.key == null || r.key.isEmpty()) {
+            Toast.makeText(this, getString(R.string.spinner_rota_erro), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 
@@ -141,7 +153,7 @@ public class ClienteActivity extends BaseActivity {
     }
 
     public void bindSpinner(Rota rota) {
-        for(int i = 0; i < adapter.getCount(); i++) {
+        for (int i = 0; i < adapter.getCount(); i++) {
             if (adapter.getItem(i).nome.equalsIgnoreCase(rota.nome)) {
                 mClienteRota.setSelection(i);
                 break;
@@ -154,9 +166,9 @@ public class ClienteActivity extends BaseActivity {
         mViewModelRota.mList.observe(this, new Observer<List<Rota>>() {
             @Override
             public void onChanged(List<Rota> resultList) {
-                adapter = new ArrayAdapter<>(ClienteActivity.this, R.layout.item_spinner_default, resultList);
+                adapter = new ArrayAdapter<>(ClienteActivity.this, R.layout.item_spinner_default, SpinnerHelper.spinnerRota( resultList, ClienteActivity.this));
                 mClienteRota.setAdapter(adapter);
-                if(mCliente.rota != null) bindSpinner(mCliente.rota);
+                if (mCliente.rota != null) bindSpinner(mCliente.rota);
             }
         });
     }

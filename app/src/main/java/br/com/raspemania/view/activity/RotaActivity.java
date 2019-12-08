@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.SpinnerHelper;
 import br.com.raspemania.model.entidade.Colaborador;
 import br.com.raspemania.model.entidade.Rota;
 import br.com.raspemania.view.adapter.RotaAdapter;
@@ -93,6 +94,18 @@ public class RotaActivity extends BaseActivity {
             mRotaDescricao.setError(getString(R.string.erro_rota_descricao));
             return false;
         }
+
+        Colaborador c = (Colaborador) mRotaColaborador.getSelectedItem();
+        if (c.key == null || c.key.isEmpty()) {
+            Toast.makeText(this, getString(R.string.erro_rota_colaborador), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!validStatus(mStatus)) {
+            Toast.makeText(this, getString(R.string.erro_spinner_status), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 
@@ -114,7 +127,7 @@ public class RotaActivity extends BaseActivity {
     }
 
     public void bindSpinner(Colaborador col) {
-        for(int i = 0; i < adapter.getCount(); i++) {
+        for (int i = 0; i < adapter.getCount(); i++) {
             if (adapter.getItem(i).email.equalsIgnoreCase(col.email)) {
                 mRotaColaborador.setSelection(i);
                 break;
@@ -127,9 +140,9 @@ public class RotaActivity extends BaseActivity {
         mViewModelColaborador.mList.observe(this, new Observer<List<Colaborador>>() {
             @Override
             public void onChanged(List<Colaborador> resultList) {
-                adapter = new ArrayAdapter<>(RotaActivity.this, R.layout.item_spinner_default, resultList);
+                adapter = new ArrayAdapter<>(RotaActivity.this, R.layout.item_spinner_default, SpinnerHelper.spinnerColaborador(resultList, RotaActivity.this));
                 mRotaColaborador.setAdapter(adapter);
-                if(mRota.colaborador != null) bindSpinner(mRota.colaborador);
+                if (mRota.colaborador != null) bindSpinner(mRota.colaborador);
             }
         });
     }

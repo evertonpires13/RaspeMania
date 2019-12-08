@@ -8,6 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -18,14 +23,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.raspemania.R;
 import br.com.raspemania.helper.LeituraHelper;
+import br.com.raspemania.helper.SpinnerHelper;
 import br.com.raspemania.model.entidade.Cliente;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.model.entidade.PremiacaoList;
@@ -98,16 +98,30 @@ public class LeituraActivity extends BaseActivity {
         @Override
         public void onClick(View view) {
 
-            PremiacaoList premiacaoList = new PremiacaoList();
-            premiacaoList.quantidadePremiada = Integer.parseInt(textQuantidade.getText().toString());
-            premiacaoList.valorPremiado = Double.parseDouble(textValor.getText().toString());
-            //premiacaoList.valorPremiado = Double.parseDouble(textValor.getText().toString().replace(".", "").replace(",", "."));
-            leitura.premiacaoList.add(premiacaoList);
+            Boolean add = true;
 
-            prepareRecyclerView(leitura.premiacaoList);
+            if (TextUtils.isEmpty(textQuantidade.getText())) {
+                textQuantidade.setError(getString(R.string.erro_leitura_qtd));
+                add = false;
+            }
 
-            textQuantidade.getText().clear();
-            textValor.getText().clear();
+            if (TextUtils.isEmpty(textValor.getText())) {
+                textValor.setError(getString(R.string.erro_leitura_valor));
+                add = false;
+            }
+
+            if (add) {
+                PremiacaoList premiacaoList = new PremiacaoList();
+                premiacaoList.quantidadePremiada = Integer.parseInt(textQuantidade.getText().toString());
+                premiacaoList.valorPremiado = Double.parseDouble(textValor.getText().toString());
+                //premiacaoList.valorPremiado = Double.parseDouble(textValor.getText().toString().replace(".", "").replace(",", "."));
+                leitura.premiacaoList.add(premiacaoList);
+
+                prepareRecyclerView(leitura.premiacaoList);
+
+                textQuantidade.getText().clear();
+                textValor.getText().clear();
+            }
         }
     };
 
@@ -179,6 +193,19 @@ public class LeituraActivity extends BaseActivity {
             return false;
         }
 
+        Produto p = (Produto) spinnerProduto.getSelectedItem();
+        if (p.key == null || p.key.isEmpty()) {
+            Toast.makeText(this, getString(R.string.leitura_spinner_erro_produto), Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+
+        Cliente p2 = (Cliente) spinnerCliente.getSelectedItem();
+        if (p2.key == null || p2.key.isEmpty()) {
+            Toast.makeText(this, getString(R.string.leitura_spinner_erro_cliente), Toast.LENGTH_LONG).show();
+            return false;
+        }
+
         return true;
     }
 
@@ -204,7 +231,8 @@ public class LeituraActivity extends BaseActivity {
         mViewModelProduto.mList.observe(this, new Observer<List<Produto>>() {
             @Override
             public void onChanged(List<Produto> resultList) {
-                ArrayAdapter<Produto> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, resultList);
+
+                ArrayAdapter<Produto> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, SpinnerHelper.spinnerProduto(resultList, LeituraActivity.this));
                 spinnerProduto.setAdapter(adapter);
 
             }
@@ -216,12 +244,14 @@ public class LeituraActivity extends BaseActivity {
         mViewModelCliente.mList.observe(this, new Observer<List<Cliente>>() {
             @Override
             public void onChanged(List<Cliente> resultList) {
-                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, resultList);
+
+                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, SpinnerHelper.spinnerCliente(resultList, LeituraActivity.this));
                 spinnerCliente.setAdapter(adapter);
             }
         });
     }
-    private void observeSucess(){
+
+    private void observeSucess() {
         mViewModelLeitura.sucess.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -231,7 +261,7 @@ public class LeituraActivity extends BaseActivity {
         });
     }
 
-    private void prepareRecyclerView(List<PremiacaoList> premiacoes){
+    private void prepareRecyclerView(List<PremiacaoList> premiacoes) {
         mAdapter = new PremiacaoAdapter(premiacoes);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();

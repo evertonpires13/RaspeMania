@@ -27,6 +27,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.SpinnerHelper;
 import br.com.raspemania.model.consulta.RelatorioConsulta;
 import br.com.raspemania.model.entidade.Cliente;
 import br.com.raspemania.model.entidade.Colaborador;
@@ -170,7 +171,7 @@ public class RelatorioFragment extends BaseFragment {
         mViewModelCliente.mList.observe(this, new Observer<List<Cliente>>() {
             @Override
             public void onChanged(List<Cliente> resultList) {
-                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(context, R.layout.item_spinner_default, resultList);
+                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(context, R.layout.item_spinner_default, SpinnerHelper.spinnerCliente( resultList, getContext()));
                 spinnerCliente.setAdapter(adapter);
             }
         });
@@ -181,7 +182,7 @@ public class RelatorioFragment extends BaseFragment {
         mViewModelRota.mList.observe(this, new Observer<List<Rota>>() {
             @Override
             public void onChanged(List<Rota> resultList) {
-                ArrayAdapter<Rota> adapter = new ArrayAdapter<>(context, R.layout.item_spinner_default, resultList);
+                ArrayAdapter<Rota> adapter = new ArrayAdapter<>(context, R.layout.item_spinner_default, SpinnerHelper.spinnerRota( resultList, getContext()));
                 spinnerRota.setAdapter(adapter);
             }
         });
@@ -192,7 +193,7 @@ public class RelatorioFragment extends BaseFragment {
         mViewModelColaborador.mList.observe(this, new Observer<List<Colaborador>>() {
             @Override
             public void onChanged(List<Colaborador> resultList) {
-                ArrayAdapter<Colaborador> adapter = new ArrayAdapter<>(context, R.layout.item_spinner_default, resultList);
+                ArrayAdapter<Colaborador> adapter = new ArrayAdapter<>(context, R.layout.item_spinner_default, SpinnerHelper.spinnerColaborador( resultList, getContext()));
                 spinnerColaborador.setAdapter(adapter);
             }
         });

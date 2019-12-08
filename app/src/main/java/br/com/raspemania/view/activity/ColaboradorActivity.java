@@ -85,6 +85,10 @@ public class ColaboradorActivity extends BaseActivity {
             mApelido.setError(getString(R.string.erro_apelido_colaborador));
             return false;
         }
+        if (!validStatus(mStatus)) {
+            Toast.makeText(this, getString(R.string.erro_spinner_status), Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 

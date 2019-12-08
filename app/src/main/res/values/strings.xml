@@ -55,6 +55,7 @@
     <string name="rota_descricao">Nome</string>
     <string name="rota_colaborador">Apelido</string>
     <string name="erro_rota_descricao">Informe a rota!</string>
+    <string name="erro_rota_colaborador">Informe o colaborador!</string>
 
 
     <!-- Cliente -->
@@ -99,7 +100,25 @@
     <!-- Leitura -->
     <string name="erro_leitura_qtd_vendide">Informe a quantidade vendida!</string>
     <string name="erro_leitura_reposicao">Informe a quantidade de reposição!</string>
+    <string name="erro_leitura_valor">Informe o valor da premiação!</string>
+    <string name="erro_leitura_qtd">Informe a quantidade da premiação!</string>
     <string name="data_inicio">Data Início</string>
     <string name="data_fim">Data Fim</string>
+    <string name="leitura_spinner_produto">Selecione Produto</string>
+    <string name="leitura_spinner_cliente">Selecione Produto</string>
+    <string name="leitura_spinner_erro_cliente">Selecione o Cliente </string>
+    <string name="leitura_spinner_erro_produto">Selecione o Produto </string>
+
+
+
+
+
+    <!-- Spinner -->
+    <string name="spinner_colaborador">Selecione Colaborador</string>
+    <string name="spinner_rota">Selecione Rota</string>
+    <string name="spinner_rota_erro">Selecione a rota</string>
+
+    <!-- Status erro -->
+    <string name="erro_spinner_status">Selecione o status</string>
 
 </resources>

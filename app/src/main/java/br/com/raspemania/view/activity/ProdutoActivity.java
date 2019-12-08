@@ -84,6 +84,10 @@ public class ProdutoActivity extends BaseActivity {
             valorProduto.setError(getString(R.string.erro_valor_produto));
             return false;
         }
+        if (!validStatus(mStatus)) {
+            Toast.makeText(this, getString(R.string.erro_spinner_status), Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
