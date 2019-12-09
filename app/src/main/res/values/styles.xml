@@ -56,4 +56,10 @@
         <item name="android:textSize">36sp</item>
     </style>
 
+    <style name="AppThemeAlertDialog" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
 </resources>

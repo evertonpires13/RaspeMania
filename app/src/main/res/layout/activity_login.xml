@@ -87,12 +87,12 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/cadastrarNovoText"
+        app:layout_constraintBottom_toTopOf="@+id/cadastrarNovaConta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cadastrarNovoText"
+        android:id="@+id/cadastrarNovaConta"
         android:layout_width="0dp"
         android:layout_height="52dp"
         android:layout_marginStart="32dp"
