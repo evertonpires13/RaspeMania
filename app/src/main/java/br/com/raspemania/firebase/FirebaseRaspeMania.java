@@ -74,4 +74,17 @@ public class FirebaseRaspeMania {
     }
 
     /*--------------------------------------------------------------------------------------------*/
+    public static final String getEMailUsuario() {
+        try {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            FirebaseUser user = auth.getCurrentUser();
+            return user.getEmail();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
 }

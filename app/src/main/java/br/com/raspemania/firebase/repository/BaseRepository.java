@@ -6,6 +6,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import br.com.raspemania.firebase.FirebaseRaspeMania;
+import br.com.raspemania.helper.ConstantHelper;
 
 public abstract class BaseRepository<T> {
 
@@ -18,6 +19,7 @@ public abstract class BaseRepository<T> {
 
     /**
      * Constructor
+     *
      * @param collection
      * @param clazz
      */
@@ -29,16 +31,26 @@ public abstract class BaseRepository<T> {
 
     /**
      * Get all documents by collection
+     *
      * @return
      * @throws Exception
      */
     public Task<QuerySnapshot> getAll() throws Exception {
-        return db.collection(collection).get();
+        return db.collection(collection)
+                //.whereEqualTo()
+                .get();
+    }
 
+    public Task<QuerySnapshot> getAll(String campo, Object valor) throws Exception {
+        return db.collection(collection)
+                .whereEqualTo(campo, valor)
+                //.whereEqualTo("status", ConstantHelper.ATIVO)
+                .get();
     }
 
     /**
      * Update document existent
+     *
      * @param entity
      * @param key
      * @return
@@ -49,6 +61,7 @@ public abstract class BaseRepository<T> {
 
     /**
      * Delete a document
+     *
      * @param key
      * @return
      */

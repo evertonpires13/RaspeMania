@@ -33,10 +33,11 @@ public class ColaboradorViewModel extends BaseViewModel {
 
     /**
      * Sava ou atualiza um objeto
+     *
      * @param obj
      */
     public void saveOrUpdate(Colaborador obj) {
-        if(obj.key == null){
+        if (obj.key == null) {
             save(obj);
         } else {
             update(obj);
@@ -45,6 +46,7 @@ public class ColaboradorViewModel extends BaseViewModel {
 
     /**
      * Add a new document with a key
+     *
      * @param obj
      */
     private void save(Colaborador obj) {
@@ -63,7 +65,8 @@ public class ColaboradorViewModel extends BaseViewModel {
                             Log.w(TAG, "Erro ao salvar!", e);
                             error.setValue("Erro ao salvar!");
                         }
-                    });;
+                    });
+            ;
         } catch (Exception e) {
             e.printStackTrace();
             error.setValue("Erro ao salvar!");
@@ -72,9 +75,10 @@ public class ColaboradorViewModel extends BaseViewModel {
 
     /**
      * Update document existent
+     *
      * @param obj
      */
-    private void update(Colaborador obj){
+    private void update(Colaborador obj) {
         try {
             service.update(obj, obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -91,7 +95,8 @@ public class ColaboradorViewModel extends BaseViewModel {
                             Log.w(TAG, "Erro ao atualizar", e);
                             error.setValue("Erro ao atualizar");
                         }
-                    });;
+                    });
+            ;
         } catch (Exception e) {
             e.printStackTrace();
             error.setValue("Erro ao atualizar");
@@ -100,9 +105,10 @@ public class ColaboradorViewModel extends BaseViewModel {
 
     /**
      * Update a document - set status Inativo
+     *
      * @param obj
      */
-    public void delete(Colaborador obj){
+    public void delete(Colaborador obj) {
 
         try {
             obj.status = ConstantHelper.INATIVO;
@@ -134,6 +140,30 @@ public class ColaboradorViewModel extends BaseViewModel {
     public void getAll() {
         try {
             service.getAll()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot querySnapshot) {
+                            Log.d(TAG, "Listou todos!");
+                            mList.setValue(querySnapshot.toObjects(Colaborador.class));
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Erro ao listar!", e);
+                            error.setValue("Erro ao listar!");
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+            error.setValue("Erro ao listar!");
+        }
+    }
+
+    public void getAllSpinner() {
+        try {
+
+            service.getAll("status", ConstantHelper.ATIVO)
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {

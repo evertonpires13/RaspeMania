@@ -25,8 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.ConstantHelper;
+import br.com.raspemania.helper.SharedPrefHelper;
 import br.com.raspemania.helper.SpinnerHelper;
 import br.com.raspemania.model.entidade.Cliente;
+import br.com.raspemania.model.entidade.Colaborador;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.model.entidade.PremiacaoList;
 import br.com.raspemania.model.entidade.Produto;
@@ -90,8 +93,16 @@ public class LeituraActivity extends BaseActivity {
         btnAdicionar.setOnClickListener(clickAdicionarPremiacao);
         btnSalvar.setOnClickListener(clickSalvarPremiacao);
 
-        mViewModelProduto.getAll();
-        mViewModelCliente.getAll();
+
+        Colaborador mColaborador = SharedPrefHelper.getSharedOBJECT(this, ConstantHelper.COLABORADOR_PREF, Colaborador.class);
+        if (mColaborador.perfil == ConstantHelper.PERFIL_ADM) {
+            mViewModelCliente.getAllSpinner();
+        } else {
+            mViewModelCliente.getAllUsuario();
+        }
+
+        mViewModelProduto.getAllSpinner();
+
     }
 
     private View.OnClickListener clickAdicionarPremiacao = new View.OnClickListener() {

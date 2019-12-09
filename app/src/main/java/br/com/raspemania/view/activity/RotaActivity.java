@@ -73,7 +73,7 @@ public class RotaActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mViewModelColaborador.getAll();
+        mViewModelColaborador.getAllSpinner();
     }
 
     private void doBindings() {

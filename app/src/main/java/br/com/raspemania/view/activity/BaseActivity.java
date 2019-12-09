@@ -89,11 +89,18 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public int setSpinner(long itemSelected) {
+
         if (itemSelected == ConstantHelper.ATIVO || itemSelected == ConstantHelper.PERFIL_ADM) {
-            return 0;
-        } else {
             return 1;
+        } else {
+            if (itemSelected == ConstantHelper.INATIVO || itemSelected == ConstantHelper.PERFIL_COLABORADOR) {
+                return 2;
+            }else{
+                return 0;
+            }
+
         }
+
     }
 
     public boolean validStatus(Spinner mStatus) {

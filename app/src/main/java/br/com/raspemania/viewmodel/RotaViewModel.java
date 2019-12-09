@@ -11,6 +11,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
+import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.firebase.repository.RotaRepository;
 import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.model.entidade.Rota;
@@ -32,10 +33,11 @@ public class RotaViewModel extends BaseViewModel {
 
     /**
      * Sava ou atualiza um objeto
+     *
      * @param obj
      */
     public void saveOrUpdate(Rota obj) {
-        if(obj.key == null){
+        if (obj.key == null) {
             save(obj);
         } else {
             update(obj);
@@ -44,6 +46,7 @@ public class RotaViewModel extends BaseViewModel {
 
     /**
      * Add a new document with a key
+     *
      * @param obj
      */
     private void save(Rota obj) {
@@ -62,7 +65,8 @@ public class RotaViewModel extends BaseViewModel {
                             Log.w(TAG, "Erro ao salvar!", e);
                             error.setValue("Erro ao salvar!");
                         }
-                    });;
+                    });
+            ;
         } catch (Exception e) {
             e.printStackTrace();
             error.setValue("Erro ao salvar!");
@@ -71,9 +75,10 @@ public class RotaViewModel extends BaseViewModel {
 
     /**
      * Update document existent
+     *
      * @param obj
      */
-    private void update(Rota obj){
+    private void update(Rota obj) {
         try {
             service.update(obj, obj.key)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -90,7 +95,8 @@ public class RotaViewModel extends BaseViewModel {
                             Log.w(TAG, "Erro ao atualizar", e);
                             error.setValue("Erro ao atualizar");
                         }
-                    });;
+                    });
+            ;
         } catch (Exception e) {
             e.printStackTrace();
             error.setValue("Erro ao atualizar");
@@ -126,9 +132,10 @@ public class RotaViewModel extends BaseViewModel {
 
     /**
      * Update a document - set status Inativo
+     *
      * @param obj
      */
-    public void delete(Rota obj){
+    public void delete(Rota obj) {
 
         try {
             obj.status = ConstantHelper.INATIVO;
@@ -147,7 +154,8 @@ public class RotaViewModel extends BaseViewModel {
                             Log.w(TAG, "Erro ao atualizar", e);
                             error.setValue("Erro ao atualizar");
                         }
-                    });;
+                    });
+            ;
         } catch (Exception e) {
             e.printStackTrace();
             error.setValue("Erro ao atualizar");
@@ -179,4 +187,28 @@ public class RotaViewModel extends BaseViewModel {
             error.setValue("Erro ao listar!");
         }
     }
+
+    public void getAllSpinner() {
+        try {
+            service.getAll("status", ConstantHelper.ATIVO)
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot querySnapshot) {
+                            Log.d(TAG, "Listou todos!");
+                            mList.setValue(querySnapshot.toObjects(Rota.class));
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Erro ao listar!", e);
+                            error.setValue("Erro ao listar!");
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+            error.setValue("Erro ao listar!");
+        }
+    }
+
 }

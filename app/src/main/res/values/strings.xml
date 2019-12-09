@@ -105,7 +105,7 @@
     <string name="data_inicio">Data Início</string>
     <string name="data_fim">Data Fim</string>
     <string name="leitura_spinner_produto">Selecione Produto</string>
-    <string name="leitura_spinner_cliente">Selecione Produto</string>
+    <string name="leitura_spinner_cliente">Selecione Cliente</string>
     <string name="leitura_spinner_erro_cliente">Selecione o Cliente </string>
     <string name="leitura_spinner_erro_produto">Selecione o Produto </string>
 

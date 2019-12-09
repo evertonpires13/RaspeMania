@@ -78,7 +78,7 @@ public class ClienteActivity extends BaseActivity {
     public void onResume() {
         super.onResume();
 
-        mViewModelRota.getAll();
+        mViewModelRota.getAllSpinner();
 
     }
 
