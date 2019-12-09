@@ -158,6 +158,10 @@ public class RelatorioFragment extends BaseFragment {
     }
 
     private RelatorioConsulta filtros() throws ParseException {
+
+        String dataFimS = dataFim.getText().toString();
+        Calendar c = Calendar.getInstance();
+
         RelatorioConsulta filtros = new RelatorioConsulta();
 
         if(spinnerCliente.getSelectedItemPosition() != 0){
@@ -170,7 +174,9 @@ public class RelatorioFragment extends BaseFragment {
             filtros.rota = (Rota) spinnerRota.getSelectedItem();
         }
         if(!TextUtils.isEmpty(dataFim.getText())){
-            filtros.dataFim = dateFormat.parse(dataFim.getText().toString());
+            c.setTime(dateFormat.parse(dataFimS));
+            c.add(Calendar.DATE, 1);  // adicionar um dia para nao dar erro no filtro
+            filtros.dataFim = c.getTime();
         }
         if(!TextUtils.isEmpty(dataInicio.getText())){
             filtros.dataInicio = dateFormat.parse(dataInicio.getText().toString());

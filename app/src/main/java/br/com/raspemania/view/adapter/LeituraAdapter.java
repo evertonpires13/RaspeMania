@@ -13,7 +13,6 @@ import java.text.DateFormat;
 import java.util.List;
 
 import br.com.raspemania.R;
-import br.com.raspemania.helper.LeituraHelper;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.viewmodel.LeituraViewModel;
 
@@ -45,8 +44,8 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
         holder.dataCadastro.setText(DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(mItem.dataUltimaAtualizacao));
         holder.valorQuantidadeVendida.setText(String.valueOf(mItem.quantidadeVendida));
         holder.valorReposicao.setText(String.valueOf(mItem.quantidadeReposicao));
-        holder.valorPremiacao.setText(LeituraHelper.getPremiacao(mItem));
-        holder.valorRetirado.setText(LeituraHelper.getValorRetirado(mItem));
+        holder.valorPremiacao.setText(mItem.getPremiacao());
+        holder.valorRetirado.setText(mItem.getValorRetirado());
 
         holder.deleteLeitura.setOnClickListener(new View.OnClickListener() {
             @Override

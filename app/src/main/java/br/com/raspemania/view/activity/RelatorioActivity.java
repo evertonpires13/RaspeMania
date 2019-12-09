@@ -26,8 +26,6 @@ public class RelatorioActivity extends BaseActivity {
     private AppCompatTextView mValorPremiacaoResumo;
     private AppCompatTextView mValorRetiradoResumo;
 
-    //private List<Leitura> mLeituraList;
-
     private RecyclerView mRecyclerView;
     private RelatorioAdapter mAdapter;
 
@@ -75,11 +73,31 @@ public class RelatorioActivity extends BaseActivity {
         observeSucess();
     }
 
+    private void bindCampos(List<Leitura> resultList){
+
+        Double valorPremiacaoResumo = 0.0;
+        Double valorRetiradoResumo = 0.0;
+        long qtdPremiacaoResumo = 0;
+        int valorQuantidadeVendidaResumo = 0;
+
+        for(Leitura leitura: resultList){
+            qtdPremiacaoResumo = qtdPremiacaoResumo + leitura.getQtdPremiacao();
+            valorPremiacaoResumo = valorPremiacaoResumo + leitura.getTotalPremiado();
+            valorQuantidadeVendidaResumo = valorQuantidadeVendidaResumo + leitura.quantidadeVendida;
+            valorRetiradoResumo = valorRetiradoResumo + leitura.getValorRetiradoDouble();
+        }
+
+        mValorQuantidadeVendidaResumo.setText(String.valueOf(valorQuantidadeVendidaResumo));
+        mValorPremiacaoResumo.setText(qtdPremiacaoResumo + "/ R$ "+ valorPremiacaoResumo.toString());
+        mValorRetiradoResumo.setText("R$ " + valorRetiradoResumo);
+    }
+
     private void observeGetAll(){
         mViewModelLeitura.mList.observe(this, new Observer<List<Leitura>>() {
             @Override
             public void onChanged(List<Leitura> resultList) {
                 prepareRecyclerView(resultList);
+                bindCampos(resultList);
             }
         });
     }

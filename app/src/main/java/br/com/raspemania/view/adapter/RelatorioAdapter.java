@@ -11,7 +11,6 @@ import java.text.DateFormat;
 import java.util.List;
 
 import br.com.raspemania.R;
-import br.com.raspemania.helper.LeituraHelper;
 import br.com.raspemania.model.entidade.Leitura;
 
 public class RelatorioAdapter extends RecyclerView.Adapter<RelatorioAdapter.RelatorioViewHolder>{
@@ -36,13 +35,14 @@ public class RelatorioAdapter extends RecyclerView.Adapter<RelatorioAdapter.Rela
     public void onBindViewHolder(final RelatorioAdapter.RelatorioViewHolder holder, int position) {
 
         final Leitura mItem = listRelatorio.get(position);
+        mItem.getTotalPremiado();
         holder.dataCadastro.setText(DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(mItem.dataUltimaAtualizacao));
         holder.colaboradorRelatorio.setText(mItem.cliente.rota.colaborador.apelido);
         holder.rotaRelatorio.setText(mItem.cliente.rota.nome);
         holder.codigoCliente.setText(mItem.cliente.codigo);
         holder.valorQuantidadeVendida.setText(String.valueOf(mItem.quantidadeVendida));
-        holder.valorPremiacao.setText(String.valueOf(mItem.quantidadeReposicao));
-        holder.valorRetirado.setText(LeituraHelper.getValorRetirado(mItem));
+        holder.valorPremiacao.setText(mItem.getPremiacao());
+        holder.valorRetirado.setText(mItem.getValorRetirado());
     }
 
     @Override

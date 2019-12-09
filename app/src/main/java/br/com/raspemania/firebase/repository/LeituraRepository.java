@@ -3,6 +3,7 @@ package br.com.raspemania.firebase.repository;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import br.com.raspemania.firebase.FirebaseRaspeMania;
@@ -56,10 +57,24 @@ public class LeituraRepository extends BaseRepository<Leitura> {
 
         this.db = FirebaseRaspeMania.getDatabase();
 
-        return db.collection(collection)
-                .whereEqualTo("cliente.key", filtros.cliente.key)
-                .whereEqualTo("cliente.rota.key", filtros.rota.key)
-                .whereEqualTo("cliente.rota.colaborador.key", filtros.colaborador.key)
-                .get();
+        Query query = db.collection(collection);
+
+        if (filtros.cliente != null) {
+            query = query.whereEqualTo("cliente.key", filtros.cliente.key);
+        }
+        if (filtros.rota!=null) {
+            query = query.whereEqualTo("cliente.rota.key", filtros.rota.key);
+        }
+        if (filtros.colaborador!=null) {
+            query = query.whereEqualTo("cliente.rota.colaborador.key", filtros.colaborador.key);
+        }
+        if (filtros.dataInicio!=null) {
+            query = query.whereGreaterThanOrEqualTo("dataUltimaAtualizacao", filtros.dataInicio);
+        }
+        if (filtros.dataFim!=null) {
+            query = query.whereLessThan("dataUltimaAtualizacao", filtros.dataFim);
+        }
+
+        return query.get();
     }
 }

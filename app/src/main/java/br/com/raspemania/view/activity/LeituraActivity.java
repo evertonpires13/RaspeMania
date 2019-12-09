@@ -8,11 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -23,8 +18,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.raspemania.R;
-import br.com.raspemania.helper.LeituraHelper;
 import br.com.raspemania.helper.SpinnerHelper;
 import br.com.raspemania.model.entidade.Cliente;
 import br.com.raspemania.model.entidade.Leitura;
@@ -145,8 +145,8 @@ public class LeituraActivity extends BaseActivity {
 
             valorQuantidadeVendida.setText(String.valueOf(leituraAux.quantidadeVendida));
             valorReposicao.setText(String.valueOf(leituraAux.quantidadeReposicao));
-            valorPremiacao.setText(LeituraHelper.getPremiacao(leituraAux));
-            valorRetirado.setText(LeituraHelper.getValorRetirado(leituraAux));
+            valorPremiacao.setText(leituraAux.getPremiacao());
+            valorRetirado.setText(leituraAux.getValorRetirado());
 
             viewDialog.findViewById(R.id.btn_cancelar).setOnClickListener(new View.OnClickListener() {
                 @Override
