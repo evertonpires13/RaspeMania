@@ -125,6 +125,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void doLogin(Colaborador colaborador) {
         SharedPrefHelper.setSharedOBJECT(this, ConstantHelper.COLABORADOR_PREF, colaborador);
+        finish();
         startActivity(new Intent(this, MainActivity.class));
     }
 
@@ -160,6 +161,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         hideProgressDialog();
         SharedPrefHelper.clearShared(this);
         mAuth.signOut();
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override

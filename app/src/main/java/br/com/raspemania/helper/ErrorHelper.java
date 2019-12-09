@@ -25,30 +25,30 @@ public class ErrorHelper {
                 break;
 
             case "ERROR_INVALID_EMAIL":
-                mEmailField.setError("The email address is badly formatted.");
+                mEmailField.setError("O endereço de email está mal formatado.");
                 mEmailField.requestFocus();
                 break;
 
             case "ERROR_WRONG_PASSWORD":
-                mPasswordField.setError("password is incorrect ");
+                mPasswordField.setError("Senha incorreta!");
                 mPasswordField.requestFocus();
                 mPasswordField.setText("");
                 break;
 
             case "ERROR_USER_MISMATCH":
-                Toast.makeText(context, "The supplied credentials do not correspond to the previously signed in user.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "As credenciais fornecidas não correspondem ao usuário existente.", Toast.LENGTH_LONG).show();
                 break;
 
             case "ERROR_REQUIRES_RECENT_LOGIN":
-                Toast.makeText(context, "context operation is sensitive and requires recent authentication. Log in again before retrying context request.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Efetue login novamente antes de tentar novamente a solicitação de contexto.", Toast.LENGTH_LONG).show();
                 break;
 
             case "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL":
-                Toast.makeText(context, "An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with context email address.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Já existe uma conta com o mesmo endereço de email.", Toast.LENGTH_LONG).show();
                 break;
 
             case "ERROR_EMAIL_ALREADY_IN_USE":
-                mEmailField.setError("The email address is already in use by another account.");
+                mEmailField.setError("O endereço de email já está sendo usado por outra conta.");
                 mEmailField.requestFocus();
                 break;
 
@@ -57,7 +57,7 @@ public class ErrorHelper {
                 break;
 
             case "ERROR_USER_DISABLED":
-                Toast.makeText(context, "The user account has been disabled by an administrator.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "A conta do usuário foi desativada por um administrador.", Toast.LENGTH_LONG).show();
                 break;
 
             case "ERROR_USER_TOKEN_EXPIRED":
@@ -65,7 +65,7 @@ public class ErrorHelper {
                 break;
 
             case "ERROR_USER_NOT_FOUND":
-                Toast.makeText(context, "There is no user record corresponding to context identifier. The user may have been deleted.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Não há registro do usuário correspondente. O usuário pode ter sido excluído.", Toast.LENGTH_LONG).show();
                 break;
 
             case "ERROR_INVALID_USER_TOKEN":
@@ -77,7 +77,7 @@ public class ErrorHelper {
                 break;
 
             case "ERROR_WEAK_PASSWORD":
-                mPasswordField.setError("The password is invalid it must 6 characters at least");
+                mPasswordField.setError("A senha é inválida, deve conter no mínimo 6 caracteres.");
                 mPasswordField.requestFocus();
                 break;
 
@@ -86,11 +86,11 @@ public class ErrorHelper {
                 break;
 
             case "INVALID_USER":
-                Toast.makeText(context, "Usuário está inativo", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "A conta do usuário foi desativada por um administrador.", Toast.LENGTH_LONG).show();
                 break;
 
             case "ERROR_GET_USER":
-                Toast.makeText(context, "Usuário está inativo", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Erro ao tentar fazer login.", Toast.LENGTH_LONG).show();
                 break;
 
             case "ERROR_CADASTRO_USER":

@@ -95,6 +95,7 @@ public class MainActivity extends BaseActivity {
             mAuth.signOut();
             SharedPrefHelper.clearShared(this);
             finish();
+            startActivity(new Intent(this, LoginActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

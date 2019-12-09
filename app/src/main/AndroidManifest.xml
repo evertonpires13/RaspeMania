@@ -65,7 +65,7 @@
             android:label="@string/leitura"/>
         <activity android:name=".view.activity.RelatorioActivity"
             android:windowSoftInputMode="adjustPan"
-            android:label="@string/leitura"/>
+            android:label="@string/relatorios"/>
 
     </application>
 
