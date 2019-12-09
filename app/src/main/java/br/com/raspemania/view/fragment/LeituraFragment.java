@@ -52,9 +52,6 @@ public class LeituraFragment extends BaseFragment {
         mViewModel = ViewModelProviders.of(this).get(LeituraViewModel.class);
         doBindings();
 
-
-
-
     }
 
     @Override

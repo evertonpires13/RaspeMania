@@ -13,6 +13,9 @@ import java.text.DateFormat;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.ConstantHelper;
+import br.com.raspemania.helper.SharedPrefHelper;
+import br.com.raspemania.model.entidade.Colaborador;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.viewmodel.LeituraViewModel;
 
@@ -31,7 +34,17 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
     @Override
     public LeituraAdapter.LeituraViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem = layoutInflater.inflate(R.layout.item_leitura, parent, false);
+        View listItem;
+
+        Colaborador mColaborador;
+        mColaborador = SharedPrefHelper.getSharedOBJECT(context, ConstantHelper.COLABORADOR_PREF, Colaborador.class);
+
+        if (mColaborador.perfil == ConstantHelper.PERFIL_ADM) {
+            listItem = layoutInflater.inflate(R.layout.item_leitura, parent, false);
+        }else{
+            listItem = layoutInflater.inflate(R.layout.item_leitura_colaborador, parent, false);
+        }
+
         LeituraAdapter.LeituraViewHolder viewHolder = new LeituraAdapter.LeituraViewHolder(listItem);
         return viewHolder;
     }
