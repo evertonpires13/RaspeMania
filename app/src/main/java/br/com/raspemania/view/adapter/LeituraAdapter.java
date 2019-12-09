@@ -34,15 +34,16 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
     @Override
     public LeituraAdapter.LeituraViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+
         View listItem;
+        listItem = layoutInflater.inflate(R.layout.item_leitura, parent, false);
 
         Colaborador mColaborador;
         mColaborador = SharedPrefHelper.getSharedOBJECT(context, ConstantHelper.COLABORADOR_PREF, Colaborador.class);
 
-        if (mColaborador.perfil == ConstantHelper.PERFIL_ADM) {
-            listItem = layoutInflater.inflate(R.layout.item_leitura, parent, false);
-        }else{
-            listItem = layoutInflater.inflate(R.layout.item_leitura_colaborador, parent, false);
+        if (mColaborador.perfil != ConstantHelper.PERFIL_ADM) {
+            AppCompatImageButton deleteLeitura = listItem.findViewById(R.id.deleteLeitura);
+            deleteLeitura.setVisibility(View.INVISIBLE);
         }
 
         LeituraAdapter.LeituraViewHolder viewHolder = new LeituraAdapter.LeituraViewHolder(listItem);
