@@ -1,10 +1,6 @@
-- Tratar requisições quando estiver offline - sem internet (o firebase nao retorna nada)
+
 - Aletrar o metodo delete para exclusão logica
 - Alterar os metodos getAll para trazer apenas os não excluidos
-- Ajustar layout
-- Terminar login (criar base local, usuario logado, alterar senha etc)
 - Incluir status ativo ou inativo na alteração
-- Verificar se tem conexão (nas consultas)
-- trocar msgs em ingles
 - verificar //TODO no codigo
 - colocar mascara nos campo sde porcentagem  e valor

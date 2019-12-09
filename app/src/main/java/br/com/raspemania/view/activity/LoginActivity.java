@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mPasswordField = findViewById(R.id.fieldPassword);
 
         findViewById(R.id.emailSignInButton).setOnClickListener(this);
-        findViewById(R.id.cadastrarNovoText).setOnClickListener(this);
+        findViewById(R.id.cadastrarNovaConta).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -125,6 +125,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void doLogin(Colaborador colaborador) {
         SharedPrefHelper.setSharedOBJECT(this, ConstantHelper.COLABORADOR_PREF, colaborador);
+        finish();
         startActivity(new Intent(this, MainActivity.class));
     }
 
@@ -160,6 +161,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         hideProgressDialog();
         SharedPrefHelper.clearShared(this);
         mAuth.signOut();
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
@@ -167,7 +169,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         int i = v.getId();
         if (i == R.id.emailSignInButton) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-        } else if (i == R.id.cadastrarNovoText) {
+        } else if (i == R.id.cadastrarNovaConta) {
             finish();
             startActivity(new Intent(this, CadastroUsuarioActivity.class));
         }

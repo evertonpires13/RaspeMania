@@ -79,9 +79,7 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             sendEmailVerification();
-                            //TODO verificar de tem internet
                             saveColaborador(user);
-
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             ErrorHelper.errorLogin("GERAL", CadastroUsuarioActivity.this, mEmailField, mPasswordField);
@@ -181,6 +179,7 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
         hideProgressDialog();
         SharedPrefHelper.clearShared(this);
         mAuth.signOut();
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
