@@ -2,6 +2,7 @@ package br.com.raspemania.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.ConstantHelper;
+import br.com.raspemania.helper.SharedPrefHelper;
+import br.com.raspemania.model.entidade.Colaborador;
 import br.com.raspemania.model.entidade.Leitura;
 import br.com.raspemania.view.adapter.LeituraAdapter;
 import br.com.raspemania.viewmodel.LeituraViewModel;
@@ -47,7 +51,10 @@ public class LeituraFragment extends BaseFragment {
         context = getContext();
         mViewModel = ViewModelProviders.of(this).get(LeituraViewModel.class);
         doBindings();
-        mViewModel.getAll();
+
+
+
+
     }
 
     @Override
@@ -68,17 +75,25 @@ public class LeituraFragment extends BaseFragment {
     }
 
     private void refreshLista() {
-        mViewModel.getAll();
+
+        Colaborador mColaborador;
+        mColaborador = SharedPrefHelper.getSharedOBJECT(getContext(), ConstantHelper.COLABORADOR_PREF, Colaborador.class);
+
+        if (mColaborador.perfil == ConstantHelper.PERFIL_ADM) {
+            mViewModel.getAll();
+        } else {
+            mViewModel.getAllSpinnerForUser();
+        }
     }
 
-    private void doBindings(){
+    private void doBindings() {
         super.onStart();
         super.observeError(mViewModel);
         observeSucess();
         observeGetAll();
     }
 
-    private void observeGetAll(){
+    private void observeGetAll() {
         mViewModel.mList.observe(this, new Observer<List<Leitura>>() {
             @Override
             public void onChanged(List<Leitura> resultList) {
@@ -87,7 +102,7 @@ public class LeituraFragment extends BaseFragment {
         });
     }
 
-    private void observeSucess(){
+    private void observeSucess() {
         mViewModel.sucess.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -96,7 +111,7 @@ public class LeituraFragment extends BaseFragment {
         });
     }
 
-    private void prepareRecyclerView(List<Leitura> leituras){
+    private void prepareRecyclerView(List<Leitura> leituras) {
         mAdapter = new LeituraAdapter(leituras, mViewModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();

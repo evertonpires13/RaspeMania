@@ -94,14 +94,7 @@ public class LeituraActivity extends BaseActivity {
         btnSalvar.setOnClickListener(clickSalvarPremiacao);
 
 
-        Colaborador mColaborador = SharedPrefHelper.getSharedOBJECT(this, ConstantHelper.COLABORADOR_PREF, Colaborador.class);
-        if (mColaborador.perfil == ConstantHelper.PERFIL_ADM) {
-            mViewModelCliente.getAllSpinner();
-        } else {
-            mViewModelCliente.getAllUsuario();
-        }
 
-        mViewModelProduto.getAllSpinner();
 
     }
 
@@ -223,8 +216,18 @@ public class LeituraActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mViewModelProduto.getAll();
-        mViewModelCliente.getAll();
+       // mViewModelProduto.getAll();
+     //   mViewModelCliente.getAll();
+
+        Colaborador mColaborador = SharedPrefHelper.getSharedOBJECT(this, ConstantHelper.COLABORADOR_PREF, Colaborador.class);
+        if (mColaborador.perfil == ConstantHelper.PERFIL_ADM) {
+            mViewModelCliente.Spinner();
+        } else {
+            mViewModelCliente.getAllUsuario();
+        }
+
+        mViewModelProduto.getAllSpinner();
+
     }
 
     private void doBindings() {

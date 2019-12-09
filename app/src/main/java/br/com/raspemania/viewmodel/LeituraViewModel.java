@@ -7,10 +7,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
+import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.firebase.repository.LeituraRepository;
 import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.model.consulta.RelatorioConsulta;
@@ -158,9 +160,38 @@ public class LeituraViewModel extends BaseViewModel {
         }
     }
 
-    public void getAllSpinner() {
+    public void getAllList() {
         try {
-            service.getAll("status", ConstantHelper.ATIVO)
+
+            service.getAll()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot querySnapshot) {
+                            Log.d(TAG, "Listou todos!");
+                            mList.setValue(querySnapshot.toObjects(Leitura.class));
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Erro ao listar!", e);
+                            error.setValue("Erro ao listar!");
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+            error.setValue("Erro ao listar!");
+        }
+    }
+
+
+    public void getAllSpinnerForUser() {
+        try {
+
+            service.getAllReference()
+                    .whereEqualTo("cliente.rota.colaborador.email", FirebaseRaspeMania.getEMailUsuario())
+                    .whereEqualTo("status", ConstantHelper.ATIVO)
+                    .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {
