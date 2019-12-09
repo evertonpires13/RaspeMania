@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -30,6 +31,8 @@ public class MainActivity extends BaseActivity {
     private FirebaseAuth mAuth;
     private Colaborador mColaborador;
     private NavigationView mNavigationView;
+    private TextView mApelidoHeader;
+    private TextView mPerfilHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,13 @@ public class MainActivity extends BaseActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         mNavigationView = findViewById(R.id.nav_view);
+
+        View headerView = mNavigationView.getHeaderView(0);
+        mApelidoHeader = headerView.findViewById(R.id.apelidoHeader);
+        mPerfilHeader = headerView.findViewById(R.id.perfilHeader);
+        mApelidoHeader.setText(mColaborador.apelido);
+
+        mPerfilHeader.setText(mColaborador.getPerfil());
 
         carregaMenu();
 
