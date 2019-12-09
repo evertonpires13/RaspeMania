@@ -2,14 +2,15 @@ package br.com.raspemania.viewmodel;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.firebase.repository.ClienteRepository;
 import br.com.raspemania.helper.ConstantHelper;
@@ -187,7 +188,7 @@ public class ClienteViewModel extends BaseViewModel {
         }
     }
 
-    public void getAllSpinner() {
+    public void Spinner() {
         try {
             service.getAll("status", ConstantHelper.ATIVO)
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

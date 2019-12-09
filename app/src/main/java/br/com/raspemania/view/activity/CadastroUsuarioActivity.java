@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -82,7 +83,7 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
                             saveColaborador(user);
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            ErrorHelper.errorLogin("GERAL", CadastroUsuarioActivity.this, mEmailField, mPasswordField);
+                            ErrorHelper.errorLogin(((FirebaseAuthException)task.getException()).getErrorCode(), CadastroUsuarioActivity.this, mEmailField, mPasswordField);
                         }
                         hideProgressDialog();
                     }
@@ -123,7 +124,7 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
         mColaborador.senha = mPasswordField.getText().toString();
         mColaborador.key = myId;
         mColaborador.status = ConstantHelper.ATIVO;
-        mColaborador.perfil = ConstantHelper.PERFIL_ADM;
+        mColaborador.perfil = ConstantHelper.PERFIL_COLABORADOR;
 
         db.collection(CollectionHelper.COLLECTION_COLABORADOR).document(myId).set(mColaborador)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
