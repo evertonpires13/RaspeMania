@@ -1,6 +1,5 @@
 package br.com.raspemania.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -167,14 +166,7 @@ public class LeituraActivity extends BaseActivity {
             viewDialog.findViewById(R.id.btn_salvar).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    if (mColaborador.status == ConstantHelper.INATIVO){
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                        Toast.makeText(getBaseContext(), "O usuário está inativo. Entre em contato com um administrador!", Toast.LENGTH_LONG).show();
-                    } else {
-                        mViewModelLeitura.saveOrUpdate(leituraAux);
-                    }
+                    mViewModelLeitura.saveOrUpdate(leituraAux);
                     alertDialog.dismiss();
                 }
             });

@@ -100,7 +100,7 @@ public class LeituraFragment extends BaseFragment {
                 if(resultList.isEmpty()){
                     mSemLeitura.setVisibility(View.VISIBLE);
                 } else {
-                    mSemLeitura.setVisibility(View.VISIBLE);
+                    mSemLeitura.setVisibility(View.INVISIBLE);
                 }
                 prepareRecyclerView(resultList);
             }
