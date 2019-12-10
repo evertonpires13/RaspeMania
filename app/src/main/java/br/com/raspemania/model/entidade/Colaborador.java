@@ -14,7 +14,7 @@ import br.com.raspemania.model.BaseModel;
 public class Colaborador extends BaseModel implements Serializable {
 
 
-    public String senha;
+    //public String senha;
     public String email;
     public String apelido;
     public String uid;
