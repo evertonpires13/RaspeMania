@@ -2,6 +2,7 @@ package br.com.raspemania.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,12 @@ public class ColaboradorAdapter extends RecyclerView.Adapter<ColaboradorAdapter.
         final Colaborador mItem = listColaborador.get(position);
         holder.nomeColaborador.setText(mItem.email);
         holder.apelidoColaborador.setText(mItem.apelido);
+
+        if(mItem.perfil == ConstantHelper.PERFIL_ADM){
+            holder.deleteColaborador.setVisibility(View.INVISIBLE);
+            holder.apelidoColaborador.setTextColor(Color.BLACK);
+            holder.nomeColaborador.setTextColor(Color.BLACK);
+        }
 
         if(mItem.status == ConstantHelper.ATIVO) {
             holder.status_ativo.setVisibility(View.VISIBLE);

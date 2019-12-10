@@ -4,5 +4,5 @@
 
 -ERROS
 
-- Quando o usuário tá inativo ele não deixa logar e manda pra tela de login de novo - estão ficando duas telas de login na pilha
+- Quando o usuário tá inativo tem que verificar antes de fazer a leitura pq se ele nao deslogar, nunca vai derrubar ele
 

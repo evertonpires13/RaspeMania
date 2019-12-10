@@ -109,6 +109,7 @@
     <string name="leitura_spinner_cliente">Selecione Cliente</string>
     <string name="leitura_spinner_erro_cliente">Selecione o Cliente </string>
     <string name="leitura_spinner_erro_produto">Selecione o Produto </string>
+    <string name="leitura_vazia">Ops!! Nenhuma leitura registrada nas últimas 24 horas.</string>
 
 
 

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -31,6 +32,7 @@ public class LeituraFragment extends BaseFragment {
     private LeituraViewModel mViewModel;
     private RecyclerView mRecyclerView;
     private LeituraAdapter mAdapter;
+    private AppCompatTextView mSemLeitura;
 
 
     public static LeituraFragment newInstance() {
@@ -56,6 +58,8 @@ public class LeituraFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mSemLeitura = (AppCompatTextView) view.findViewById(R.id.semLeitura);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);
@@ -93,6 +97,11 @@ public class LeituraFragment extends BaseFragment {
         mViewModel.mList.observe(this, new Observer<List<Leitura>>() {
             @Override
             public void onChanged(List<Leitura> resultList) {
+                if(resultList.isEmpty()){
+                    mSemLeitura.setVisibility(View.VISIBLE);
+                } else {
+                    mSemLeitura.setVisibility(View.VISIBLE);
+                }
                 prepareRecyclerView(resultList);
             }
         });

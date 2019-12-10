@@ -2,7 +2,7 @@ package br.com.raspemania.helper;
 
 public class CollectionHelper {
 
-    public static final String COLLECTION_DEV = "_desenvolvimento_";
+    //public static final String COLLECTION_MAIN = "_desenvolvimento_";
     public static final String COLLECTION_MAIN = "";
     public static final String COLLECTION_COLABORADOR = COLLECTION_MAIN + "colaborador";
     public static final String COLLECTION_CLIENTE = COLLECTION_MAIN + "cliente";

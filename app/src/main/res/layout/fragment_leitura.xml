@@ -19,6 +19,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/semLeitura"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:textColor="@color/grey_300"
+        android:text="@string/leitura_vazia"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler"
+        app:layout_constraintEnd_toEndOf="@+id/recycler"
+        app:layout_constraintStart_toStartOf="@+id/recycler"
+        app:layout_constraintTop_toTopOf="@+id/recycler" />
+
     <!--<androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_novo"
         android:layout_width="match_parent"
