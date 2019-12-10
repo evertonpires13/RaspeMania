@@ -11,6 +11,7 @@
     <string name="menu_home">Principal</string>
     <string name="loading">Carregando...</string>
     <string name="criar_conta">Criar uma conta</string>
+    <string name="esqueci_senha">Esqueceu a senha?</string>
     <string name="tenho_conta">Já possuo uma conta</string>
     <string name="campo_obrigatorio">Campo obrigatório!</string>
 

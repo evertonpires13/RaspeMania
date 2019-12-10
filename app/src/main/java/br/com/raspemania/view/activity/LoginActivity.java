@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -48,6 +49,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         findViewById(R.id.emailSignInButton).setOnClickListener(this);
         findViewById(R.id.cadastrarNovaConta).setOnClickListener(this);
+        findViewById(R.id.esqueciSenha).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -94,7 +96,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         String email = mEmailField.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mEmailField.setError("Required.");
+            mEmailField.setError("Campo obrigatório");
             valid = false;
         } else {
             mEmailField.setError(null);
@@ -102,7 +104,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         String password = mPasswordField.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            mPasswordField.setError("Required.");
+            mPasswordField.setError("Campo obrigatório");
             valid = false;
         } else {
             mPasswordField.setError(null);
@@ -127,6 +129,31 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         SharedPrefHelper.setSharedOBJECT(this, ConstantHelper.COLABORADOR_PREF, colaborador);
         finish();
         startActivity(new Intent(this, MainActivity.class));
+    }
+
+    public void esqueciSenha(){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        final String emailAddress = mEmailField.getText().toString();
+        if (TextUtils.isEmpty(emailAddress)) {
+            mEmailField.setError("Campo obrigatório");
+        } else {
+            mEmailField.setError(null);
+            auth.sendPasswordResetEmail(emailAddress)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this,
+                                        "Foi enviado um email de recuperação de senha para " + emailAddress,
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Log.w(TAG, "erro ao recuperar senha", task.getException());
+                                ErrorHelper.errorLogin("ERROR_RECUPERAR_SENHA", LoginActivity.this, null, null);
+                            }
+                        }
+                    });
+        }
     }
 
     public void getByEmail(String email) throws Exception {
@@ -173,6 +200,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else if (i == R.id.cadastrarNovaConta) {
             finish();
             startActivity(new Intent(this, CadastroUsuarioActivity.class));
+        } else if (i == R.id.esqueciSenha) {
+            esqueciSenha();
         }
     }
 }

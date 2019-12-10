@@ -97,6 +97,10 @@ public class ErrorHelper {
                 Toast.makeText(context, "Erro ao cadastrar usuário!", Toast.LENGTH_LONG).show();
                 break;
 
+            case "ERROR_RECUPERAR_SENHA":
+                Toast.makeText(context, "Erro ao recuperar senha!", Toast.LENGTH_LONG).show();
+                break;
+
             default: Toast.makeText(context, "Ocorreu um erro inesperado. Favor entrar em contato com raspemania@gmail.com", Toast.LENGTH_LONG).show();
         }
     }
