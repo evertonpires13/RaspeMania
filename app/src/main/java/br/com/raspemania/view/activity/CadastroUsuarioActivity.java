@@ -121,9 +121,8 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
         mColaborador.apelido = mApelidoField.getText().toString();
         mColaborador.email = user.getEmail();
         mColaborador.uid = user.getUid();
-        //mColaborador.senha = mPasswordField.getText().toString();
         mColaborador.key = myId;
-        mColaborador.status = ConstantHelper.ATIVO;
+        mColaborador.status = ConstantHelper.INATIVO;
         mColaborador.perfil = ConstantHelper.PERFIL_COLABORADOR;
 
         db.collection(CollectionHelper.COLLECTION_COLABORADOR).document(myId).set(mColaborador)

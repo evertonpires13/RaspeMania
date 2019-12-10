@@ -86,7 +86,7 @@ public class ErrorHelper {
                 break;
 
             case "INVALID_USER":
-                Toast.makeText(context, "A conta do usuário foi desativada por um administrador.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "A conta precisa ser ativada por um administrador para realizar o login!", Toast.LENGTH_LONG).show();
                 break;
 
             case "ERROR_GET_USER":
