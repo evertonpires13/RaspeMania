@@ -18,6 +18,12 @@ public class Leitura extends BaseModel implements Serializable {
     public List<PremiacaoList> premiacaoList;
     public int quantidadeReposicao;
 
+    //percentual de comissão do cliente no momento da leitura
+    public Double porcentagemClienteLeitura;
+    //valor do produto no momento da leitura
+    public Double valorProdutoLeitura;
+
+
     @Exclude
     public String getPremiacao() {
         long qtd = 0;
@@ -54,8 +60,8 @@ public class Leitura extends BaseModel implements Serializable {
     @Exclude
     public Double getValorRetiradoDouble() {
         int qtVendida = this.quantidadeVendida;
-        Double valorProduto = this.produto.valor;
-        Double comissao = this.cliente.porcentagem;
+        Double valorProduto = this.valorProdutoLeitura;
+        Double comissao = this.porcentagemClienteLeitura;
         Double totalPremiado = getTotalPremiado();
 
         Double valorRetirado = ((qtVendida*valorProduto)-((qtVendida*valorProduto)*(comissao/100D)))-totalPremiado;
@@ -67,7 +73,7 @@ public class Leitura extends BaseModel implements Serializable {
     public String getValorRetirado() {
         int qtVendida = this.quantidadeVendida;
         Double valorProduto = this.produto.valor;
-        Double comissao = this.cliente.porcentagem;
+        Double comissao = this.porcentagemClienteLeitura;
         Double totalPremiado = getTotalPremiado();
 
         Double valorRetirado = ((qtVendida*valorProduto)-((qtVendida*valorProduto)*(comissao/100D)))-totalPremiado;

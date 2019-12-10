@@ -177,10 +177,16 @@ public class LeituraActivity extends BaseActivity {
 
     private Leitura leitura() {
 
-        leitura.cliente = (Cliente) spinnerCliente.getSelectedItem();
-        leitura.produto = (Produto) spinnerProduto.getSelectedItem();
+        Cliente cliente  = (Cliente) spinnerCliente.getSelectedItem();
+        Produto produto = (Produto) spinnerProduto.getSelectedItem();
+
+        leitura.cliente = cliente;
+        leitura.produto = produto;
         leitura.quantidadeReposicao = Integer.parseInt(textQuantidadeReposicao.getText().toString());
         leitura.quantidadeVendida = Integer.parseInt(textQuantidadeVendida.getText().toString());
+        leitura.porcentagemClienteLeitura = cliente.porcentagem;
+        leitura.valorProdutoLeitura = produto.valor;
+
 
         return leitura;
     }

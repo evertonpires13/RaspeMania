@@ -70,8 +70,8 @@ public class MainActivity extends BaseActivity {
         carregaMenu();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_colaborador, R.id.nav_cliente,
-                R.id.nav_leitura, R.id.nav_relatorio, R.id.nav_rota, R.id.nav_produto)
+                R.id.nav_leitura, R.id.nav_colaborador, R.id.nav_cliente,
+                 R.id.nav_relatorio, R.id.nav_rota, R.id.nav_produto)
                 .setDrawerLayout(drawer)
                 .build();
 

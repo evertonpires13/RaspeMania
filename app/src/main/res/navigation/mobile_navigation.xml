@@ -3,13 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_leitura">
+
 
     <fragment
+        android:id="@+id/nav_leitura"
+        android:name="br.com.raspemania.view.fragment.LeituraFragment"
+        android:label="@string/leitura"
+        tools:layout="@layout/fragment_leitura" />
+
+   <!-- <fragment
         android:id="@+id/nav_home"
         android:name="br.com.raspemania.view.fragment.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" />-->
 
     <fragment
         android:id="@+id/nav_colaborador"
@@ -22,12 +29,6 @@
         android:name="br.com.raspemania.view.fragment.ClienteFragment"
         android:label="@string/cliente"
         tools:layout="@layout/fragment_cliente" />
-
-    <fragment
-        android:id="@+id/nav_leitura"
-        android:name="br.com.raspemania.view.fragment.LeituraFragment"
-        android:label="@string/leitura"
-        tools:layout="@layout/fragment_leitura" />
 
     <fragment
         android:id="@+id/nav_relatorio"

@@ -213,13 +213,6 @@ public class ClienteViewModel extends BaseViewModel {
 
     public void getAllUsuario() {
         try {
-Log.e("dfdf", "aaaaaaaaaaaaaa");
-Log.e("dfdf", "aaaaaaaaaaaaaa");
-Log.e("dfdf", "aaaaaaaaaaaaaa");
-Log.e("dfdf", "aaaaaaaaaaaaaa");
-Log.e("dfdf", "aaaaaaaaaaaaaa");
-Log.e("dfdf", "aaaaaaaaaaaaaa");
-Log.e("dfdf", "aaaaaaaaaaaaaa");
             service.getAll("rota.colaborador.email", FirebaseRaspeMania.getEMailUsuario())
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override

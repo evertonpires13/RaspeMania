@@ -2,7 +2,6 @@ package br.com.raspemania.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +76,7 @@ public class LeituraFragment extends BaseFragment {
         mColaborador = SharedPrefHelper.getSharedOBJECT(getContext(), ConstantHelper.COLABORADOR_PREF, Colaborador.class);
 
         if (mColaborador.perfil == ConstantHelper.PERFIL_ADM) {
-            mViewModel.getAll();
+            mViewModel.getAllLastDay();
         } else {
             mViewModel.getAllSpinnerForUser();
         }

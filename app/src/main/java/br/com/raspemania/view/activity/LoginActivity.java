@@ -140,6 +140,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         for (DocumentSnapshot document : queryDocumentSnapshots) {
                             Colaborador colaborador = document.toObject(Colaborador.class);
                             if(colaborador.status == ConstantHelper.INATIVO){
+                                finish();
                                 signOut();
                                 ErrorHelper.errorLogin("INVALID_USER", LoginActivity.this, null, null);
                             } else {

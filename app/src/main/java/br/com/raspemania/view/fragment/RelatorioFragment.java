@@ -23,11 +23,11 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
 import br.com.raspemania.R;
+import br.com.raspemania.helper.DateHelper;
 import br.com.raspemania.helper.SpinnerHelper;
 import br.com.raspemania.model.consulta.RelatorioConsulta;
 import br.com.raspemania.model.entidade.Cliente;
@@ -59,8 +59,6 @@ public class RelatorioFragment extends BaseFragment {
     private AppCompatImageButton calendar_fim;
 
     private DatePickerDialog picker;
-
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public static LeituraFragment newInstance() {
         return new LeituraFragment();
@@ -159,9 +157,6 @@ public class RelatorioFragment extends BaseFragment {
 
     private RelatorioConsulta filtros() throws ParseException {
 
-        String dataFimS = dataFim.getText().toString();
-        Calendar c = Calendar.getInstance();
-
         RelatorioConsulta filtros = new RelatorioConsulta();
 
         if(spinnerCliente.getSelectedItemPosition() != 0){
@@ -174,12 +169,10 @@ public class RelatorioFragment extends BaseFragment {
             filtros.rota = (Rota) spinnerRota.getSelectedItem();
         }
         if(!TextUtils.isEmpty(dataFim.getText())){
-            c.setTime(dateFormat.parse(dataFimS));
-            c.add(Calendar.DATE, 1);  // adicionar um dia para nao dar erro no filtro
-            filtros.dataFim = c.getTime();
+            filtros.dataFim = DateHelper.addData(dataFim.getText().toString(), 1, context);
         }
         if(!TextUtils.isEmpty(dataInicio.getText())){
-            filtros.dataInicio = dateFormat.parse(dataInicio.getText().toString());
+            filtros.dataInicio = DateHelper.stringToDate(dataInicio.getText().toString(), context);
         }
         return filtros;
     }
