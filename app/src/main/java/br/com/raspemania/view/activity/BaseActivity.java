@@ -89,10 +89,9 @@ public class BaseActivity extends AppCompatActivity {
         if (activeInfo != null && activeInfo.isConnected()) {
             if (activeInfo.getType() == ConnectivityManager.TYPE_WIFI)
                 return true;
-        }
-            else if(activeInfo.getType() == ConnectivityManager.TYPE_MOBILE){
+            if(activeInfo.getType() == ConnectivityManager.TYPE_MOBILE)
                 return true;
-            }
+        }
         return false;
     }
 
