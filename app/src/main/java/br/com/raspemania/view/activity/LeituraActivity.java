@@ -167,6 +167,9 @@ public class LeituraActivity extends BaseActivity {
                 @Override
                 public void onClick(View view) {
                     mViewModelLeitura.saveOrUpdate(leituraAux);
+                    Cliente cli = leituraAux.cliente;
+                    cli.estoque = cli.estoque - leituraAux.quantidadeVendida + leituraAux.quantidadeReposicao;
+                    mViewModelCliente.saveOrUpdate(cli);
                     alertDialog.dismiss();
                 }
             });
@@ -190,7 +193,6 @@ public class LeituraActivity extends BaseActivity {
         leitura.quantidadeVendida = Integer.parseInt(textQuantidadeVendida.getText().toString());
         leitura.porcentagemClienteLeitura = cliente.porcentagem;
         leitura.valorProdutoLeitura = produto.valor;
-
 
         return leitura;
     }

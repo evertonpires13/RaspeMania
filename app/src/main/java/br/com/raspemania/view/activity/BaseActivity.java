@@ -32,7 +32,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        //if(!hasConnection()) { alertNoConnection(); }
+        if(!hasConnection()) { alertNoConnection(); }
     }
 
     @Override
@@ -42,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void closeApplication() {
-        Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
         homeIntent.addCategory(Intent.CATEGORY_HOME);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
@@ -58,12 +58,12 @@ public class BaseActivity extends AppCompatActivity {
                         onResume();
                     }
                 });
-        /*alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Entendi",
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Entendi",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         closeApplication();
                     }
-                });*/
+                });
         alertDialog.show();
     }
 

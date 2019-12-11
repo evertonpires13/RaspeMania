@@ -1,6 +1,8 @@
 package br.com.raspemania.view.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,11 +66,30 @@ public class LeituraAdapter extends RecyclerView.Adapter<LeituraAdapter.LeituraV
         holder.deleteLeitura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mViewmodel.delete(mItem);
-                listLeitura.remove(mItem);
-                notifyDataSetChanged();
+                confirmaDelete(mItem);
             }
         });
+    }
+
+    public void confirmaDelete(final Leitura mItem) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle("Atenção");
+        alertDialog.setMessage("Deseja excluir a leitura? Essa ação não poderá ser desfeita.");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "sim",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mViewmodel.delete(mItem);
+                        listLeitura.remove(mItem);
+                        notifyDataSetChanged();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 
     @Override
