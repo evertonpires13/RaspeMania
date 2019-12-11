@@ -32,6 +32,7 @@ public class ClienteActivity extends BaseActivity {
     private TextInputEditText mClienteEndereco;
     private TextInputEditText mClienteCodigo;
     private TextInputEditText mClientePorcentagem;
+    private TextInputEditText mNomeCliente;
     private Spinner mClienteRota;
     private Spinner mStatus;
     private ArrayAdapter<Rota> adapter;
@@ -54,6 +55,7 @@ public class ClienteActivity extends BaseActivity {
         mClientePorcentagem = findViewById(R.id.cliente_porcentagem);
         mClienteRota = findViewById(R.id.cliente_rota);
         mStatus = findViewById(R.id.cliente_status);
+        mNomeCliente = findViewById(R.id.cliente_nome);
 
         super.spinnerStatus(mStatus);
 
@@ -77,9 +79,7 @@ public class ClienteActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-
         mViewModelRota.getAllSpinner();
-
     }
 
     private void doBindings() {
@@ -91,18 +91,23 @@ public class ClienteActivity extends BaseActivity {
 
     private void bindCampos(Cliente itemLista) {
         this.mCliente = itemLista;
-        mClienteEstoque.setText(itemLista.estoque + "");
+        mClienteEstoque.setText(String.valueOf(itemLista.estoque));
+        mClienteEstoque.setEnabled(false);
+        mClienteEstoque.setTextColor(getResources().getColor(R.color.grey_500));
         mClienteEndereco.setText(itemLista.endereco);
         mClienteCodigo.setText(itemLista.codigo);
-        mClientePorcentagem.setText(itemLista.porcentagem + "");
+        mClientePorcentagem.setText(String.valueOf(itemLista.porcentagem));
         mStatus.setSelection(super.setSpinner(itemLista.status));
-        //  private Spinner cliente_rota;
-
+        mNomeCliente.setText(itemLista.nome);
     }
 
     private Boolean camposValidos() {
         if (TextUtils.isEmpty(mClienteEstoque.getText())) {
             mClienteEstoque.setError(getString(R.string.erro_cliente_estoque));
+            return false;
+        }
+        if (TextUtils.isEmpty(mNomeCliente.getText())) {
+            mClienteEstoque.setError(getString(R.string.erro_cliente_nome));
             return false;
         }
         if (TextUtils.isEmpty(mClienteEndereco.getText())) {
@@ -133,9 +138,10 @@ public class ClienteActivity extends BaseActivity {
 
     private Cliente cliente() {
         mCliente.estoque = Integer.parseInt(mClienteEstoque.getText().toString());
-        mCliente.porcentagem = Double.parseDouble(mClientePorcentagem.getText().toString().replace(".", "").replace(",", "."));
+        mCliente.porcentagem = Double.parseDouble(mClientePorcentagem.getText().toString());
         mCliente.codigo = mClienteCodigo.getText().toString();
         mCliente.endereco = mClienteEndereco.getText().toString();
+        mCliente.nome = mNomeCliente.getText().toString();
         mCliente.rota = (Rota) mClienteRota.getSelectedItem();
         mCliente.status = super.getStatusSpinner((String) mStatus.getSelectedItem());
         return mCliente;

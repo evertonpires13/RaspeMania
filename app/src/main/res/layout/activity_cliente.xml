@@ -8,25 +8,50 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
+    android:id="@+id/textInputLayout4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="32dp"
+    android:layout_marginEnd="16dp"
+    android:textColor="@android:color/black"
+    android:textColorHint="@android:color/darker_gray"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/cliente_codigo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/darker_gray"
+        android:gravity="left"
+        android:hint="@string/cliente_codigo"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+</com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cliente_codigo"
+            android:id="@+id/cliente_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="left"
-            android:hint="@string/cliente_codigo"
+            android:hint="@string/cliente_nome"
             android:inputType="text"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
@@ -44,7 +69,7 @@
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cliente_endereco"
@@ -79,7 +104,7 @@
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="left"
             android:hint="@string/cliente_estoque"
-            android:inputType="numberSigned"
+            android:inputType="number"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
 
@@ -105,7 +130,7 @@
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="left"
             android:hint="@string/cliente_porcentagem"
-            android:inputType="numberSigned"
+            android:inputType="numberDecimal"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
 

@@ -10,6 +10,7 @@ public class Cliente extends BaseModel implements Serializable {
 
     public int estoque;
     public String endereco;
+    public String nome;
     public String codigo;
     public Double porcentagem;                     //valor de comissão do lugar
     public Rota rota;

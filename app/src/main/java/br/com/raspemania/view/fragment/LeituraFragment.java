@@ -1,6 +1,7 @@
 package br.com.raspemania.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -23,6 +25,7 @@ import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.helper.SharedPrefHelper;
 import br.com.raspemania.model.entidade.Colaborador;
 import br.com.raspemania.model.entidade.Leitura;
+import br.com.raspemania.view.activity.LeituraActivity;
 import br.com.raspemania.view.adapter.LeituraAdapter;
 import br.com.raspemania.viewmodel.LeituraViewModel;
 
@@ -33,6 +36,7 @@ public class LeituraFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     private LeituraAdapter mAdapter;
     private AppCompatTextView mSemLeitura;
+    private AppCompatButton mNovoBtn;
 
 
     public static LeituraFragment newInstance() {
@@ -53,12 +57,20 @@ public class LeituraFragment extends BaseFragment {
         mViewModel = ViewModelProviders.of(this).get(LeituraViewModel.class);
         doBindings();
 
+        mNovoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, LeituraActivity.class));
+            }
+        });
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mNovoBtn = view.findViewById(R.id.btn_novo);
         mSemLeitura = (AppCompatTextView) view.findViewById(R.id.semLeitura);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler);

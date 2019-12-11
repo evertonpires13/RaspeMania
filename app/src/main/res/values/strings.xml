@@ -63,9 +63,11 @@
     <string name="cliente_estoque">Estoque</string>
     <string name="cliente_endereco">Endereço</string>
     <string name="cliente_codigo">Código</string>
+    <string name="cliente_nome">Nome</string>
     <string name="cliente_porcentagem">Porcentagem (%)</string>
     <string name="cliente_rota">Rota</string>
     <string name="erro_cliente_estoque">Informe a quantidade em estoque!</string>
+    <string name="erro_cliente_nome">Informe o nome do cliente!</string>
     <string name="erro_cliente_endereco">Informe o endereço!</string>
     <string name="erro_cliente_codigo">Informe o código!</string>
     <string name="erro_cliente_porcentagem">Informe a porcentagem!</string>

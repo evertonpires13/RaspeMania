@@ -52,6 +52,7 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteV
         holder.codigo.setText(mItem.codigo);
         holder.rota.setText(mItem.rota.nome);
         holder.endereco.setText(mItem.endereco);
+        holder.nomeCliente.setText(mItem.nome);
 
         if(mItem.status == ConstantHelper.ATIVO) {
             holder.status_ativo.setVisibility(View.VISIBLE);
@@ -95,6 +96,7 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteV
         public TextView codigo;
         public TextView rota;
         public TextView endereco;
+        public TextView nomeCliente;
         public ConstraintLayout constraintLayout;
         public AppCompatImageButton deleteCliente;
         public AppCompatImageView status_inativo;
@@ -105,6 +107,7 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteV
             this.codigo = (TextView) itemView.findViewById(R.id.codigo_cliente);
             this.rota = (TextView) itemView.findViewById(R.id.nome_rota);
             this.endereco = (TextView) itemView.findViewById(R.id.endereco_rota);
+            this.nomeCliente = (TextView) itemView.findViewById(R.id.nome_cliente);
             this.constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.layout_item_cliente);
             this.deleteCliente = (AppCompatImageButton) itemView.findViewById(R.id.delete_cliente_btn);
             this.status_inativo = (AppCompatImageView) itemView.findViewById(R.id.status_inativo);

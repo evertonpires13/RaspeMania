@@ -3,7 +3,7 @@
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
-android:layout_height="80dp"
+android:layout_height="wrap_content"
 android:background="@android:color/white"
 android:orientation="vertical"
 android:id="@+id/layout_item_cliente">
@@ -16,37 +16,50 @@ android:id="@+id/layout_item_cliente">
         android:text="Codigo"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/status_ativo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/nome_cliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Nome cliente"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/codigo_cliente"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nome_rota"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Nome rota"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/codigo_cliente"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/status_inativo"
+        app:layout_constraintTop_toBottomOf="@+id/codigo_cliente" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/endereco_rota"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="16dp"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
         android:text="Endereco rota"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="14sp"
-        android:inputType="textMultiLine"
-        android:singleLine="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/delete_cliente_btn"
         app:layout_constraintStart_toEndOf="@+id/status_ativo"
-        app:layout_constraintTop_toBottomOf="@+id/codigo_cliente" />
+        app:layout_constraintTop_toBottomOf="@+id/nome_rota" />
 
 <androidx.appcompat.widget.AppCompatImageView
     android:id="@+id/status_ativo"
