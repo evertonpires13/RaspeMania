@@ -127,7 +127,8 @@ public class RotaActivity extends BaseActivity {
     }
 
     public void bindSpinner(Colaborador col) {
-        for (int i = 0; i < adapter.getCount(); i++) {
+        //item 0 = "Selecione"
+        for (int i = 1; i < adapter.getCount(); i++) {
             if (adapter.getItem(i).email.equalsIgnoreCase(col.email)) {
                 mRotaColaborador.setSelection(i);
                 break;
