@@ -167,7 +167,7 @@ public class ProdutoViewModel extends BaseViewModel {
      */
     public void getAll() {
         try {
-            service.getAll()
+            service.getAll("status", ConstantHelper.ATIVO)
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {

@@ -68,8 +68,13 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         holder.deleteProduto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mViewmodel.delete(mItem);
-                //listProduto.remove(mItem);
+                if(mItem.status == ConstantHelper.INATIVO){
+                    listProduto.remove(mItem);
+                    mItem.excluido = ConstantHelper.EXCLUIDO;
+                    mViewmodel.delete(mItem);
+                } else {
+                    mViewmodel.delete(mItem);
+                }
                 notifyDataSetChanged();
             }
         });

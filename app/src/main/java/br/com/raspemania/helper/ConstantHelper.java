@@ -9,6 +9,9 @@ public class ConstantHelper {
     public static int INATIVO = 2;
     public static String INATIVO_STR = "Inativo";
 
+    public static long EXCLUIDO = 0;
+    public static long NAO_EXCLUIDO = 1;
+
     //Perfil colaborador
     public static int SELECIONE_ADM = 0;
     public static String PERFIL_SELECIONE_STR = "Selecione Perfil";

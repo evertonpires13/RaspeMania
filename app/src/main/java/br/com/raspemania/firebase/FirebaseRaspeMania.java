@@ -11,15 +11,14 @@ public class FirebaseRaspeMania {
     /*--------------------------------------------------------------------------------------------*/
     public static final FirebaseFirestore getDatabase() {
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
+                .setTimestampsInSnapshotsEnabled(true)
                 .build();
+        firestore.setFirestoreSettings(settings);
 
-        db.setFirestoreSettings(settings);
-
-        return db;
+        return firestore;
     }
 
     /*--------------------------------------------------------------------------------------------*/
