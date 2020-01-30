@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher_raspe"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_raspe_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
