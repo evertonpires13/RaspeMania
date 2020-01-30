@@ -168,7 +168,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             Colaborador colaborador = document.toObject(Colaborador.class);
                             if(colaborador.status == ConstantHelper.INATIVO){
                                 signOut();
-                                ErrorHelper.errorLogin("INVALID_USER", LoginActivity.this, null, null);
+                                if(colaborador.excluido == ConstantHelper.EXCLUIDO){
+                                    ErrorHelper.errorLogin("DELETED_USER", LoginActivity.this, null, null);
+                                } else {
+                                    ErrorHelper.errorLogin("INVALID_USER", LoginActivity.this, null, null);
+                                }
                             } else {
                                 doLogin(colaborador);
                             }

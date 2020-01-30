@@ -124,6 +124,7 @@ public class CadastroUsuarioActivity extends BaseActivity implements View.OnClic
         mColaborador.key = myId;
         mColaborador.status = ConstantHelper.INATIVO;
         mColaborador.perfil = ConstantHelper.PERFIL_COLABORADOR;
+        mColaborador.excluido = ConstantHelper.NAO_EXCLUIDO;
 
         db.collection(CollectionHelper.COLLECTION_COLABORADOR).document(myId).set(mColaborador)
             .addOnSuccessListener(new OnSuccessListener<Void>() {

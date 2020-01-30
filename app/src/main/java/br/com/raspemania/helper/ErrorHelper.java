@@ -89,6 +89,10 @@ public class ErrorHelper {
                 Toast.makeText(context, "A conta precisa ser ativada por um administrador para realizar o login!", Toast.LENGTH_LONG).show();
                 break;
 
+            case "DELETED_USER":
+                Toast.makeText(context, "Esse usuário foi excluído por um administrador!", Toast.LENGTH_LONG).show();
+                break;
+
             case "ERROR_GET_USER":
                 Toast.makeText(context, "Erro ao tentar fazer login.", Toast.LENGTH_LONG).show();
                 break;
