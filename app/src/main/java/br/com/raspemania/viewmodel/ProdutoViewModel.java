@@ -167,7 +167,7 @@ public class ProdutoViewModel extends BaseViewModel {
      */
     public void getAll() {
         try {
-            service.getAll("status", ConstantHelper.ATIVO)
+            service.getAll("excluido", ConstantHelper.NAO_EXCLUIDO)
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {

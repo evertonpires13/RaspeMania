@@ -42,6 +42,7 @@ public class ColaboradorRepository extends BaseRepository<Colaborador> {
         object.key = myId;
         object.status = ConstantHelper.ATIVO;
         object.perfil = ConstantHelper.PERFIL_COLABORADOR;
+        object.excluido = ConstantHelper.NAO_EXCLUIDO;
 
         return db.collection(collection).document(myId).set(object);
     }

@@ -167,7 +167,7 @@ public class ClienteViewModel extends BaseViewModel {
      */
     public void getAll() {
         try {
-            service.getAll()
+            service.getAll("excluido", ConstantHelper.NAO_EXCLUIDO)
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot querySnapshot) {

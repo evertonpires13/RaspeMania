@@ -41,6 +41,7 @@ public class ClienteRepository extends BaseRepository<Cliente> {
         this.object = entity;
         object.key = myId;
         object.status = ConstantHelper.ATIVO;
+        object.excluido = ConstantHelper.NAO_EXCLUIDO;
 
         return db.collection(collection).document(myId).set(object);
     }

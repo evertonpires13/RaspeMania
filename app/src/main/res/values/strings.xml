@@ -113,10 +113,6 @@
     <string name="leitura_spinner_erro_produto">Selecione o Produto </string>
     <string name="leitura_vazia">Ops!! Nenhuma leitura registrada nas últimas 24 horas.</string>
 
-
-
-
-
     <!-- Spinner -->
     <string name="spinner_colaborador">Selecione Colaborador</string>
     <string name="spinner_rota">Selecione Rota</string>
@@ -124,5 +120,10 @@
 
     <!-- Status erro -->
     <string name="erro_spinner_status">Selecione o status</string>
+
+    <string name="atencao">Atenção</string>
+    <string name="texte_delete">Deseja excluir definitivamente esse registro? Essa ação não poderá ser desfeita!</string>
+    <string name="confirma_delete">Tenho certeza</string>
+    <string name="cancelar">Cancelar</string>
 
 </resources>

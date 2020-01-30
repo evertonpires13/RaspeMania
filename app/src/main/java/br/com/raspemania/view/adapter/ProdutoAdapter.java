@@ -1,6 +1,8 @@
 package br.com.raspemania.view.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,13 +71,29 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             @Override
             public void onClick(View view) {
                 if(mItem.status == ConstantHelper.INATIVO){
-                    listProduto.remove(mItem);
-                    mItem.excluido = ConstantHelper.EXCLUIDO;
-                    mViewmodel.delete(mItem);
+                    final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                    alertDialog.setTitle(context.getString(R.string.atencao));
+                    alertDialog.setMessage(context.getString(R.string.texte_delete));
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, context.getString(R.string.confirma_delete),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    listProduto.remove(mItem);
+                                    mItem.excluido = ConstantHelper.EXCLUIDO;
+                                    mViewmodel.delete(mItem);
+                                    notifyDataSetChanged();
+                                }
+                            });
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(R.string.cancelar),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    alertDialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
                 } else {
                     mViewmodel.delete(mItem);
+                    notifyDataSetChanged();
                 }
-                notifyDataSetChanged();
             }
         });
     }
