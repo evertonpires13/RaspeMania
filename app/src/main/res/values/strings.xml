@@ -36,6 +36,7 @@
     <string name="erro_valor_produto">Informe o valor do produto!</string>
     <string name="produto_inserido_sucesso">Produto inserido!</string>
 
+
     <!-- CRUD messages -->
     <string name="inserido_sucesso">Salvo com sucesso!</string>
     <string name="inserido_error">Erro ao salvar!</string>
@@ -50,6 +51,10 @@
     <string name="erro_apelido_colaborador">Informe o apelido do colaborador!</string>
     <string name="erro_email_colaborador">Informe o e-mail do colaborador!</string>
     <string name="erro_senha_colaborador">Informe a senha do colaborador!</string>
+    <string name="pesquisar_colaborador">apelido</string>
+    <string name="pesquisar_cliente">codigo</string>
+    <string name="pesquisar_produto">nome</string>
+    <string name="pesquisar_rota">nome</string>
 
 
     <!-- Rota -->
@@ -125,5 +130,8 @@
     <string name="texte_delete">Deseja excluir definitivamente esse registro? Essa ação não poderá ser desfeita!</string>
     <string name="confirma_delete">Tenho certeza</string>
     <string name="cancelar">Cancelar</string>
+    <string name="pesquisar">pesquisar</string>
+
+
 
 </resources>

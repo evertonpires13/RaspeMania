@@ -134,4 +134,6 @@ public class LeituraFragment extends BaseFragment {
         mAdapter.notifyDataSetChanged();
         hideProgressDialog();
     }
+
+
 }

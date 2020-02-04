@@ -9,11 +9,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.firebase.repository.RotaRepository;
 import br.com.raspemania.helper.ConstantHelper;
+import br.com.raspemania.model.entidade.Produto;
 import br.com.raspemania.model.entidade.Rota;
 
 public class RotaViewModel extends BaseViewModel {
@@ -210,5 +212,42 @@ public class RotaViewModel extends BaseViewModel {
             error.setValue("Erro ao listar!");
         }
     }
+
+
+    public void getAll(String nome) {
+
+        try {
+
+            service.getAll(nome).addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot querySnapshot) {
+                    Log.d(TAG, "Listou todos!");
+                    List<Rota> listaConsulta = querySnapshot.toObjects(Rota.class);
+                    List<Rota> adicionarCol = new ArrayList<>();
+                    for (Rota colaborador : listaConsulta) {
+                        if (colaborador.excluido!=null && colaborador.excluido == ConstantHelper.NAO_EXCLUIDO) {
+                            adicionarCol.add(colaborador);
+                        }
+                    }
+                    mList.setValue(adicionarCol);
+                    //mList.setValue(querySnapshot.toObjects(Colaborador.class));
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(TAG, "Erro ao listar!", e);
+                    error.setValue("Erro ao listar!");
+                }
+            });
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("fff", "Erro : " + e.toString());
+            error.setValue("Erro ao listar! ");
+        }
+
+    }
+
 
 }

@@ -5,13 +5,20 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.firebase.repository.ColaboradorRepository;
+import br.com.raspemania.helper.CollectionHelper;
 import br.com.raspemania.helper.ConstantHelper;
 import br.com.raspemania.model.entidade.Colaborador;
 
@@ -145,6 +152,8 @@ public class ColaboradorViewModel extends BaseViewModel {
                         public void onSuccess(QuerySnapshot querySnapshot) {
                             Log.d(TAG, "Listou todos!");
                             mList.setValue(querySnapshot.toObjects(Colaborador.class));
+
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -159,6 +168,44 @@ public class ColaboradorViewModel extends BaseViewModel {
             error.setValue("Erro ao listar!");
         }
     }
+
+
+    public void getAll(final String apelido) {
+
+        try {
+
+            service.getAll(apelido+"").addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot querySnapshot) {
+                            Log.d(TAG, "Listou todos!");
+                            List<Colaborador> listaConsulta = querySnapshot.toObjects(Colaborador.class);
+                            List<Colaborador> adicionarCol = new ArrayList<>();
+                            for (Colaborador colaborador : listaConsulta){
+                                if (colaborador.excluido!=null && colaborador.excluido == ConstantHelper.NAO_EXCLUIDO) {
+                                    adicionarCol.add(colaborador);
+                                }
+                            }
+                            mList.setValue(adicionarCol);
+                            //mList.setValue(querySnapshot.toObjects(Colaborador.class));
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(TAG, "Erro ao listar!", e);
+                            error.setValue("Erro ao listar!");
+                        }
+                    });
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("fff", "Erro : " + e.toString());
+            error.setValue("Erro ao listar! ");
+        }
+
+    }
+
 
     public void getAllSpinner() {
         try {

@@ -3,10 +3,13 @@ package br.com.raspemania.firebase.repository;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.helper.CollectionHelper;
 import br.com.raspemania.helper.ConstantHelper;
+import br.com.raspemania.model.consulta.RelatorioConsulta;
 import br.com.raspemania.model.entidade.Colaborador;
 
 public class ColaboradorRepository extends BaseRepository<Colaborador> {
@@ -26,7 +29,6 @@ public class ColaboradorRepository extends BaseRepository<Colaborador> {
     }
 
     /**
-     *
      * @param entity
      * @return Task<Void>
      * @throws Exception
@@ -46,4 +48,17 @@ public class ColaboradorRepository extends BaseRepository<Colaborador> {
 
         return db.collection(collection).document(myId).set(object);
     }
+
+    public Task<QuerySnapshot> getAll(String apelido) throws Exception {
+
+        this.db = FirebaseRaspeMania.getDatabase();
+
+        Query query = db.collection(collection);
+        query = query.whereGreaterThanOrEqualTo("apelido", apelido);
+       // query = query.whereEqualTo("excluido", ConstantHelper.NAO_EXCLUIDO);
+
+        return query.get();
+    }
+
+
 }

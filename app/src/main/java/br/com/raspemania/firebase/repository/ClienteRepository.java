@@ -3,6 +3,8 @@ package br.com.raspemania.firebase.repository;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import br.com.raspemania.firebase.FirebaseRaspeMania;
 import br.com.raspemania.helper.CollectionHelper;
@@ -45,4 +47,18 @@ public class ClienteRepository extends BaseRepository<Cliente> {
 
         return db.collection(collection).document(myId).set(object);
     }
+
+
+
+    public Task<QuerySnapshot> getAll(String codigo) throws Exception {
+
+        this.db = FirebaseRaspeMania.getDatabase();
+
+        Query query = db.collection(collection);
+        query = query.whereGreaterThanOrEqualTo("codigo", codigo);
+        // query = query.whereEqualTo("excluido", ConstantHelper.NAO_EXCLUIDO);
+
+        return query.get();
+    }
+
 }

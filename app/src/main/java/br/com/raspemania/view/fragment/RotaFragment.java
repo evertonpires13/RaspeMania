@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -33,6 +35,8 @@ public class RotaFragment extends BaseFragment {
     private RotaAdapter mAdapter;
 
     private AppCompatButton mNovoBtn;
+    private TextInputEditText nome_colaborador;
+    private AppCompatButton btn_pesquisar;
 
 
     public static RotaFragment newInstance() {
@@ -66,12 +70,20 @@ public class RotaFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        context = view.getContext();
         mNovoBtn = view.findViewById(R.id.btn_novo);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+
+
+        btn_pesquisar = (AppCompatButton) view.findViewById(R.id.btn_pesquisar);
+        btn_pesquisar.setOnClickListener(botaoPesquisar);
+
+        nome_colaborador = (TextInputEditText) view.findViewById(R.id.nome_colaborador);
+        // nome_colaborador.setOnKeyListener(keyPesquisa);
     }
 
     @Override
@@ -117,4 +129,12 @@ public class RotaFragment extends BaseFragment {
         mAdapter.notifyDataSetChanged();
         hideProgressDialog();
     }
+
+
+    View.OnClickListener botaoPesquisar =  new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            mViewModel.getAll(nome_colaborador.getText().toString());
+        }
+    };
 }

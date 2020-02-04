@@ -160,7 +160,6 @@ public class LeituraViewModel extends BaseViewModel {
             error.setValue("Erro ao listar!");
         }
     }*/
-
     public void getAllSpinnerForUser() {
         try {
 
@@ -240,4 +239,6 @@ public class LeituraViewModel extends BaseViewModel {
             error.setValue("Erro ao listar!");
         }
     }
+
+
 }
