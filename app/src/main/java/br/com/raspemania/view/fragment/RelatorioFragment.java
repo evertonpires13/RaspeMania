@@ -8,7 +8,9 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -49,7 +51,7 @@ public class RelatorioFragment extends BaseFragment {
     private RelatorioConsulta mFiltros;
 
     private AppCompatButton mBuscar;
-    private Spinner spinnerCliente;
+    private AutoCompleteTextView spinnerCliente;
     private Spinner spinnerRota;
     private Spinner spinnerColaborador;
     private TextInputEditText dataFim;
@@ -59,6 +61,8 @@ public class RelatorioFragment extends BaseFragment {
     private AppCompatImageButton calendar_fim;
 
     private DatePickerDialog picker;
+
+    private Cliente cliente;
 
     public static LeituraFragment newInstance() {
         return new LeituraFragment();
@@ -159,8 +163,8 @@ public class RelatorioFragment extends BaseFragment {
 
         RelatorioConsulta filtros = new RelatorioConsulta();
 
-        if(spinnerCliente.getSelectedItemPosition() != 0){
-            filtros.cliente = (Cliente) spinnerCliente.getSelectedItem();
+        if(cliente!=null){
+            filtros.cliente = cliente;
         }
         if(spinnerColaborador.getSelectedItemPosition() != 0){
             filtros.colaborador = (Colaborador) spinnerColaborador.getSelectedItem();
@@ -181,9 +185,15 @@ public class RelatorioFragment extends BaseFragment {
 
         mViewModelCliente.mList.observe(this, new Observer<List<Cliente>>() {
             @Override
-            public void onChanged(List<Cliente> resultList) {
+            public void onChanged(final List<Cliente> resultList) {
                 ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(context, R.layout.item_spinner_default, SpinnerHelper.spinnerCliente( resultList, getContext()));
                 spinnerCliente.setAdapter(adapter);
+                spinnerCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        cliente = resultList.get(i);
+                    }
+                });
             }
         });
     }

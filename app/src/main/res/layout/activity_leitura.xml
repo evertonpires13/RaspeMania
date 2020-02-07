@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_leitura_activity">
 
-    <Spinner
+    <AutoCompleteTextView
         android:id="@+id/spinnerCliente"
-        style="@style/FirebaseUI.CountrySpinner"
+        android:hint="@string/relatorio_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

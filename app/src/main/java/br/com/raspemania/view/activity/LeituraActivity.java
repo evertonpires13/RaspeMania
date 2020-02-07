@@ -2,9 +2,12 @@ package br.com.raspemania.view.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.type.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +45,7 @@ import br.com.raspemania.viewmodel.ProdutoViewModel;
 public class LeituraActivity extends BaseActivity {
 
     private Spinner spinnerProduto;
-    private Spinner spinnerCliente;
+    private AutoCompleteTextView spinnerCliente;
     private TextInputEditText textQuantidadeVendida;
     private TextInputEditText textQuantidadeReposicao;
     private AppCompatButton btnSalvar;
@@ -53,6 +57,7 @@ public class LeituraActivity extends BaseActivity {
     private ClienteViewModel mViewModelCliente;
     private LeituraViewModel mViewModelLeitura;
     private Leitura leitura;
+    private Cliente cliente;
 
     private RecyclerView mRecyclerView;
     private PremiacaoAdapter mAdapter;
@@ -96,9 +101,6 @@ public class LeituraActivity extends BaseActivity {
 
         btnAdicionar.setOnClickListener(clickAdicionarPremiacao);
         btnSalvar.setOnClickListener(clickSalvarPremiacao);
-
-
-
 
     }
 
@@ -184,7 +186,7 @@ public class LeituraActivity extends BaseActivity {
 
     private Leitura leitura() {
 
-        Cliente cliente  = (Cliente) spinnerCliente.getSelectedItem();
+        //Cliente cliente  = (Cliente) spinnerCliente.getSelectedItem();
         Produto produto = (Produto) spinnerProduto.getSelectedItem();
 
         leitura.cliente = cliente;
@@ -215,9 +217,8 @@ public class LeituraActivity extends BaseActivity {
             return false;
         }
 
-
-        Cliente p2 = (Cliente) spinnerCliente.getSelectedItem();
-        if (p2.key == null || p2.key.isEmpty()) {
+        //Cliente p2 = (Cliente) spinnerCliente.geton getSelectedItem();
+        if (cliente.key == null || cliente.key.isEmpty()) {
             Toast.makeText(this, getString(R.string.leitura_spinner_erro_cliente), Toast.LENGTH_LONG).show();
             return false;
         }
@@ -268,10 +269,39 @@ public class LeituraActivity extends BaseActivity {
 
         mViewModelCliente.mList.observe(this, new Observer<List<Cliente>>() {
             @Override
-            public void onChanged(List<Cliente> resultList) {
+            public void onChanged(final List<Cliente> resultList) {
 
                 ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, SpinnerHelper.spinnerCliente(resultList, LeituraActivity.this));
                 spinnerCliente.setAdapter(adapter);
+
+                for (Cliente c : resultList){
+                    Log.e("ddffdfd", c.toString());
+                }
+
+                spinnerCliente.setHint("Escolha um cliente");
+                spinnerCliente.setThreshold(1);//will start working from first character
+                //spinnerCliente.setTextColor(Color.RED);
+                spinnerCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        cliente = resultList.get(i);
+                    }
+                });
+                spinnerCliente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        cliente = resultList.get(i);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                        cliente = null;
+                        spinnerCliente.setText("");
+
+
+
+                    }
+                });
             }
         });
     }
