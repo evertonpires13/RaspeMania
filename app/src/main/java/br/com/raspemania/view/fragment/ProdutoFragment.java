@@ -36,9 +36,6 @@ public class ProdutoFragment extends BaseFragment {
 
     private AppCompatButton mNovoBtn;
 
-    private TextInputEditText nome_colaborador;
-    private AppCompatButton btn_pesquisar;
-
     public static ProdutoFragment newInstance() {
         return new ProdutoFragment();
     }
@@ -77,12 +74,6 @@ public class ProdutoFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
-
-        btn_pesquisar = (AppCompatButton) view.findViewById(R.id.btn_pesquisar);
-        btn_pesquisar.setOnClickListener(botaoPesquisar);
-
-        nome_colaborador = (TextInputEditText) view.findViewById(R.id.nome_colaborador);
-        // nome_colaborador.setOnKeyListener(keyPesquisa);
     }
 
     @Override
@@ -128,12 +119,4 @@ public class ProdutoFragment extends BaseFragment {
         mAdapter.notifyDataSetChanged();
         hideProgressDialog();
     }
-
-
-    View.OnClickListener botaoPesquisar =  new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            mViewModel.getAll(nome_colaborador.getText().toString());
-        }
-    };
 }
