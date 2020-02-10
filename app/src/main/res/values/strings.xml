@@ -132,6 +132,6 @@
     <string name="cancelar">Cancelar</string>
     <string name="pesquisar">pesquisar</string>
 
-    <string name="hint_autocomplete_cliente">Código do cliente</string>
+    <string name="hint_autocomplete_cliente">Nome do cliente</string>
 
 </resources>
