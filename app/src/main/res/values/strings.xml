@@ -132,12 +132,6 @@
     <string name="cancelar">Cancelar</string>
     <string name="pesquisar">pesquisar</string>
 
-
-
-    <string name="relatorio_cliente">Digite iniciais do cliente</string>
-
-
-
-
+    <string name="hint_autocomplete_cliente">Código do cliente</string>
 
 </resources>

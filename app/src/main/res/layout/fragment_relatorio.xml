@@ -8,12 +8,15 @@
 
     <AutoCompleteTextView
         android:id="@+id/spinnerCliente"
-        android:hint="@string/relatorio_cliente"
+        android:hint="@string/hint_autocomplete_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:inputType="textAutoComplete"
+        android:completionHint="@string/hint_autocomplete_cliente"
+        android:completionThreshold="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
