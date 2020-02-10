@@ -35,9 +35,6 @@ public class ColaboradorFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     private ColaboradorAdapter mAdapter;
 
-    private TextInputEditText nome_colaborador;
-    private AppCompatButton btn_novo;
-
     public static ColaboradorFragment newInstance() {
         return new ColaboradorFragment();
     }
@@ -67,14 +64,6 @@ public class ColaboradorFragment extends BaseFragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-
-
-        btn_novo = (AppCompatButton) view.findViewById(R.id.btn_novo);
-        btn_novo.setOnClickListener(botaoPesquisar);
-
-        nome_colaborador = (TextInputEditText) view.findViewById(R.id.nome_colaborador);
-       // nome_colaborador.setOnKeyListener(keyPesquisa);
-
     }
 
     @Override
@@ -120,27 +109,4 @@ public class ColaboradorFragment extends BaseFragment {
         mAdapter.notifyDataSetChanged();
         hideProgressDialog();
     }
-
-
-    private View.OnKeyListener keyPesquisa = new View.OnKeyListener() {
-
-        @Override
-        public boolean onKey(View view, int i, KeyEvent keyEvent) {
-
-            if ((nome_colaborador.length() % 3 == 0)) {
-                mViewModel.getAll(nome_colaborador.getText().toString());
-                //  Toast.makeText(context, "Multiplo", Toast.LENGTH_SHORT).show();
-            }
-
-            return true;
-        }
-    };
-
-    View.OnClickListener botaoPesquisar =  new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            mViewModel.getAll(nome_colaborador.getText().toString());
-        }
-    };
-
 }
