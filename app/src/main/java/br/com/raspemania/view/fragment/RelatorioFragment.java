@@ -186,7 +186,7 @@ public class RelatorioFragment extends BaseFragment {
         mViewModelCliente.mList.observe(this, new Observer<List<Cliente>>() {
             @Override
             public void onChanged(final List<Cliente> resultList) {
-                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(context, R.layout.item_spinner_default, SpinnerHelper.spinnerCliente( resultList, getContext()));
+                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(context, R.layout.custom_autocomplete_list, R.id.text_view_list_item, SpinnerHelper.spinnerCliente( resultList, getContext()));
                 spinnerCliente.setAdapter(adapter);
                 spinnerCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

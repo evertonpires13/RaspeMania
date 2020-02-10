@@ -271,16 +271,9 @@ public class LeituraActivity extends BaseActivity {
             @Override
             public void onChanged(final List<Cliente> resultList) {
 
-                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.item_spinner_default, SpinnerHelper.spinnerCliente(resultList, LeituraActivity.this));
+                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.custom_autocomplete_list, R.id.text_view_list_item, SpinnerHelper.spinnerCliente(resultList, LeituraActivity.this));
                 spinnerCliente.setAdapter(adapter);
 
-                for (Cliente c : resultList){
-                    Log.e("ddffdfd", c.toString());
-                }
-
-                spinnerCliente.setHint("Escolha um cliente");
-                spinnerCliente.setThreshold(1);//will start working from first character
-                //spinnerCliente.setTextColor(Color.RED);
                 spinnerCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

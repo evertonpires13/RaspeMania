@@ -128,7 +128,7 @@ public class ClienteFragment extends BaseFragment {
 
 
 
-        ArrayAdapter<Cliente> adapter = new ArrayAdapter<Cliente>(getContext(), android.R.layout.simple_list_item_1, clientes );
+        ArrayAdapter<Cliente> adapter = new ArrayAdapter<Cliente>(getContext(), R.layout.custom_autocomplete_list, R.id.text_view_list_item, clientes);
         textBusca.setAdapter(adapter);
 
         textBusca.setOnItemClickListener(new AdapterView.OnItemClickListener() {
