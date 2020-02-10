@@ -135,7 +135,9 @@ public class ClienteFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 List<Cliente> clientesNew = new ArrayList<>();
-                clientesNew.add(clientes.get(i));
+
+                Cliente selected = (Cliente) adapterView.getAdapter().getItem(i);
+                clientesNew.add(selected);
 
                 mAdapter = new ClienteAdapter(clientesNew, mViewModel);
                 mRecyclerView.setAdapter(mAdapter);

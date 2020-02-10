@@ -18,6 +18,6 @@ public class Cliente extends BaseModel implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return codigo;
+        return nome;
     }
 }

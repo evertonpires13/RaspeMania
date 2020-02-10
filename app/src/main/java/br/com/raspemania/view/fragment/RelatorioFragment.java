@@ -61,8 +61,7 @@ public class RelatorioFragment extends BaseFragment {
     private AppCompatImageButton calendar_fim;
 
     private DatePickerDialog picker;
-
-    private Cliente cliente;
+    private Cliente mCliente;
 
     public static LeituraFragment newInstance() {
         return new LeituraFragment();
@@ -163,8 +162,8 @@ public class RelatorioFragment extends BaseFragment {
 
         RelatorioConsulta filtros = new RelatorioConsulta();
 
-        if(cliente!=null){
-            filtros.cliente = cliente;
+        if(mCliente!=null){
+            filtros.cliente = mCliente;
         }
         if(spinnerColaborador.getSelectedItemPosition() != 0){
             filtros.colaborador = (Colaborador) spinnerColaborador.getSelectedItem();
@@ -186,12 +185,13 @@ public class RelatorioFragment extends BaseFragment {
         mViewModelCliente.mList.observe(this, new Observer<List<Cliente>>() {
             @Override
             public void onChanged(final List<Cliente> resultList) {
-                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(context, R.layout.custom_autocomplete_list, R.id.text_view_list_item, SpinnerHelper.spinnerCliente( resultList, getContext()));
+                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(context, R.layout.custom_autocomplete_list, R.id.text_view_list_item, resultList);
                 spinnerCliente.setAdapter(adapter);
                 spinnerCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        cliente = resultList.get(i);
+                        Cliente selected = (Cliente) adapterView.getAdapter().getItem(i);
+                        mCliente = selected;
                     }
                 });
             }

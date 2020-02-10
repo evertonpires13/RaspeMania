@@ -45,7 +45,7 @@ import br.com.raspemania.viewmodel.ProdutoViewModel;
 public class LeituraActivity extends BaseActivity {
 
     private Spinner spinnerProduto;
-    private AutoCompleteTextView spinnerCliente;
+    private AutoCompleteTextView mAutoCompleteCliente;
     private TextInputEditText textQuantidadeVendida;
     private TextInputEditText textQuantidadeReposicao;
     private AppCompatButton btnSalvar;
@@ -57,7 +57,7 @@ public class LeituraActivity extends BaseActivity {
     private ClienteViewModel mViewModelCliente;
     private LeituraViewModel mViewModelLeitura;
     private Leitura leitura;
-    private Cliente cliente;
+    private Cliente mCliente;
 
     private RecyclerView mRecyclerView;
     private PremiacaoAdapter mAdapter;
@@ -79,7 +79,7 @@ public class LeituraActivity extends BaseActivity {
         //textValor.addTextChangedListener(new MoneyTextWatcher(textValor));
 
         spinnerProduto = findViewById(R.id.spinnerProduto);
-        spinnerCliente = findViewById(R.id.spinnerCliente);
+        mAutoCompleteCliente = findViewById(R.id.autoCompleteCliente);
         textQuantidadeVendida = findViewById(R.id.textQuantidadeVendida);
         textQuantidadeReposicao = findViewById(R.id.textQuantidadeReposicao);
         btnSalvar = findViewById(R.id.btn_salvar);
@@ -189,11 +189,11 @@ public class LeituraActivity extends BaseActivity {
         //Cliente cliente  = (Cliente) spinnerCliente.getSelectedItem();
         Produto produto = (Produto) spinnerProduto.getSelectedItem();
 
-        leitura.cliente = cliente;
+        leitura.cliente = mCliente;
         leitura.produto = produto;
         leitura.quantidadeReposicao = Integer.parseInt(textQuantidadeReposicao.getText().toString());
         leitura.quantidadeVendida = Integer.parseInt(textQuantidadeVendida.getText().toString());
-        leitura.porcentagemClienteLeitura = cliente.porcentagem;
+        leitura.porcentagemClienteLeitura = mCliente.porcentagem;
         leitura.valorProdutoLeitura = produto.valor;
 
         return leitura;
@@ -218,7 +218,7 @@ public class LeituraActivity extends BaseActivity {
         }
 
         //Cliente p2 = (Cliente) spinnerCliente.geton getSelectedItem();
-        if (cliente.key == null || cliente.key.isEmpty()) {
+        if (mCliente == null || mCliente.key == null || mCliente.key.isEmpty()) {
             Toast.makeText(this, getString(R.string.leitura_spinner_erro_cliente), Toast.LENGTH_LONG).show();
             return false;
         }
@@ -271,28 +271,28 @@ public class LeituraActivity extends BaseActivity {
             @Override
             public void onChanged(final List<Cliente> resultList) {
 
-                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.custom_autocomplete_list, R.id.text_view_list_item, SpinnerHelper.spinnerCliente(resultList, LeituraActivity.this));
-                spinnerCliente.setAdapter(adapter);
+                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(LeituraActivity.this, R.layout.custom_autocomplete_list, R.id.text_view_list_item, resultList);
+                mAutoCompleteCliente.setAdapter(adapter);
 
-                spinnerCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                mAutoCompleteCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        cliente = resultList.get(i);
+                        Cliente selected = (Cliente) adapterView.getAdapter().getItem(i);
+                        mCliente = selected;
                     }
                 });
-                spinnerCliente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                mAutoCompleteCliente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        cliente = resultList.get(i);
+                        Cliente selected = (Cliente) adapterView.getAdapter().getItem(i);
+                        mCliente = selected;
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
-                        cliente = null;
-                        spinnerCliente.setText("");
-
-
-
+                        mCliente = null;
+                        mAutoCompleteCliente.clearListSelection();
                     }
                 });
             }

@@ -7,7 +7,7 @@
     android:id="@+id/layout_leitura_activity">
 
     <AutoCompleteTextView
-        android:id="@+id/spinnerCliente"
+        android:id="@+id/autoCompleteCliente"
         android:hint="@string/hint_autocomplete_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCliente" />
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteCliente" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout9"
